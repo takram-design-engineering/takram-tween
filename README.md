@@ -1,4 +1,4 @@
-Template
+Tween
 ========
 
 ## Setup Guide
@@ -8,8 +8,6 @@ Run "setup.sh" inside "scripts" directory to initialize submodules and build dep
 ### Submodules
 
 - [cpplint](https://github.com/sgss/mirror-cpplint)
-- [gflags](https://code.google.com/p/gflags/)
-- [glog](https://github.com/sgss/mirror-glog)
 - [gtest](https://github.com/sgss/mirror-googletest)
 
 ## Style Guide
