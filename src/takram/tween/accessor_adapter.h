@@ -63,12 +63,13 @@ class AccessorAdapter : public AdapterBase<Interval> {
   AccessorAdapter(const AccessorAdapter&) = delete;
   AccessorAdapter& operator=(const AccessorAdapter&) = delete;
 
-  // Controlling the adapter
-  void update(double unit) override;
-
   // Hash
   std::size_t key() const override;
   std::size_t hash() const override;
+
+ protected:
+  // Updates against the local unit time
+  void update(double unit) override;
 
  private:
   // Data members
@@ -102,7 +103,7 @@ inline AccessorAdapter<Interval, T, Class, Getter, Setter>
       from_((target->*getter)()),
       to_(to) {}
 
-#pragma mark Controlling the adapter
+#pragma mark Updates against the local unit time
 
 template <typename Interval, typename T,
           typename Class, typename Getter, typename Setter>

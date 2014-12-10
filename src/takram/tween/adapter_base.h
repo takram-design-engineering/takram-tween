@@ -51,7 +51,6 @@ class AdapterBase {
   void start(const Interval& now);
   void stop();
   void update(const Interval& now);
-  virtual void update(double unit) = 0;
 
   // Properties
   bool running() const { return running_; }
@@ -77,6 +76,9 @@ class AdapterBase {
               const Interval& duration,
               const Interval& delay,
               const std::function<void()>& callback);
+
+  // Updates against the local unit time
+  virtual void update(double unit) = 0;
 
   // Data members
   Easing easing_;

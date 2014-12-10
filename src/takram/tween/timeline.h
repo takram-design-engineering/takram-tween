@@ -31,6 +31,7 @@
 
 #include <cstddef>
 #include <memory>
+#include <mutex>
 #include <unordered_map>
 
 #include "takram/tween/adapter_base.h"
@@ -62,13 +63,14 @@ class Timeline {
   template <typename T>
   bool contains(const T *target) const;
 
-  // Controlling the timeline
-  void update();
+  // Advances the timeline
+  void advance();
 
  private:
   // Data members
   std::unordered_map<std::size_t, std::unique_ptr<Hashes>> keys_;
   Clock<Interval> clock_;
+  std::mutex mutex_;
 };
 
 #pragma mark - Inline Implementations

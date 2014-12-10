@@ -31,6 +31,7 @@
 #include <cassert>
 #include <cstddef>
 #include <memory>
+#include <mutex>
 #include <unordered_map>
 
 #include "takram/tween/interval.h"
@@ -81,10 +82,11 @@ bool Timeline<Interval>::contains(Adapter adapter) const {
   return false;
 }
 
-#pragma mark Controlling the timeline
+#pragma mark Advances the timeline
 
 template <typename Interval>
-void Timeline<Interval>::update() {
+void Timeline<Interval>::advance() {
+  std::lock_guard<std::mutex> lock(mutex_);
   const auto now = clock_.advance();
   // Intentionally copy the key store because subsequent process will change
   // the contents of the key store.

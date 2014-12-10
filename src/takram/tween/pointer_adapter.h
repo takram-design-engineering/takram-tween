@@ -57,12 +57,13 @@ class PointerAdapter : public AdapterBase<Interval> {
   PointerAdapter(const PointerAdapter&) = delete;
   PointerAdapter& operator=(const PointerAdapter&) = delete;
 
-  // Controlling the adapter
-  void update(double unit) override;
-
   // Hash
   std::size_t key() const override;
   std::size_t hash() const override;
+
+ protected:
+  // Updates against the local unit time
+  void update(double unit) override;
 
  private:
   // Data members
@@ -86,7 +87,7 @@ inline PointerAdapter<Interval, T>::PointerAdapter(
       from_(*target),
       to_(to) {}
 
-#pragma mark Controlling the adapter
+#pragma mark Updates against the local unit time
 
 template <typename Interval, typename T>
 inline void PointerAdapter<Interval, T>::update(double unit) {
