@@ -37,7 +37,7 @@ namespace tween {
 template <typename Interval>
 class Timeline;
 
-template <typename Interval>
+template <typename Interval = Time>
 class TimelineHost {
  public:
   using Timeline = Timeline<Interval>;

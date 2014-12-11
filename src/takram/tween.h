@@ -42,8 +42,6 @@
 namespace takram {
 
 using tween::Tween;
-using tween::Timeline;
-using tween::TimelineHost;
 
 }  // namespace takram
 

@@ -44,7 +44,7 @@
 namespace takram {
 namespace tween {
 
-template <typename Interval>
+template <typename Interval = Time>
 class Tween final {
  public:
   using Timeline = Timeline<Interval>;

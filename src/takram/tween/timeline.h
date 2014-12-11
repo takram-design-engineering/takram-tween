@@ -41,7 +41,7 @@
 namespace takram {
 namespace tween {
 
-template <typename Interval>
+template <typename Interval = Time>
 class Timeline final {
  public:
   using Adapter = std::shared_ptr<AdapterBase<Interval>>;
