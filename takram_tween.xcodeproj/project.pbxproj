@@ -31,6 +31,11 @@
 		9389F6141A362C56009F1639 /* ease_quintic.h in Headers */ = {isa = PBXBuildFile; fileRef = 9389F6091A362C56009F1639 /* ease_quintic.h */; };
 		9389F6151A362C56009F1639 /* ease_sinusoidal.h in Headers */ = {isa = PBXBuildFile; fileRef = 9389F60A1A362C56009F1639 /* ease_sinusoidal.h */; };
 		9389F6161A36470A009F1639 /* timeline.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9352D2A61A2C6B3100D1BA3F /* timeline.cc */; };
+		93D324571A39476000CAD313 /* timeline_host.h in Headers */ = {isa = PBXBuildFile; fileRef = 93D324561A39475D00CAD313 /* timeline_host.h */; };
+		93D324581A39476800CAD313 /* interval.h in Headers */ = {isa = PBXBuildFile; fileRef = 9389F5DF1A35D2F3009F1639 /* interval.h */; };
+		93D324591A39476800CAD313 /* clock.h in Headers */ = {isa = PBXBuildFile; fileRef = 930220EF1A36515700B15232 /* clock.h */; };
+		93D3245A1A39476800CAD313 /* hash.h in Headers */ = {isa = PBXBuildFile; fileRef = 9389F5E01A360BBB009F1639 /* hash.h */; };
+		93D3245B1A39476800CAD313 /* transform.h in Headers */ = {isa = PBXBuildFile; fileRef = 9389F5E21A360DE5009F1639 /* transform.h */; };
 		93F0BE6F1A367C0500221DED /* tween_test.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93EE86C11A365CA10066B842 /* tween_test.cc */; };
 		93F1BA06180283C8002A5A5C /* libgtest_main.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93F1BA04180283C8002A5A5C /* libgtest_main.a */; };
 		93F1BA07180283C8002A5A5C /* libgtest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93F1BA05180283C8002A5A5C /* libgtest.a */; };
@@ -77,6 +82,7 @@
 		9389F6091A362C56009F1639 /* ease_quintic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ease_quintic.h; sourceTree = "<group>"; };
 		9389F60A1A362C56009F1639 /* ease_sinusoidal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ease_sinusoidal.h; sourceTree = "<group>"; };
 		93C6B51519B22F5500A1CF93 /* libtakram_tween.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libtakram_tween.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		93D324561A39475D00CAD313 /* timeline_host.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = timeline_host.h; sourceTree = "<group>"; };
 		93EE86C11A365CA10066B842 /* tween_test.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tween_test.cc; path = test/tween/tween_test.cc; sourceTree = SOURCE_ROOT; };
 		93F1B9F6180282B0002A5A5C /* takram_tween_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = takram_tween_test; sourceTree = BUILT_PRODUCTS_DIR; };
 		93F1BA04180283C8002A5A5C /* libgtest_main.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libgtest_main.a; path = build/gtest/libgtest_main.a; sourceTree = "<group>"; };
@@ -120,6 +126,7 @@
 				9352D2A71A2C6B3100D1BA3F /* timeline.h */,
 				9352D2A61A2C6B3100D1BA3F /* timeline.cc */,
 				93517A941A36568800D18C4B /* timeline_test.cc */,
+				93D324561A39475D00CAD313 /* timeline_host.h */,
 				9352D2A11A2C6B3100D1BA3F /* tween.h */,
 				93EE86C11A365CA10066B842 /* tween_test.cc */,
 			);
@@ -197,18 +204,23 @@
 				9389F60E1A362C56009F1639 /* ease_cubic.h in Headers */,
 				9352D2B31A2C6B3100D1BA3F /* timeline.h in Headers */,
 				9389F60C1A362C56009F1639 /* ease_bounce.h in Headers */,
+				93D324571A39476000CAD313 /* timeline_host.h in Headers */,
 				9389F6101A362C56009F1639 /* ease_exponential.h in Headers */,
 				9352D2AD1A2C6B3100D1BA3F /* tween.h in Headers */,
 				9352D2AF1A2C6B3100D1BA3F /* adapter_base.h in Headers */,
+				93D324581A39476800CAD313 /* interval.h in Headers */,
 				9352D2AC1A2C6B3100D1BA3F /* pointer_adapter.h in Headers */,
 				9389F60B1A362C56009F1639 /* ease_back.h in Headers */,
 				9389F60D1A362C56009F1639 /* ease_circular.h in Headers */,
 				9389F6151A362C56009F1639 /* ease_sinusoidal.h in Headers */,
+				93D3245A1A39476800CAD313 /* hash.h in Headers */,
 				9389F60F1A362C56009F1639 /* ease_elastic.h in Headers */,
 				9389F6141A362C56009F1639 /* ease_quintic.h in Headers */,
 				9389F5EE1A3626B8009F1639 /* easing.h in Headers */,
 				9352D2A91A2C6B3100D1BA3F /* accessor_adapter.h in Headers */,
+				93D324591A39476800CAD313 /* clock.h in Headers */,
 				9389F6111A362C56009F1639 /* ease_linear.h in Headers */,
+				93D3245B1A39476800CAD313 /* transform.h in Headers */,
 				9389F6131A362C56009F1639 /* ease_quartic.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

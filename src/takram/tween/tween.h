@@ -44,8 +44,8 @@
 namespace takram {
 namespace tween {
 
-template <typename Interval = Time>
-class Tween {
+template <typename Interval>
+class Tween final {
  public:
   using Timeline = Timeline<Interval>;
   using IntervalValue = typename Interval::Value;
@@ -363,7 +363,7 @@ template <typename Interval>
 inline void Tween<Interval>::start() {
   if (adapter_ && !adapter_->running()) {
     timeline_->add(adapter_);
-    adapter_->start();
+    adapter_->start(timeline_->now());
   }
 }
 

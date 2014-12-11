@@ -1,5 +1,5 @@
 //
-//  takram/tween/clock.h
+//  takram/tween/timeline_host.h
 //
 //  MIT License
 //
@@ -26,75 +26,50 @@
 //
 
 #pragma once
-#ifndef TAKRAM_TWEEN_CLOCK_H_
-#define TAKRAM_TWEEN_CLOCK_H_
+#ifndef TAKRAM_TWEEN_TIMELINE_HOST_H_
+#define TAKRAM_TWEEN_TIMELINE_HOST_H_
 
-#include <chrono>
-
-#include "takram/tween/interval.h"
+#include "takram/tween/tween.h"
 
 namespace takram {
 namespace tween {
 
 template <typename Interval>
-class Clock final {
+class Timeline;
+
+template <typename Interval>
+class TimelineHost {
  public:
+  using Timeline = Timeline<Interval>;
+
   // Constructors
-  Clock();
-  Clock(const Clock& other);
+  virtual ~TimelineHost() = 0;
 
-  // Assignment
-  Clock& operator=(const Clock& other);
+  // Managing tweens
+  template <typename... Args>
+  Tween<Interval> tween(Args&&... args);
 
-  // Controlling clock
-  Interval advance();
-  Interval now() const { return Interval(now_); }
-
- private:
-  // Data members
-  typename Interval::Value now_;
-  typename Interval::Value birth_;
+  // Accessing timeline
+  virtual Timeline& timeline() = 0;
+  virtual const Timeline& timeline() const = 0;
 };
 
 #pragma mark - Inline Implementations
 
 template <typename Interval>
-inline Clock<Interval>::Clock()
-    : now_(now().count()),
-      birth_(now_) {}
+inline TimelineHost<Interval>::~TimelineHost() {}
+
+#pragma mark Managing tweens
 
 template <typename Interval>
-inline Clock<Interval>::Clock(const Clock& other)
-    : now_(other.now_),
-      birth_(other.birth_){}
-
-#pragma mark Assignment
-
-template <typename Interval>
-inline Clock<Interval>& Clock<Interval>::operator=(const Clock& other) {
-  if (&other != this) {
-    now_ = other.now_;
-    birth_ = other.birth_;
-  }
-  return *this;
-}
-
-#pragma mark Controlling clock
-
-template <>
-inline Time Clock<Time>::advance() {
-  now_ = std::chrono::duration_cast<std::chrono::microseconds>(
-      std::chrono::high_resolution_clock::now().time_since_epoch())
-          .count() / 1000000.0;
-  return Time(now_);
-}
-
-template <>
-inline Frame Clock<Frame>::advance() {
-  return Frame(++now_);
+template <typename... Args>
+inline Tween<Interval> TimelineHost<Interval>::tween(Args&&... args) {
+  auto tween = Tween<Interval>(args..., &timeline());
+  tween.start();
+  return tween;
 }
 
 }  // namespace tween
 }  // namespace takram
 
-#endif  // TAKRAM_TWEEN_CLOCK_H_
+#endif  // TAKRAM_TWEEN_TIMELINE_HOST_H_

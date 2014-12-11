@@ -70,9 +70,9 @@ inline double EasingGroup<Function>::Out_::operator()(double t) const {
 template <double (*Function)(double)>
 inline double EasingGroup<Function>::InOut_::operator()(double t) const {
   if (t < 0.5) {
-    return In_(2.0 * t) / 2.0;
+    return In_()(2.0 * t) / 2.0;
   } else {
-    return 0.5 + Out_(2.0 * t - 1.0) / 2.0;
+    return 0.5 + Out_()(2.0 * t - 1.0) / 2.0;
   }
 }
 

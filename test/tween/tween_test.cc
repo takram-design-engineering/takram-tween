@@ -37,7 +37,7 @@ namespace tween {
 
 class Type {
  public:
-  Type(double value) {}
+  Type(double value) : value_(value) {}
   double value() { return value_; }
   void set_value(double value) { value_ = value; }
 

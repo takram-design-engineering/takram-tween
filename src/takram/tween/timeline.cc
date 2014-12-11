@@ -85,8 +85,8 @@ bool Timeline<Interval>::contains(Adapter adapter) const {
 #pragma mark Advances the timeline
 
 template <typename Interval>
-void Timeline<Interval>::advance() {
-  std::lock_guard<std::mutex> lock(mutex_);
+Interval Timeline<Interval>::advance() {
+  std::lock_guard<std::recursive_mutex> lock(mutex_);
   const auto now = clock_.advance();
   // Intentionally copy the key store because subsequent process will change
   // the contents of the key store.
@@ -130,6 +130,7 @@ void Timeline<Interval>::advance() {
       ++itr;
     }
   }
+  return now;
 }
 
 template class Timeline<Time>;

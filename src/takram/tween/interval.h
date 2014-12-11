@@ -36,7 +36,7 @@ namespace takram {
 namespace tween {
 
 template <typename T>
-class Interval {
+class Interval final {
  public:
   using Value = T;
 

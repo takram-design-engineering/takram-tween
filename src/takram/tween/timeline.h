@@ -42,7 +42,7 @@ namespace takram {
 namespace tween {
 
 template <typename Interval>
-class Timeline {
+class Timeline final {
  public:
   using Adapter = std::shared_ptr<AdapterBase<Interval>>;
   using Hashes = std::unordered_map<std::size_t, Adapter>;
@@ -64,13 +64,14 @@ class Timeline {
   bool contains(const T *target) const;
 
   // Advances the timeline
-  void advance();
+  Interval advance();
+  Interval now() const { return clock_.now(); }
 
  private:
   // Data members
   std::unordered_map<std::size_t, std::unique_ptr<Hashes>> keys_;
   Clock<Interval> clock_;
-  std::mutex mutex_;
+  std::recursive_mutex mutex_;
 };
 
 #pragma mark - Inline Implementations

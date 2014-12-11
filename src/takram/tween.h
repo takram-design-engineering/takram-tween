@@ -35,10 +35,18 @@
 #include "takram/tween/interval.h"
 #include "takram/tween/pointer_adapter.h"
 #include "takram/tween/timeline.h"
+#include "takram/tween/timeline_host.h"
 #include "takram/tween/transform.h"
 #include "takram/tween/tween.h"
 
 namespace takram {
+
+template <typename Interval = tween::Time>
+using Tween = tween::Tween<Interval>;
+template <typename Interval = tween::Time>
+using Timeline = tween::Timeline<Interval>;
+template <typename Interval = tween::Time>
+using TimelineHost = tween::TimelineHost<Interval>;
 
 }  // namespace takram
 
