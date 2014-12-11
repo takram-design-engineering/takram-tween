@@ -41,12 +41,9 @@
 
 namespace takram {
 
-template <typename Interval = tween::Time>
-using Tween = tween::Tween<Interval>;
-template <typename Interval = tween::Time>
-using Timeline = tween::Timeline<Interval>;
-template <typename Interval = tween::Time>
-using TimelineHost = tween::TimelineHost<Interval>;
+using tween::Tween;
+using tween::Timeline;
+using tween::TimelineHost;
 
 }  // namespace takram
 

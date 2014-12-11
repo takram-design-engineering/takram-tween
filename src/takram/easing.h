@@ -44,7 +44,7 @@
 
 namespace takram {
 
-using Easing = easing::Easing;
+using easing::Easing;
 using BackEasing = easing::EasingGroup<easing::EaseBack>;
 using BounceEasing = easing::EasingGroup<easing::EaseBounce>;
 using CircularEasing = easing::EasingGroup<easing::EaseCircular>;
