@@ -31,6 +31,8 @@
 		9389F6141A362C56009F1639 /* ease_quintic.h in Headers */ = {isa = PBXBuildFile; fileRef = 9389F6091A362C56009F1639 /* ease_quintic.h */; };
 		9389F6151A362C56009F1639 /* ease_sinusoidal.h in Headers */ = {isa = PBXBuildFile; fileRef = 9389F60A1A362C56009F1639 /* ease_sinusoidal.h */; };
 		9389F6161A36470A009F1639 /* timeline.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9352D2A61A2C6B3100D1BA3F /* timeline.cc */; };
+		9396A6111A3CA4D8000A40A9 /* math.h in Headers */ = {isa = PBXBuildFile; fileRef = 9389F5FA1A36297F009F1639 /* math.h */; };
+		9396A6121A3CA4DB000A40A9 /* easing.h in Headers */ = {isa = PBXBuildFile; fileRef = 9389F5FF1A362B39009F1639 /* easing.h */; };
 		93D324571A39476000CAD313 /* timeline_host.h in Headers */ = {isa = PBXBuildFile; fileRef = 93D324561A39475D00CAD313 /* timeline_host.h */; };
 		93D324581A39476800CAD313 /* interval.h in Headers */ = {isa = PBXBuildFile; fileRef = 9389F5DF1A35D2F3009F1639 /* interval.h */; };
 		93D324591A39476800CAD313 /* clock.h in Headers */ = {isa = PBXBuildFile; fileRef = 930220EF1A36515700B15232 /* clock.h */; };
@@ -213,6 +215,7 @@
 				9389F60B1A362C56009F1639 /* ease_back.h in Headers */,
 				9389F60D1A362C56009F1639 /* ease_circular.h in Headers */,
 				9389F6151A362C56009F1639 /* ease_sinusoidal.h in Headers */,
+				9396A6111A3CA4D8000A40A9 /* math.h in Headers */,
 				93D3245A1A39476800CAD313 /* hash.h in Headers */,
 				9389F60F1A362C56009F1639 /* ease_elastic.h in Headers */,
 				9389F6141A362C56009F1639 /* ease_quintic.h in Headers */,
@@ -222,6 +225,7 @@
 				9389F6111A362C56009F1639 /* ease_linear.h in Headers */,
 				93D3245B1A39476800CAD313 /* transform.h in Headers */,
 				9389F6131A362C56009F1639 /* ease_quartic.h in Headers */,
+				9396A6121A3CA4DB000A40A9 /* easing.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

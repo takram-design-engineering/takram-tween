@@ -50,9 +50,9 @@ struct EasingGroup {
   };
 
  public:
-  static const In_ In;
-  static const Out_ Out;
-  static const InOut_ InOut;
+  static constexpr In_ In = In_();
+  static constexpr Out_ Out = Out_();
+  static constexpr InOut_ InOut = InOut_();
 };
 
 #pragma mark - Inline Implementations
@@ -75,6 +75,13 @@ inline double EasingGroup<Function>::InOut_::operator()(double t) const {
     return 0.5 + Out_()(2.0 * t - 1.0) / 2.0;
   }
 }
+
+template <double (*Function)(double)>
+constexpr typename EasingGroup<Function>::In_ EasingGroup<Function>::In;
+template <double (*Function)(double)>
+constexpr typename EasingGroup<Function>::Out_ EasingGroup<Function>::Out;
+template <double (*Function)(double)>
+constexpr typename EasingGroup<Function>::InOut_ EasingGroup<Function>::InOut;
 
 }  // namespace easing
 }  // namespace takram

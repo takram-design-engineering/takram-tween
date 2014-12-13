@@ -57,9 +57,6 @@ class Interval final {
   bool operator>=(const Interval& other) const;
 
   // Arithmetic operators
-  friend Interval operator+(const Interval &a, Interval &b);
-  friend Interval operator-(const Interval &a, Interval &b);
-  friend double operator/(const Interval &a, Interval &b);
   Interval& operator+=(const Interval& other);
   Interval& operator-=(const Interval& other);
 
@@ -102,19 +99,19 @@ inline Interval<T>& Interval<T>::operator=(const Interval<T>& other) {
 #pragma mark Arithmetic operators
 
 template <typename T>
-inline Interval<T> operator+(const Interval<T> &a, Interval<T> &b) {
-  return Interval<T>(a.value_ + b.value_);
+inline Interval<T> operator+(const Interval<T>& a, const Interval<T>& b) {
+  return Interval<T>(a.count() + b.count());
 }
 
 template <typename T>
-inline Interval<T> operator-(const Interval<T> &a, Interval<T> &b) {
-  return Interval<T>(a.value_ - b.value_);
+inline Interval<T> operator-(const Interval<T>& a, const Interval<T>& b) {
+  return Interval<T>(a.count() - b.count());
 }
 
 template <typename T>
-inline double operator/(const Interval<T> &a, Interval<T> &b) {
-  assert(b.value_);
-  return static_cast<double>(a.value_) / static_cast<double>(b.value_);
+inline double operator/(const Interval<T>& a, const Interval<T>& b) {
+  assert(b.count());
+  return static_cast<double>(a.count()) / static_cast<double>(b.count());
 }
 
 template <typename T>
