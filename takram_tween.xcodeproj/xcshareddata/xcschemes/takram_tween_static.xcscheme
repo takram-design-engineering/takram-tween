@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "93C6B51419B22F5500A1CF93"
                BuildableName = "libtakram_tween.a"
-               BlueprintName = "takram_tween"
+               BlueprintName = "takram_tween_static"
                ReferencedContainer = "container:takram_tween.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -44,7 +44,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "93C6B51419B22F5500A1CF93"
             BuildableName = "libtakram_tween.a"
-            BlueprintName = "takram_tween"
+            BlueprintName = "takram_tween_static"
             ReferencedContainer = "container:takram_tween.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

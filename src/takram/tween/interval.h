@@ -119,7 +119,7 @@ inline Interval<T>& Interval<T>::operator+=(const Interval& other) {
   value_ += other.value_;
   return *this;
 }
-  
+
 template <typename T>
 inline Interval<T>& Interval<T>::operator-=(const Interval& other) {
   value_ -= other.value_;

@@ -52,7 +52,7 @@ class PointerAdapter : public AdapterBase<Interval> {
                  const Interval& duration,
                  const Interval& delay,
                  const std::function<void()>& callback);
-  
+
   // Disallow copy and assign
   PointerAdapter(const PointerAdapter&) = delete;
   PointerAdapter& operator=(const PointerAdapter&) = delete;
