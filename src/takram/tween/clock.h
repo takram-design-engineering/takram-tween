@@ -60,8 +60,10 @@ class Clock final {
 
 template <typename Interval>
 inline Clock<Interval>::Clock()
-    : now_(now().count()),
-      birth_(now_) {}
+    : now_(),
+      birth_() {
+  now_ = birth_ = advance().count();
+}
 
 template <typename Interval>
 inline Clock<Interval>::Clock(const Clock& other)

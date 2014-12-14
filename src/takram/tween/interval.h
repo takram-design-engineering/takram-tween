@@ -62,7 +62,7 @@ class Interval final {
 
   // Properties
   Value count() const { return value_; }
-  bool empty() const { return value_; }
+  bool empty() const { return !value_; }
 
  private:
   // Data members
