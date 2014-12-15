@@ -112,9 +112,9 @@ inline void AccessorAdapter<Interval, T, Class, Getter, Setter>
   if (unit < 0.0) {
     from_ = (target_->*getter_)();
   } else if (AdapterBase<Interval>::duration_.empty() || unit > 1.0) {
-    (target_->*setter_)(Transform(Easing(), 1.0, from_, to_));
+    (target_->*setter_)(Transform(this->easing_, 1.0, from_, to_));
   } else {
-    (target_->*setter_)(Transform(Easing(), unit, from_, to_));
+    (target_->*setter_)(Transform(this->easing_, unit, from_, to_));
   }
 }
 
