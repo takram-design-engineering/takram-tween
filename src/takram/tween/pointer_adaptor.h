@@ -1,5 +1,5 @@
 //
-//  takram/tween/pointer_adapter.h
+//  takram/tween/pointer_adaptor.h
 //
 //  MIT License
 //
@@ -26,14 +26,14 @@
 //
 
 #pragma once
-#ifndef TAKRAM_TWEEN_POINTER_ADAPTER_H_
-#define TAKRAM_TWEEN_POINTER_ADAPTER_H_
+#ifndef TAKRAM_TWEEN_POINTER_ADAPTOR_H_
+#define TAKRAM_TWEEN_POINTER_ADAPTOR_H_
 
 #include <cstddef>
 #include <functional>
 
 #include "takram/easing.h"
-#include "takram/tween/adapter_base.h"
+#include "takram/tween/adaptor_base.h"
 #include "takram/tween/hash.h"
 #include "takram/tween/transform.h"
 
@@ -41,12 +41,12 @@ namespace takram {
 namespace tween {
 
 template <typename Interval, typename T>
-class PointerAdapter : public AdapterBase<Interval> {
+class PointerAdaptor : public AdaptorBase<Interval> {
  public:
   using Value = T;
 
   // Constructors
-  PointerAdapter(T *target,
+  PointerAdaptor(T *target,
                  const Value& to,
                  const Easing& easing,
                  const Interval& duration,
@@ -54,8 +54,8 @@ class PointerAdapter : public AdapterBase<Interval> {
                  const std::function<void()>& callback);
 
   // Disallow copy and assign
-  PointerAdapter(const PointerAdapter&) = delete;
-  PointerAdapter& operator=(const PointerAdapter&) = delete;
+  PointerAdaptor(const PointerAdaptor&) = delete;
+  PointerAdaptor& operator=(const PointerAdaptor&) = delete;
 
   // Hash
   std::size_t key() const override;
@@ -75,14 +75,14 @@ class PointerAdapter : public AdapterBase<Interval> {
 #pragma mark - Inline Implementations
 
 template <typename Interval, typename T>
-inline PointerAdapter<Interval, T>::PointerAdapter(
+inline PointerAdaptor<Interval, T>::PointerAdaptor(
     T *target,
     const Value& to,
     const Easing& easing,
     const Interval& duration,
     const Interval& delay,
     const std::function<void()>& callback)
-    : AdapterBase<Interval>(easing, duration, delay, callback),
+    : AdaptorBase<Interval>(easing, duration, delay, callback),
       target_(target),
       from_(*target),
       to_(to) {}
@@ -90,7 +90,7 @@ inline PointerAdapter<Interval, T>::PointerAdapter(
 #pragma mark Updates against the local unit time
 
 template <typename Interval, typename T>
-inline void PointerAdapter<Interval, T>::update(double unit) {
+inline void PointerAdaptor<Interval, T>::update(double unit) {
   if (unit < 0.0) {
     from_ = *target_;
   } else if (this->duration_.empty() || unit > 1.0) {
@@ -103,16 +103,16 @@ inline void PointerAdapter<Interval, T>::update(double unit) {
 #pragma mark Hash
 
 template <typename Interval, typename T>
-inline std::size_t PointerAdapter<Interval, T>::key() const {
+inline std::size_t PointerAdaptor<Interval, T>::key() const {
   return Hash(target_);
 }
 
 template <typename Interval, typename T>
-inline std::size_t PointerAdapter<Interval, T>::hash() const {
+inline std::size_t PointerAdaptor<Interval, T>::hash() const {
   return Hash(target_);
 }
 
 }  // namespace tween
 }  // namespace takram
 
-#endif  // TAKRAM_TWEEN_POINTER_ADAPTER_H_
+#endif  // TAKRAM_TWEEN_POINTER_ADAPTOR_H_

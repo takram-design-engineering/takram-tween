@@ -31,10 +31,9 @@
 
 #include <cstddef>
 #include <memory>
-#include <mutex>
 #include <unordered_map>
 
-#include "takram/tween/adapter_base.h"
+#include "takram/tween/adaptor_base.h"
 #include "takram/tween/clock.h"
 #include "takram/tween/hash.h"
 
@@ -44,8 +43,8 @@ namespace tween {
 template <typename Interval = Time>
 class Timeline final {
  public:
-  using Adapter = std::shared_ptr<AdapterBase<Interval>>;
-  using Hashes = std::unordered_map<std::size_t, Adapter>;
+  using Adaptor = std::shared_ptr<AdaptorBase<Interval>>;
+  using Hashes = std::unordered_map<std::size_t, Adaptor>;
 
   // Constructors
   Timeline() = default;
@@ -55,9 +54,9 @@ class Timeline final {
   Timeline& operator=(const Timeline&) = delete;
 
   // Managing tweens
-  void add(Adapter adapter, bool overwrite = true);
-  void remove(Adapter adapter);
-  bool contains(Adapter adapter) const;
+  void add(Adaptor adaptor, bool overwrite = true);
+  void remove(Adaptor adaptor);
+  bool contains(Adaptor adaptor) const;
   template <typename T>
   void remove(const T *target);
   template <typename T>
@@ -71,7 +70,6 @@ class Timeline final {
   // Data members
   std::unordered_map<std::size_t, std::unique_ptr<Hashes>> keys_;
   Clock<Interval> clock_;
-  std::recursive_mutex mutex_;
 };
 
 #pragma mark - Inline Implementations

@@ -1,5 +1,5 @@
 //
-//  takram/tween/accessor_adapter.h
+//  takram/tween/accessor_adaptor.h
 //
 //  MIT License
 //
@@ -26,8 +26,8 @@
 //
 
 #pragma once
-#ifndef TAKRAM_TWEEN_ACCESSOR_ADAPTER_H_
-#define TAKRAM_TWEEN_ACCESSOR_ADAPTER_H_
+#ifndef TAKRAM_TWEEN_ACCESSOR_ADAPTOR_H_
+#define TAKRAM_TWEEN_ACCESSOR_ADAPTOR_H_
 
 #include <cstddef>
 #include <functional>
@@ -35,7 +35,7 @@
 #include <string>
 
 #include "takram/easing.h"
-#include "takram/tween/adapter_base.h"
+#include "takram/tween/adaptor_base.h"
 #include "takram/tween/hash.h"
 #include "takram/tween/transform.h"
 
@@ -44,12 +44,12 @@ namespace tween {
 
 template <typename Interval, typename T,
           typename Class, typename Getter, typename Setter>
-class AccessorAdapter : public AdapterBase<Interval> {
+class AccessorAdaptor : public AdaptorBase<Interval> {
  public:
   using Value = T;
 
   // Constructors
-  AccessorAdapter(Class *target,
+  AccessorAdaptor(Class *target,
                   Getter getter,
                   Setter setter,
                   const std::string& name,
@@ -60,8 +60,8 @@ class AccessorAdapter : public AdapterBase<Interval> {
                   const std::function<void()>& callback);
 
   // Disallow copy and assign
-  AccessorAdapter(const AccessorAdapter&) = delete;
-  AccessorAdapter& operator=(const AccessorAdapter&) = delete;
+  AccessorAdaptor(const AccessorAdaptor&) = delete;
+  AccessorAdaptor& operator=(const AccessorAdaptor&) = delete;
 
   // Hash
   std::size_t key() const override;
@@ -85,8 +85,8 @@ class AccessorAdapter : public AdapterBase<Interval> {
 
 template <typename Interval, typename T,
           typename Class, typename Getter, typename Setter>
-inline AccessorAdapter<Interval, T, Class, Getter, Setter>
-    ::AccessorAdapter(Class *target,
+inline AccessorAdaptor<Interval, T, Class, Getter, Setter>
+    ::AccessorAdaptor(Class *target,
                       Getter getter,
                       Setter setter,
                       const std::string& name,
@@ -95,7 +95,7 @@ inline AccessorAdapter<Interval, T, Class, Getter, Setter>
                       const Interval& duration,
                       const Interval& delay,
                       const std::function<void()>& callback)
-    : AdapterBase<Interval>(easing, duration, delay, callback),
+    : AdaptorBase<Interval>(easing, duration, delay, callback),
       target_(target),
       getter_(getter),
       setter_(setter),
@@ -107,11 +107,11 @@ inline AccessorAdapter<Interval, T, Class, Getter, Setter>
 
 template <typename Interval, typename T,
           typename Class, typename Getter, typename Setter>
-inline void AccessorAdapter<Interval, T, Class, Getter, Setter>
+inline void AccessorAdaptor<Interval, T, Class, Getter, Setter>
     ::update(double unit) {
   if (unit < 0.0) {
     from_ = (target_->*getter_)();
-  } else if (AdapterBase<Interval>::duration_.empty() || unit > 1.0) {
+  } else if (AdaptorBase<Interval>::duration_.empty() || unit > 1.0) {
     (target_->*setter_)(Transform(this->easing_, 1.0, from_, to_));
   } else {
     (target_->*setter_)(Transform(this->easing_, unit, from_, to_));
@@ -122,14 +122,14 @@ inline void AccessorAdapter<Interval, T, Class, Getter, Setter>
 
 template <typename Interval, typename T,
           typename Class, typename Getter, typename Setter>
-inline std::size_t AccessorAdapter<Interval, T, Class, Getter, Setter>
+inline std::size_t AccessorAdaptor<Interval, T, Class, Getter, Setter>
     ::key() const {
   return Hash(target_);
 }
 
 template <typename Interval, typename T,
           typename Class, typename Getter, typename Setter>
-inline std::size_t AccessorAdapter<Interval, T, Class, Getter, Setter>
+inline std::size_t AccessorAdaptor<Interval, T, Class, Getter, Setter>
     ::hash() const {
   return hash_;
 }
@@ -137,4 +137,4 @@ inline std::size_t AccessorAdapter<Interval, T, Class, Getter, Setter>
 }  // namespace tween
 }  // namespace takram
 
-#endif  // TAKRAM_TWEEN_ACCESSOR_ADAPTER_H_
+#endif  // TAKRAM_TWEEN_ACCESSOR_ADAPTOR_H_

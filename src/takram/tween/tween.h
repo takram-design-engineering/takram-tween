@@ -35,10 +35,10 @@
 #include <string>
 
 #include "takram/easing.h"
-#include "takram/tween/accessor_adapter.h"
-#include "takram/tween/adapter_base.h"
+#include "takram/tween/accessor_adaptor.h"
+#include "takram/tween/adaptor_base.h"
 #include "takram/tween/interval.h"
-#include "takram/tween/pointer_adapter.h"
+#include "takram/tween/pointer_adaptor.h"
 #include "takram/tween/timeline.h"
 
 namespace takram {
@@ -172,7 +172,7 @@ class Tween final {
 
  private:
   // Data members
-  std::shared_ptr<AdapterBase<Interval>> adapter_;
+  std::shared_ptr<AdaptorBase<Interval>> adaptor_;
   Timeline *timeline_;
 };
 
@@ -184,7 +184,7 @@ inline Tween<Interval>::Tween()
 
 template <typename Interval>
 inline Tween<Interval>::Tween(const Tween& other)
-    : adapter_(other.adapter_),
+    : adaptor_(other.adaptor_),
       timeline_(other.timeline_) {}
 
 #pragma mark Construct with pointer
@@ -309,7 +309,7 @@ template <typename Interval>
 inline Tween<Interval>& Tween<Interval>::operator=(
     const Tween& other) {
   if (&other != this) {
-    adapter_ = other.adapter_;
+    adaptor_ = other.adaptor_;
     timeline_ = other.timeline_;
   }
   return *this;
@@ -319,7 +319,7 @@ inline Tween<Interval>& Tween<Interval>::operator=(
 
 template <typename Interval>
 inline bool Tween<Interval>::operator==(const Tween& other) const {
-  return adapter_ == other.adapter_ && timeline_ == other.timeline_;
+  return adaptor_ == other.adaptor_ && timeline_ == other.timeline_;
 }
 
 #pragma mark Initializers
@@ -334,8 +334,8 @@ inline void Tween<Interval>::init(
     const Interval& delay,
     const std::function<void()>& callback) {
   assert(target);
-  using Adapter = PointerAdapter<Interval, T>;
-  adapter_ = std::make_shared<Adapter>(
+  using Adaptor = PointerAdaptor<Interval, T>;
+  adaptor_ = std::make_shared<Adaptor>(
       target, to, easing, duration, delay, callback);
 }
 
@@ -352,8 +352,8 @@ inline void Tween<Interval>::init(
     const Interval& delay,
     const std::function<void()>& callback) {
   assert(target);
-  using Adapter = AccessorAdapter<Interval, T, Class, Getter, Setter>;
-  adapter_ = std::make_shared<Adapter>(
+  using Adaptor = AccessorAdaptor<Interval, T, Class, Getter, Setter>;
+  adaptor_ = std::make_shared<Adaptor>(
       target, getter, setter, name, to, easing, duration, delay, callback);
 }
 
@@ -361,17 +361,17 @@ inline void Tween<Interval>::init(
 
 template <typename Interval>
 inline void Tween<Interval>::start() {
-  if (adapter_ && !adapter_->running()) {
-    timeline_->add(adapter_);
-    adapter_->start(timeline_->now());
+  if (adaptor_ && !adaptor_->running()) {
+    timeline_->add(adaptor_);
+    adaptor_->start(timeline_->now());
   }
 }
 
 template <typename Interval>
 inline void Tween<Interval>::stop() {
-  if (adapter_ && adapter_->running()) {
-    adapter_->stop();
-    timeline_->remove(adapter_);
+  if (adaptor_ && adaptor_->running()) {
+    adaptor_->stop();
+    timeline_->remove(adaptor_);
   }
 }
 
@@ -379,55 +379,55 @@ inline void Tween<Interval>::stop() {
 
 template <typename Interval>
 inline bool Tween<Interval>::running() const {
-  return adapter_ && adapter_->running();
+  return adaptor_ && adaptor_->running();
 }
 
 template <typename Interval>
 inline bool Tween<Interval>::finished() const {
-  return adapter_ && adapter_->finished();
+  return adaptor_ && adaptor_->finished();
 }
 
 template <typename Interval>
 inline bool Tween<Interval>::empty() const {
-  return !adapter_;
+  return !adaptor_;
 }
 
 #pragma mark Parameters
 
 template <typename Interval>
 inline typename Interval::Value Tween<Interval>::duration() const {
-  if (adapter_) {
-    return adapter_->duration().count();
+  if (adaptor_) {
+    return adaptor_->duration().count();
   }
   return Interval().count();
 }
 
 template <typename Interval>
 inline void Tween<Interval>::set_duration(IntervalValue value) {
-  if (adapter_) {
-    return adapter_->set_duration(Interval(value));
+  if (adaptor_) {
+    return adaptor_->set_duration(Interval(value));
   }
 }
 
 template <typename Interval>
 inline typename Interval::Value Tween<Interval>::delay() const {
-  if (adapter_) {
-    return adapter_->delay().count();
+  if (adaptor_) {
+    return adaptor_->delay().count();
   }
   return Interval().count();
 }
 
 template <typename Interval>
 inline void Tween<Interval>::set_delay(IntervalValue value) {
-  if (adapter_) {
-    return adapter_->set_delay(Interval(value));
+  if (adaptor_) {
+    return adaptor_->set_delay(Interval(value));
   }
 }
 
 template <typename Interval>
 inline std::function<void()> Tween<Interval>::callback() const {
-  if (adapter_) {
-    return adapter_->callback();
+  if (adaptor_) {
+    return adaptor_->callback();
   }
   return std::function<void()>();
 }
@@ -435,8 +435,8 @@ inline std::function<void()> Tween<Interval>::callback() const {
 template <typename Interval>
 inline void Tween<Interval>::set_callback(
     const std::function<void()>& value) {
-  if (adapter_) {
-    return adapter_->set_callback(value);
+  if (adaptor_) {
+    return adaptor_->set_callback(value);
   }
 }
 

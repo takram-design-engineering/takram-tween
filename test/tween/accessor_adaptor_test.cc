@@ -1,5 +1,5 @@
 //
-//  test/tween/pointer_adapter_test.cc
+//  test/tween/accessor_adaptor_test.cc
 //
 //  MIT License
 //
@@ -29,15 +29,28 @@
 
 #include "takram/easing.h"
 #include "takram/tween/interval.h"
-#include "takram/tween/pointer_adapter.h"
+#include "takram/tween/accessor_adaptor.h"
 
 namespace takram {
 namespace tween {
 
-TEST(PointerAdapterTest, Test) {
-  double value = 0.0;
-  PointerAdapter<Time, double> adapter(
-      &value, 1.0, LinearEasing::In, Time(1.0), Time(0.0), []() {});
+class Type {
+ public:
+  Type(double value) : value_(value) {}
+  double value() { return value_; }
+  void set_value(double value) { value_ = value; }
+
+ private:
+  double value_;
+};
+
+TEST(AccessorAdaptorTest, Test) {
+  Type value = 0.0;
+  AccessorAdaptor<
+      Time, double,
+      Type, decltype(&Type::value), decltype(&Type::set_value)> adaptor(
+          &value, &Type::value, &Type::set_value, "value", 1.0,
+          LinearEasing::In, Time(1.0), Time(0.0), []() {});
 }
 
 }  // namespace tween

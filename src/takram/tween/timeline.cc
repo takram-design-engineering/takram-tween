@@ -31,7 +31,6 @@
 #include <cassert>
 #include <cstddef>
 #include <memory>
-#include <mutex>
 #include <unordered_map>
 
 #include "takram/tween/interval.h"
@@ -42,9 +41,9 @@ namespace tween {
 #pragma mark Managing tweens
 
 template <typename Interval>
-void Timeline<Interval>::add(Adapter adapter, bool overwrite) {
-  assert(adapter);
-  const auto key = adapter->key();
+void Timeline<Interval>::add(Adaptor adaptor, bool overwrite) {
+  assert(adaptor);
+  const auto key = adaptor->key();
   Hashes *hashes = nullptr;
   if (keys_.find(key) == keys_.end()) {
     hashes = keys_.emplace(key, std::make_unique<Hashes>()).first->second.get();
@@ -52,32 +51,32 @@ void Timeline<Interval>::add(Adapter adapter, bool overwrite) {
     hashes = keys_.at(key).get();
   }
   assert(hashes);
-  const auto hash = adapter->hash();
+  const auto hash = adaptor->hash();
   if (overwrite && keys_.find(key) != keys_.end()) {
     hashes->erase(hash);
   }
-  hashes->emplace(hash, adapter);
+  hashes->emplace(hash, adaptor);
 }
 
 template <typename Interval>
-void Timeline<Interval>::remove(Adapter adapter) {
-  assert(adapter);
-  const auto key = adapter->key();
+void Timeline<Interval>::remove(Adaptor adaptor) {
+  assert(adaptor);
+  const auto key = adaptor->key();
   if (keys_.find(key) != keys_.end()) {
     const auto hashes = keys_.at(key).get();
     assert(hashes);
-    hashes->erase(adapter->hash());
+    hashes->erase(adaptor->hash());
   }
 }
 
 template <typename Interval>
-bool Timeline<Interval>::contains(Adapter adapter) const {
-  assert(adapter);
-  const auto key = adapter->key();
+bool Timeline<Interval>::contains(Adaptor adaptor) const {
+  assert(adaptor);
+  const auto key = adaptor->key();
   if (keys_.find(key) != keys_.end()) {
     const auto keys = keys_.at(key).get();
     assert(keys);
-    return keys->find(adapter->hash()) != keys->end();
+    return keys->find(adaptor->hash()) != keys->end();
   }
   return false;
 }
@@ -86,7 +85,6 @@ bool Timeline<Interval>::contains(Adapter adapter) const {
 
 template <typename Interval>
 Interval Timeline<Interval>::advance() {
-  std::lock_guard<std::recursive_mutex> lock(mutex_);
   const auto now = clock_.advance();
   // Intentionally copy the key store because subsequent process will change
   // the contents of the key store.
@@ -98,13 +96,13 @@ Interval Timeline<Interval>::advance() {
   for (const auto& key_hashes_pair : keys) {
     assert(key_hashes_pair.second);
     // Intentionally copy the hash store here because update call of the
-    // adapters can change contents of the hash store.
+    // adaptors can change contents of the hash store.
     const auto hashes = *key_hashes_pair.second;
-    for (const auto& hash_adapter_pair : hashes) {
-      auto adapter = hash_adapter_pair.second;
-      assert(adapter);
-      if (adapter->running()) {
-        adapter->update(now);
+    for (const auto& hash_adaptor_pair : hashes) {
+      auto adaptor = hash_adaptor_pair.second;
+      assert(adaptor);
+      if (adaptor->running()) {
+        adaptor->update(now);
       }
     }
   }
@@ -112,9 +110,9 @@ Interval Timeline<Interval>::advance() {
     const auto hashes = key_hashes_pair.second;
     assert(hashes);
     for (auto itr = hashes->begin(); itr != hashes->end();) {
-      const auto adapter = itr->second;
-      assert(adapter);
-      if (adapter->finished()) {
+      const auto adaptor = itr->second;
+      assert(adaptor);
+      if (adaptor->finished()) {
         hashes->erase(itr++);
       } else {
         ++itr;

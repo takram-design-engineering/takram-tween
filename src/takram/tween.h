@@ -29,11 +29,11 @@
 #ifndef TAKRAM_TWEEN_H_
 #define TAKRAM_TWEEN_H_
 
-#include "takram/tween/accessor_adapter.h"
-#include "takram/tween/adapter_base.h"
+#include "takram/tween/accessor_adaptor.h"
+#include "takram/tween/adaptor_base.h"
 #include "takram/tween/clock.h"
 #include "takram/tween/interval.h"
-#include "takram/tween/pointer_adapter.h"
+#include "takram/tween/pointer_adaptor.h"
 #include "takram/tween/timeline.h"
 #include "takram/tween/timeline_host.h"
 #include "takram/tween/transform.h"

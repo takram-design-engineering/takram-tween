@@ -1,5 +1,5 @@
 //
-//  takram/tween/adapter_base.h
+//  takram/tween/adaptor_base.h
 //
 //  MIT License
 //
@@ -26,8 +26,8 @@
 //
 
 #pragma once
-#ifndef TAKRAM_TWEEN_ADAPTER_BASE_H_
-#define TAKRAM_TWEEN_ADAPTER_BASE_H_
+#ifndef TAKRAM_TWEEN_ADAPTOR_BASE_H_
+#define TAKRAM_TWEEN_ADAPTOR_BASE_H_
 
 #include <cstddef>
 #include <functional>
@@ -38,16 +38,16 @@ namespace takram {
 namespace tween {
 
 template <typename Interval>
-class AdapterBase {
+class AdaptorBase {
  public:
   // Constructors
-  virtual ~AdapterBase() = 0;
+  virtual ~AdaptorBase() = 0;
 
   // Disallow copy and assign
-  AdapterBase(const AdapterBase&) = delete;
-  AdapterBase& operator=(const AdapterBase&) = delete;
+  AdaptorBase(const AdaptorBase&) = delete;
+  AdaptorBase& operator=(const AdaptorBase&) = delete;
 
-  // Controlling the adapter
+  // Controlling the adaptor
   void start(const Interval& now);
   void stop();
   void update(const Interval& now);
@@ -72,7 +72,7 @@ class AdapterBase {
 
  protected:
   // Constructors
-  AdapterBase(const Easing& easing,
+  AdaptorBase(const Easing& easing,
               const Interval& duration,
               const Interval& delay,
               const std::function<void()>& callback);
@@ -96,7 +96,7 @@ class AdapterBase {
 #pragma mark - Inline Implementations
 
 template <typename Interval>
-inline AdapterBase<Interval>::AdapterBase(
+inline AdaptorBase<Interval>::AdaptorBase(
     const Easing& easing,
     const Interval& duration,
     const Interval& delay,
@@ -109,12 +109,12 @@ inline AdapterBase<Interval>::AdapterBase(
       finished_(false){}
 
 template <typename Interval>
-inline AdapterBase<Interval>::~AdapterBase() {}
+inline AdaptorBase<Interval>::~AdaptorBase() {}
 
-#pragma mark Controlling the adapter
+#pragma mark Controlling the adaptor
 
 template <typename Interval>
-inline void AdapterBase<Interval>::start(const Interval& now) {
+inline void AdaptorBase<Interval>::start(const Interval& now) {
   if (!running_) {
     running_ = true;
     if (!finished_) {
@@ -124,14 +124,14 @@ inline void AdapterBase<Interval>::start(const Interval& now) {
 }
 
 template <typename Interval>
-inline void AdapterBase<Interval>::stop() {
+inline void AdaptorBase<Interval>::stop() {
   if (running_) {
     running_ = false;
   }
 }
 
 template <typename Interval>
-inline void AdapterBase<Interval>::update(const Interval& now) {
+inline void AdaptorBase<Interval>::update(const Interval& now) {
   if (running_) {
     const auto elapsed = now - started_ - delay_;
     if (elapsed <= duration_) {
@@ -151,4 +151,4 @@ inline void AdapterBase<Interval>::update(const Interval& now) {
 }  // namespace tween
 }  // namespace takram
 
-#endif  // TAKRAM_TWEEN_ADAPTER_BASE_H_
+#endif  // TAKRAM_TWEEN_ADAPTOR_BASE_H_
