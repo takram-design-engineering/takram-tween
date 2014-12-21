@@ -42,6 +42,7 @@ namespace tween {
 
 template <typename Interval>
 void Timeline<Interval>::add(Adaptor adaptor, bool overwrite) {
+  std::lock_guard<std::mutex> lock(mutex_);
   assert(adaptor);
   const auto key = adaptor->key();
   Hashes *hashes = nullptr;
@@ -60,6 +61,7 @@ void Timeline<Interval>::add(Adaptor adaptor, bool overwrite) {
 
 template <typename Interval>
 void Timeline<Interval>::remove(Adaptor adaptor) {
+  std::lock_guard<std::mutex> lock(mutex_);
   assert(adaptor);
   const auto key = adaptor->key();
   if (keys_.find(key) != keys_.end()) {
@@ -71,6 +73,7 @@ void Timeline<Interval>::remove(Adaptor adaptor) {
 
 template <typename Interval>
 bool Timeline<Interval>::contains(Adaptor adaptor) const {
+  std::lock_guard<std::mutex> lock(mutex_);
   assert(adaptor);
   const auto key = adaptor->key();
   if (keys_.find(key) != keys_.end()) {
@@ -85,6 +88,7 @@ bool Timeline<Interval>::contains(Adaptor adaptor) const {
 
 template <typename Interval>
 Interval Timeline<Interval>::advance() {
+  std::lock_guard<std::mutex> lock(mutex_);
   const auto now = clock_.advance();
   // Intentionally copy the key store because subsequent process will change
   // the contents of the key store.

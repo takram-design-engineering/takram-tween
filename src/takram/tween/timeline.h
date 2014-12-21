@@ -31,6 +31,7 @@
 
 #include <cstddef>
 #include <memory>
+#include <mutex>
 #include <unordered_map>
 
 #include "takram/tween/adaptor_base.h"
@@ -70,6 +71,7 @@ class Timeline final {
   // Data members
   std::unordered_map<std::size_t, std::unique_ptr<Hashes>> keys_;
   Clock<Interval> clock_;
+  mutable std::mutex mutex_;
 };
 
 #pragma mark - Inline Implementations
@@ -79,12 +81,14 @@ class Timeline final {
 template <typename Interval>
 template <typename T>
 inline void Timeline<Interval>::remove(const T *target) {
+  std::lock_guard<std::mutex> lock(mutex_);
   keys_.erase(Hash(target));
 }
 
 template <typename Interval>
 template <typename T>
 inline bool Timeline<Interval>::contains(const T *target) const {
+  std::lock_guard<std::mutex> lock(mutex_);
   return keys_.find(Hash(target)) != keys_.end();
 }
 
