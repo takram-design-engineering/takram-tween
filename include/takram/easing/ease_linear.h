@@ -1,5 +1,5 @@
 //
-//  project_debug.xcconfig
+//  takram/easing/ease_linear.h
 //
 //  MIT License
 //
@@ -25,22 +25,18 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-// Configuration for Xcode 6.1
+#pragma once
+#ifndef TAKRAM_EASING_EASE_LINEAR_H_
+#define TAKRAM_EASING_EASE_LINEAR_H_
 
-#include "project.xcconfig"
+namespace takram {
+namespace easing {
 
-// Build Options
-DEBUG_INFORMATION_FORMAT =
+inline double EaseLinear(double t) {
+  return t;
+}
 
-// Deployment
-COPY_PHASE_STRIP = NO
+}  // namespace easing
+}  // namespace takram
 
-// Apple LLVM 6.0 - Code Generation
-GCC_OPTIMIZATION_LEVEL = 0
-GCC_FAST_MATH = NO
-
-// Apple LLVM 6.0 - Preprocessing
-GCC_PREPROCESSOR_DEFINITIONS = $(inherited) DEBUG=1
-
-// User-Defined
-MTL_ENABLE_DEBUG_INFO = YES
+#endif  // TAKRAM_EASING_EASE_LINEAR_H_

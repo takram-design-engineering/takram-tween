@@ -1,5 +1,5 @@
 //
-//  project_debug.xcconfig
+//  takram/tween.h
 //
 //  MIT License
 //
@@ -25,22 +25,24 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-// Configuration for Xcode 6.1
+#pragma once
+#ifndef TAKRAM_TWEEN_H_
+#define TAKRAM_TWEEN_H_
 
-#include "project.xcconfig"
+#include "takram/tween/accessor_adaptor.h"
+#include "takram/tween/adaptor_base.h"
+#include "takram/tween/clock.h"
+#include "takram/tween/interval.h"
+#include "takram/tween/pointer_adaptor.h"
+#include "takram/tween/timeline.h"
+#include "takram/tween/timeline_host.h"
+#include "takram/tween/transform.h"
+#include "takram/tween/tween.h"
 
-// Build Options
-DEBUG_INFORMATION_FORMAT =
+namespace takram {
 
-// Deployment
-COPY_PHASE_STRIP = NO
+using tween::Tween;
 
-// Apple LLVM 6.0 - Code Generation
-GCC_OPTIMIZATION_LEVEL = 0
-GCC_FAST_MATH = NO
+}  // namespace takram
 
-// Apple LLVM 6.0 - Preprocessing
-GCC_PREPROCESSOR_DEFINITIONS = $(inherited) DEBUG=1
-
-// User-Defined
-MTL_ENABLE_DEBUG_INFO = YES
+#endif  // TAKRAM_TWEEN_H_

@@ -1,5 +1,5 @@
 //
-//  project_debug.xcconfig
+//  takram/tween/timeline_host.h
 //
 //  MIT License
 //
@@ -25,22 +25,51 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-// Configuration for Xcode 6.1
+#pragma once
+#ifndef TAKRAM_TWEEN_TIMELINE_HOST_H_
+#define TAKRAM_TWEEN_TIMELINE_HOST_H_
 
-#include "project.xcconfig"
+#include "takram/tween/tween.h"
 
-// Build Options
-DEBUG_INFORMATION_FORMAT =
+namespace takram {
+namespace tween {
 
-// Deployment
-COPY_PHASE_STRIP = NO
+template <typename Interval>
+class Timeline;
 
-// Apple LLVM 6.0 - Code Generation
-GCC_OPTIMIZATION_LEVEL = 0
-GCC_FAST_MATH = NO
+template <typename Interval = Time>
+class TimelineHost {
+ public:
+  using Timeline = Timeline<Interval>;
 
-// Apple LLVM 6.0 - Preprocessing
-GCC_PREPROCESSOR_DEFINITIONS = $(inherited) DEBUG=1
+  // Constructors
+  virtual ~TimelineHost() = 0;
 
-// User-Defined
-MTL_ENABLE_DEBUG_INFO = YES
+  // Managing tweens
+  template <typename... Args>
+  Tween<Interval> tween(Args&&... args);
+
+  // Accessing timeline
+  virtual Timeline& timeline() = 0;
+  virtual const Timeline& timeline() const = 0;
+};
+
+#pragma mark - Inline Implementations
+
+template <typename Interval>
+inline TimelineHost<Interval>::~TimelineHost() {}
+
+#pragma mark Managing tweens
+
+template <typename Interval>
+template <typename... Args>
+inline Tween<Interval> TimelineHost<Interval>::tween(Args&&... args) {
+  auto tween = Tween<Interval>(args..., &timeline());
+  tween.start();
+  return tween;
+}
+
+}  // namespace tween
+}  // namespace takram
+
+#endif  // TAKRAM_TWEEN_TIMELINE_HOST_H_

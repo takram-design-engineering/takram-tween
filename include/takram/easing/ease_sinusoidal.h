@@ -1,5 +1,5 @@
 //
-//  project_debug.xcconfig
+//  takram/easing/ease_sinusoidal.h
 //
 //  MIT License
 //
@@ -25,22 +25,22 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-// Configuration for Xcode 6.1
+#pragma once
+#ifndef TAKRAM_EASING_EASE_SINUSOIDAL_H_
+#define TAKRAM_EASING_EASE_SINUSOIDAL_H_
 
-#include "project.xcconfig"
+#include <cmath>
 
-// Build Options
-DEBUG_INFORMATION_FORMAT =
+#include "takram/easing/math.h"
 
-// Deployment
-COPY_PHASE_STRIP = NO
+namespace takram {
+namespace easing {
 
-// Apple LLVM 6.0 - Code Generation
-GCC_OPTIMIZATION_LEVEL = 0
-GCC_FAST_MATH = NO
+inline double EaseSinusoidal(double t) {
+  return 1.0 - std::cos(t * HALF_PI);
+}
 
-// Apple LLVM 6.0 - Preprocessing
-GCC_PREPROCESSOR_DEFINITIONS = $(inherited) DEBUG=1
+}  // namespace easing
+}  // namespace takram
 
-// User-Defined
-MTL_ENABLE_DEBUG_INFO = YES
+#endif  // TAKRAM_EASING_EASE_SINUSOIDAL_H_

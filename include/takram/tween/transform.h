@@ -1,5 +1,5 @@
 //
-//  project_debug.xcconfig
+//  takram/tween/transform.h
 //
 //  MIT License
 //
@@ -25,22 +25,19 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-// Configuration for Xcode 6.1
+#pragma once
+#ifndef TAKRAM_TWEEN_TRANFORM_H_
+#define TAKRAM_TWEEN_TRANFORM_H_
 
-#include "project.xcconfig"
+#include "takram/easing.h"
 
-// Build Options
-DEBUG_INFORMATION_FORMAT =
+namespace takram {
+namespace tween {
 
-// Deployment
-COPY_PHASE_STRIP = NO
+template <typename T>
+T Transform(const Easing& easing, double unit, const T& from, const T& to);
 
-// Apple LLVM 6.0 - Code Generation
-GCC_OPTIMIZATION_LEVEL = 0
-GCC_FAST_MATH = NO
+}  // namespace tween
+}  // namespace takram
 
-// Apple LLVM 6.0 - Preprocessing
-GCC_PREPROCESSOR_DEFINITIONS = $(inherited) DEBUG=1
-
-// User-Defined
-MTL_ENABLE_DEBUG_INFO = YES
+#endif  // TAKRAM_TWEEN_TRANFORM_H_

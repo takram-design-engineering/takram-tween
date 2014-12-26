@@ -1,5 +1,5 @@
 //
-//  project_debug.xcconfig
+//  takram/easing/ease_bounce.h
 //
 //  MIT License
 //
@@ -25,22 +25,34 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-// Configuration for Xcode 6.1
+#pragma once
+#ifndef TAKRAM_EASING_EASE_BOUNCE_H_
+#define TAKRAM_EASING_EASE_BOUNCE_H_
 
-#include "project.xcconfig"
+namespace takram {
+namespace easing {
 
-// Build Options
-DEBUG_INFORMATION_FORMAT =
+inline double EaseBounce(double t) {
+  const double v = 1.0 - t;
+  double c;
+  double d;
+  if (v < (1.0 / 2.750)) {
+    c = v;
+    d = 0;
+  } else if (v < (2.0 / 2.750)) {
+    c = v - 1.50 / 2.750;
+    d = 0.750;
+  } else if (v < (2.5 / 2.750)) {
+    c = v - 2.250 / 2.750;
+    d = 0.93750;
+  } else {
+    c = v - 2.6250 / 2.750;
+    d = 0.9843750;
+  }
+  return 1.0 - (7.56250 * c * c + d);
+}
 
-// Deployment
-COPY_PHASE_STRIP = NO
+}  // namespace easing
+}  // namespace takram
 
-// Apple LLVM 6.0 - Code Generation
-GCC_OPTIMIZATION_LEVEL = 0
-GCC_FAST_MATH = NO
-
-// Apple LLVM 6.0 - Preprocessing
-GCC_PREPROCESSOR_DEFINITIONS = $(inherited) DEBUG=1
-
-// User-Defined
-MTL_ENABLE_DEBUG_INFO = YES
+#endif  // TAKRAM_EASING_EASE_BOUNCE_H_

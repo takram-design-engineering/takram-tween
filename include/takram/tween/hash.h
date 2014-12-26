@@ -1,5 +1,5 @@
 //
-//  project_debug.xcconfig
+//  takram/tween/hash.h
 //
 //  MIT License
 //
@@ -25,22 +25,23 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-// Configuration for Xcode 6.1
+#pragma once
+#ifndef TAKRAM_TWEEN_HASH_H_
+#define TAKRAM_TWEEN_HASH_H_
 
-#include "project.xcconfig"
+#include <cstddef>
+#include <cstdint>
+#include <functional>
 
-// Build Options
-DEBUG_INFORMATION_FORMAT =
+namespace takram {
+namespace tween {
 
-// Deployment
-COPY_PHASE_STRIP = NO
+template <typename T>
+inline std::size_t Hash(const T *object) {
+  return std::hash<std::size_t>()(reinterpret_cast<std::uintptr_t>(object));
+}
 
-// Apple LLVM 6.0 - Code Generation
-GCC_OPTIMIZATION_LEVEL = 0
-GCC_FAST_MATH = NO
+}  // namespace tween
+}  // namespace takram
 
-// Apple LLVM 6.0 - Preprocessing
-GCC_PREPROCESSOR_DEFINITIONS = $(inherited) DEBUG=1
-
-// User-Defined
-MTL_ENABLE_DEBUG_INFO = YES
+#endif  // TAKRAM_TWEEN_HASH_H_

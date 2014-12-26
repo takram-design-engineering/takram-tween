@@ -3,8 +3,8 @@
 //
 //  MIT License
 //
-//  Copyright (C) 2014 Shota Matsuda
-//  Copyright (C) 2014 takram design engineering
+//  Copyright (C) 2014-2015 Shota Matsuda
+//  Copyright (C) 2014-2015 takram design engineering
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),

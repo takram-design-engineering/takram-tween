@@ -3,8 +3,8 @@
 //
 //  MIT License
 //
-//  Copyright (C) 2014 Shota Matsuda
-//  Copyright (C) 2014 takram design engineering
+//  Copyright (C) 2014-2015 Shota Matsuda
+//  Copyright (C) 2014-2015 takram design engineering
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -25,10 +25,12 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
+// Configuration for Xcode 6.1
+
 // Linking
 TAKRAM_OTHER_LDFLAGS = $(inherited) -lgflags -lglog
 
 // Search Paths
 ALWAYS_SEARCH_USER_PATHS = NO
-TAKRAM_HEADER_SEARCH_PATHS = $(inherited) "$(SRCROOT)/include" "$(SRCROOT)/src" "$(SRCROOT)/build/gflags/include" "$(SRCROOT)/build/glog/include"
+TAKRAM_HEADER_SEARCH_PATHS = $(inherited) "$(SRCROOT)/include" "$(SRCROOT)/build/gflags/include" "$(SRCROOT)/build/glog/include"
 TAKRAM_LIBRARY_SEARCH_PATHS = $(inherited) "$(SRCROOT)/build/gflags/lib" "$(SRCROOT)/build/glog/lib"
