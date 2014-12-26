@@ -38,9 +38,9 @@
 		93D324591A39476800CAD313 /* clock.h in Headers */ = {isa = PBXBuildFile; fileRef = 930220EF1A36515700B15232 /* clock.h */; };
 		93D3245A1A39476800CAD313 /* hash.h in Headers */ = {isa = PBXBuildFile; fileRef = 9389F5E01A360BBB009F1639 /* hash.h */; };
 		93D3245B1A39476800CAD313 /* transform.h in Headers */ = {isa = PBXBuildFile; fileRef = 9389F5E21A360DE5009F1639 /* transform.h */; };
+		93D9068C1A4DC63B00BBD89C /* transform.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93517A981A3658E800D18C4B /* transform.cc */; };
+		93D9068D1A4DC63B00BBD89C /* timeline.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9352D2A61A2C6B3100D1BA3F /* timeline.cc */; };
 		93F0BE6F1A367C0500221DED /* tween_test.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93EE86C11A365CA10066B842 /* tween_test.cc */; };
-		93F1BA06180283C8002A5A5C /* libgtest_main.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93F1BA04180283C8002A5A5C /* libgtest_main.a */; };
-		93F1BA07180283C8002A5A5C /* libgtest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93F1BA05180283C8002A5A5C /* libgtest.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,10 +85,16 @@
 		9389F60A1A362C56009F1639 /* ease_sinusoidal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ease_sinusoidal.h; sourceTree = "<group>"; };
 		93C6B51519B22F5500A1CF93 /* libtakram_tween.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libtakram_tween.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		93D324561A39475D00CAD313 /* timeline_host.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = timeline_host.h; sourceTree = "<group>"; };
+		93D906761A4DC00600BBD89C /* product_dynamic.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = product_dynamic.xcconfig; sourceTree = "<group>"; };
+		93D906771A4DC00600BBD89C /* product_static.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = product_static.xcconfig; sourceTree = "<group>"; };
+		93D906781A4DC00600BBD89C /* product.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = product.xcconfig; sourceTree = "<group>"; };
+		93D906791A4DC00600BBD89C /* project_debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = project_debug.xcconfig; sourceTree = "<group>"; };
+		93D9067A1A4DC00600BBD89C /* project_release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = project_release.xcconfig; sourceTree = "<group>"; };
+		93D9067B1A4DC00600BBD89C /* project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = project.xcconfig; sourceTree = "<group>"; };
+		93D9067C1A4DC00600BBD89C /* product_test.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = product_test.xcconfig; sourceTree = "<group>"; };
+		93D906811A4DC34900BBD89C /* libtakram_tween.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libtakram_tween.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		93EE86C11A365CA10066B842 /* tween_test.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tween_test.cc; path = test/tween/tween_test.cc; sourceTree = SOURCE_ROOT; };
 		93F1B9F6180282B0002A5A5C /* takram_tween_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = takram_tween_test; sourceTree = BUILT_PRODUCTS_DIR; };
-		93F1BA04180283C8002A5A5C /* libgtest_main.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libgtest_main.a; path = build/gtest/libgtest_main.a; sourceTree = "<group>"; };
-		93F1BA05180283C8002A5A5C /* libgtest.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libgtest.a; path = build/gtest/libgtest.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,12 +105,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		93D9067E1A4DC34900BBD89C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		93F1B9F3180282B0002A5A5C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93F1BA06180283C8002A5A5C /* libgtest_main.a in Frameworks */,
-				93F1BA07180283C8002A5A5C /* libgtest.a in Frameworks */,
 				93447DC81A2B14530024396C /* libtakram_tween.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -155,20 +166,25 @@
 			path = easing;
 			sourceTree = "<group>";
 		};
-		93F1BA03180283B9002A5A5C /* libraries */ = {
+		93D9066E1A4DB6EB00BBD89C /* xcode */ = {
 			isa = PBXGroup;
 			children = (
-				93F1BA04180283C8002A5A5C /* libgtest_main.a */,
-				93F1BA05180283C8002A5A5C /* libgtest.a */,
+				93D9067B1A4DC00600BBD89C /* project.xcconfig */,
+				93D906791A4DC00600BBD89C /* project_debug.xcconfig */,
+				93D9067A1A4DC00600BBD89C /* project_release.xcconfig */,
+				93D906781A4DC00600BBD89C /* product.xcconfig */,
+				93D906771A4DC00600BBD89C /* product_static.xcconfig */,
+				93D906761A4DC00600BBD89C /* product_dynamic.xcconfig */,
+				93D9067C1A4DC00600BBD89C /* product_test.xcconfig */,
 			);
-			name = libraries;
+			path = xcode;
 			sourceTree = "<group>";
 		};
 		93F8AD6617C8B39800310877 = {
 			isa = PBXGroup;
 			children = (
 				93F8AD7117C8B39800310877 /* sources */,
-				93F1BA03180283B9002A5A5C /* libraries */,
+				93D9066E1A4DB6EB00BBD89C /* xcode */,
 				93F8AD7017C8B39800310877 /* products */,
 			);
 			sourceTree = "<group>";
@@ -177,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				93C6B51519B22F5500A1CF93 /* libtakram_tween.a */,
+				93D906811A4DC34900BBD89C /* libtakram_tween.dylib */,
 				93F1B9F6180282B0002A5A5C /* takram_tween_test */,
 			);
 			name = products;
@@ -229,6 +246,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		93D9067F1A4DC34900BBD89C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -248,6 +272,23 @@
 			productName = sgss_opaque;
 			productReference = 93C6B51519B22F5500A1CF93 /* libtakram_tween.a */;
 			productType = "com.apple.product-type.library.static";
+		};
+		93D906801A4DC34900BBD89C /* takram_tween_dynamic */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 93D906891A4DC34900BBD89C /* Build configuration list for PBXNativeTarget "takram_tween_dynamic" */;
+			buildPhases = (
+				93D9067D1A4DC34900BBD89C /* Sources */,
+				93D9067E1A4DC34900BBD89C /* Frameworks */,
+				93D9067F1A4DC34900BBD89C /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = takram_tween_dynamic;
+			productName = takram_tween_dynamic;
+			productReference = 93D906811A4DC34900BBD89C /* libtakram_tween.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
 		};
 		93F1B9F5180282B0002A5A5C /* takram_tween_test */ = {
 			isa = PBXNativeTarget;
@@ -274,6 +315,11 @@
 			attributes = {
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = sgss;
+				TargetAttributes = {
+					93D906801A4DC34900BBD89C = {
+						CreatedOnToolsVersion = 6.1;
+					};
+				};
 			};
 			buildConfigurationList = 93F8AD6A17C8B39800310877 /* Build configuration list for PBXProject "takram_tween" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -288,6 +334,7 @@
 			projectRoot = "";
 			targets = (
 				93C6B51419B22F5500A1CF93 /* takram_tween_static */,
+				93D906801A4DC34900BBD89C /* takram_tween_dynamic */,
 				93F1B9F5180282B0002A5A5C /* takram_tween_test */,
 			);
 		};
@@ -300,6 +347,15 @@
 			files = (
 				93517A991A3658E800D18C4B /* transform.cc in Sources */,
 				9389F6161A36470A009F1639 /* timeline.cc in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		93D9067D1A4DC34900BBD89C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				93D9068D1A4DC63B00BBD89C /* timeline.cc in Sources */,
+				93D9068C1A4DC63B00BBD89C /* transform.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,6 +383,7 @@
 /* Begin XCBuildConfiguration section */
 		93C6B51719B22F5500A1CF93 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93D906771A4DC00600BBD89C /* product_static.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -338,6 +395,7 @@
 		};
 		93C6B51819B22F5500A1CF93 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93D906771A4DC00600BBD89C /* product_static.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -347,105 +405,47 @@
 			};
 			name = Release;
 		};
-		93F1B9FC180282B1002A5A5C /* Debug */ = {
+		93D9068A1A4DC34900BBD89C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/gtest/include\"",
-				);
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/lib";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/build/gtest\"",
-				);
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = takram_tween;
+			};
+			name = Debug;
+		};
+		93D9068B1A4DC34900BBD89C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = takram_tween;
+			};
+			name = Release;
+		};
+		93F1B9FC180282B1002A5A5C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93D9067C1A4DC00600BBD89C /* product_test.xcconfig */;
+			buildSettings = {
 				PRODUCT_NAME = takram_tween_test;
 			};
 			name = Debug;
 		};
 		93F1B9FD180282B1002A5A5C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93D9067C1A4DC00600BBD89C /* product_test.xcconfig */;
 			buildSettings = {
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/gtest/include\"",
-				);
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/lib";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/build/gtest\"",
-				);
 				PRODUCT_NAME = takram_tween_test;
 			};
 			name = Release;
 		};
 		93F8AD7617C8B39800310877 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93D906791A4DC00600BBD89C /* project_debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = NO;
-				CLANG_WARN_ASSIGN_ENUM = NO;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_CXX0X_EXTENSIONS = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = NO;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = NO;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
-				CLANG_WARN_OBJC_MISSING_PROPERTY_SYNTHESIS = NO;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = NO;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CLANG_WARN__EXIT_TIME_DESTRUCTORS = NO;
-				COPY_PHASE_STRIP = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"$(inherited)",
-					"DEBUG=1",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = NO;
-				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = NO;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
-				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
-				GCC_WARN_ABOUT_INVALID_OFFSETOF_MACRO = YES;
-				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = NO;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
-				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = NO;
-				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_MULTIPLE_DEFINITION_TYPES_FOR_SELECTOR = NO;
-				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = NO;
-				GCC_WARN_SHADOW = NO;
-				GCC_WARN_SIGN_COMPARE = NO;
-				GCC_WARN_STRICT_SELECTOR_MATCH = NO;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_PARAMETER = NO;
-				GCC_WARN_UNUSED_VALUE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/include\"",
@@ -455,79 +455,14 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
-				USE_HEADERMAP = NO;
 			};
 			name = Debug;
 		};
 		93F8AD7717C8B39800310877 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93D9067A1A4DC00600BBD89C /* project_release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = NO;
-				CLANG_WARN_ASSIGN_ENUM = NO;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_CXX0X_EXTENSIONS = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = NO;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = NO;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
-				CLANG_WARN_OBJC_MISSING_PROPERTY_SYNTHESIS = NO;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = NO;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CLANG_WARN__EXIT_TIME_DESTRUCTORS = NO;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_FAST_MATH = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = s;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"$(inherited)",
-					"NDEBUG=1",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = NO;
-				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = NO;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
-				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
-				GCC_WARN_ABOUT_INVALID_OFFSETOF_MACRO = YES;
-				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = NO;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
-				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = NO;
-				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_MULTIPLE_DEFINITION_TYPES_FOR_SELECTOR = NO;
-				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = NO;
-				GCC_WARN_SHADOW = NO;
-				GCC_WARN_SIGN_COMPARE = NO;
-				GCC_WARN_STRICT_SELECTOR_MATCH = NO;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_PARAMETER = NO;
-				GCC_WARN_UNUSED_VALUE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/include\"",
@@ -537,7 +472,6 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = macosx;
-				USE_HEADERMAP = NO;
 			};
 			name = Release;
 		};
@@ -549,6 +483,15 @@
 			buildConfigurations = (
 				93C6B51719B22F5500A1CF93 /* Debug */,
 				93C6B51819B22F5500A1CF93 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		93D906891A4DC34900BBD89C /* Build configuration list for PBXNativeTarget "takram_tween_dynamic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				93D9068A1A4DC34900BBD89C /* Debug */,
+				93D9068B1A4DC34900BBD89C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
