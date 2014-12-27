@@ -40,42 +40,42 @@
 namespace takram {
 namespace tween {
 
-#pragma mark Managing tweens
+#pragma mark Managing adaptors
 
 template <typename Interval>
 void Timeline<Interval>::add(Adaptor adaptor, bool overwrite) {
   assert(adaptor);
-  const auto key = adaptor->key();
-  const auto hash = adaptor->hash();
+  const auto object = adaptor->object_hash();
+  const auto target = adaptor->target_hash();
   std::lock_guard<std::mutex> lock(mutex_);
-  if (keys_.find(key) == keys_.end()) {
-    auto& hashes = keys_.emplace(key, Hashes()).first->second;
-    hashes.emplace(hash, adaptor);
+  if (objects_.find(object) == objects_.end()) {
+    auto& targets = objects_.emplace(object, Targets()).first->second;
+    targets.emplace(target, adaptor);
   } else {
-    auto& hashes = keys_.at(key);
-    if (overwrite && keys_.find(key) != keys_.end()) {
-      hashes.erase(hash);
+    auto& targets = objects_.at(object);
+    if (overwrite && objects_.find(object) != objects_.end()) {
+      targets.erase(target);
     }
-    hashes.emplace(hash, adaptor);
+    targets.emplace(target, adaptor);
   }
 }
 
 template <typename Interval>
 void Timeline<Interval>::remove(Adaptor adaptor) {
   assert(adaptor);
-  const auto key = adaptor->key();
+  const auto object = adaptor->object_hash();
   std::lock_guard<std::mutex> lock(mutex_);
-  if (keys_.find(key) != keys_.end()) {
-    auto& hashes = keys_.at(key);
+  if (objects_.find(object) != objects_.end()) {
+    auto& targets = objects_.at(object);
     const auto itr = std::find_if(
-        hashes.begin(), hashes.end(),
+        targets.begin(), targets.end(),
         [&adaptor](const std::pair<std::size_t, Adaptor>& pair) {
           return pair.second == adaptor;
         });
-    if (itr != hashes.end()) {
-      hashes.erase(itr);
-      if (hashes.empty()) {
-        keys_.erase(key);
+    if (itr != targets.end()) {
+      targets.erase(itr);
+      if (targets.empty()) {
+        objects_.erase(object);
       }
     }
   }
@@ -84,16 +84,16 @@ void Timeline<Interval>::remove(Adaptor adaptor) {
 template <typename Interval>
 bool Timeline<Interval>::contains(Adaptor adaptor) const {
   assert(adaptor);
-  const auto key = adaptor->key();
+  const auto object = adaptor->object_hash();
   std::lock_guard<std::mutex> lock(mutex_);
-  if (keys_.find(key) != keys_.end()) {
-    const auto& hashes = keys_.at(key);
+  if (objects_.find(object) != objects_.end()) {
+    const auto& targets = objects_.at(object);
     const auto itr = std::find_if(
-        hashes.begin(), hashes.end(),
+        targets.begin(), targets.end(),
         [&adaptor](const std::pair<std::size_t, Adaptor>& pair) {
           return pair.second == adaptor;
         });
-    return itr != hashes.end();
+    return itr != targets.end();
   }
   return false;
 }
@@ -101,7 +101,7 @@ bool Timeline<Interval>::contains(Adaptor adaptor) const {
 template <typename Interval>
 bool Timeline<Interval>::empty() const {
   std::lock_guard<std::mutex> lock(mutex_);
-  return keys_.empty();
+  return objects_.empty();
 }
 
 #pragma mark Advances the timeline
@@ -111,25 +111,25 @@ Interval Timeline<Interval>::advance() {
   std::vector<Adaptor> finished_adaptors;
   mutex_.lock();
   const auto now = clock_.advance();
-  for (auto keys_itr = keys_.begin(); keys_itr != keys_.end();) {
-    auto& hashes = keys_itr->second;
-    for (auto hashes_itr = hashes.begin(); hashes_itr != hashes.end();) {
-      const auto adaptor = hashes_itr->second;
+  for (auto object_itr = objects_.begin(); object_itr != objects_.end();) {
+    auto& targets = object_itr->second;
+    for (auto target_itr = targets.begin(); target_itr != targets.end();) {
+      const auto adaptor = target_itr->second;
       assert(adaptor);
       if (adaptor->running()) {
         adaptor->update(now, false);
       }
       if (adaptor->finished()) {
-        hashes.erase(hashes_itr++);
+        targets.erase(target_itr++);
         finished_adaptors.emplace_back(adaptor);
       } else {
-        ++hashes_itr;
+        ++target_itr;
       }
     }
-    if (hashes.empty()) {
-      keys_.erase(keys_itr++);
+    if (targets.empty()) {
+      objects_.erase(object_itr++);
     } else {
-      ++keys_itr;
+      ++object_itr;
     }
   }
   mutex_.unlock();

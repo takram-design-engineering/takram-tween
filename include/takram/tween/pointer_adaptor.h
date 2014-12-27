@@ -61,8 +61,8 @@ class PointerAdaptor : public AdaptorBase<Interval_> {
   PointerAdaptor& operator=(const PointerAdaptor&) = delete;
 
   // Hash
-  std::size_t key() const override;
-  std::size_t hash() const override;
+  std::size_t object_hash() const override;
+  std::size_t target_hash() const override;
 
   // Parameters
   T * target() const { return target_; }
@@ -112,12 +112,12 @@ inline void PointerAdaptor<Interval, T>::update(double unit) {
 #pragma mark Hash
 
 template <typename Interval, typename T>
-inline std::size_t PointerAdaptor<Interval, T>::key() const {
+inline std::size_t PointerAdaptor<Interval, T>::object_hash() const {
   return Hash(target_);
 }
 
 template <typename Interval, typename T>
-inline std::size_t PointerAdaptor<Interval, T>::hash() const {
+inline std::size_t PointerAdaptor<Interval, T>::target_hash() const {
   return Hash(target_);
 }
 

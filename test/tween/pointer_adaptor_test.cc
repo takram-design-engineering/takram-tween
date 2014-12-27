@@ -84,10 +84,10 @@ TYPED_TEST(PointerAdaptorTest, Hash) {
       &value2, value2, LinearEasing::In, TypeParam(), TypeParam(), nullptr);
   const auto adaptor3 = PointerAdaptor<TypeParam, double>(
       &value2, value2, LinearEasing::In, TypeParam(), TypeParam(), nullptr);
-  ASSERT_NE(adaptor1.key(), adaptor2.key());
-  ASSERT_NE(adaptor1.hash(), adaptor2.hash());
-  ASSERT_EQ(adaptor2.key(), adaptor3.key());
-  ASSERT_EQ(adaptor2.hash(), adaptor3.hash());
+  ASSERT_NE(adaptor1.object_hash(), adaptor2.object_hash());
+  ASSERT_NE(adaptor1.target_hash(), adaptor2.target_hash());
+  ASSERT_EQ(adaptor2.object_hash(), adaptor3.object_hash());
+  ASSERT_EQ(adaptor2.target_hash(), adaptor3.target_hash());
 }
 
 TYPED_TEST(PointerAdaptorTest, Control) {

@@ -86,8 +86,8 @@ TYPED_TEST(AccessorAdaptorTest, Constructible) {
       Type, decltype(&Type::value), decltype(&Type::set_value)>(
           &from2, &Type::value, &Type::set_value, "value", to2.value(),
           LinearEasing::In, TypeParam(), TypeParam(), nullptr);
-  ASSERT_EQ(adaptor1.target(), &from1);
-  ASSERT_EQ(adaptor2.target(), &from2);
+  ASSERT_EQ(adaptor1.object(), &from1);
+  ASSERT_EQ(adaptor2.object(), &from2);
   ASSERT_EQ(adaptor1.from(), from1.value());
   ASSERT_EQ(adaptor2.from(), from2.value());
   ASSERT_EQ(adaptor1.to(), to1.value());
@@ -103,7 +103,7 @@ TYPED_TEST(AccessorAdaptorTest, MoveConstructible) {
           &from, &Type::value, &Type::set_value, "value", to.value(),
           LinearEasing::In, TypeParam(), TypeParam(), nullptr);
   const auto adaptor2 = std::move(adaptor1);
-  ASSERT_EQ(adaptor2.target(), &from);
+  ASSERT_EQ(adaptor2.object(), &from);
   ASSERT_EQ(adaptor2.from(), from.value());
   ASSERT_EQ(adaptor2.to(), to.value());
 }
@@ -131,12 +131,12 @@ TYPED_TEST(AccessorAdaptorTest, Hash) {
       Type, decltype(&Type::value), decltype(&Type::set_value)>(
           &value2, &Type::value, &Type::set_value, "other", value2.value(),
           LinearEasing::In, TypeParam(), TypeParam(), nullptr);
-  ASSERT_NE(adaptor1.key(), adaptor2.key());
-  ASSERT_EQ(adaptor1.hash(), adaptor2.hash());
-  ASSERT_EQ(adaptor2.key(), adaptor3.key());
-  ASSERT_EQ(adaptor2.hash(), adaptor3.hash());
-  ASSERT_EQ(adaptor3.key(), adaptor4.key());
-  ASSERT_NE(adaptor3.hash(), adaptor4.hash());
+  ASSERT_NE(adaptor1.object_hash(), adaptor2.object_hash());
+  ASSERT_EQ(adaptor1.target_hash(), adaptor2.target_hash());
+  ASSERT_EQ(adaptor2.object_hash(), adaptor3.object_hash());
+  ASSERT_EQ(adaptor2.target_hash(), adaptor3.target_hash());
+  ASSERT_EQ(adaptor3.object_hash(), adaptor4.object_hash());
+  ASSERT_NE(adaptor3.target_hash(), adaptor4.target_hash());
 }
 
 TYPED_TEST(AccessorAdaptorTest, Control) {

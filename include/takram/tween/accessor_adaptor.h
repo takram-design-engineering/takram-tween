@@ -54,7 +54,7 @@ class AccessorAdaptor : public AdaptorBase<Interval_> {
   using Setter = Setter_;
 
   // Constructors
-  AccessorAdaptor(Class *target,
+  AccessorAdaptor(Class *object,
                   Getter getter,
                   Setter setter,
                   const std::string& name,
@@ -70,11 +70,11 @@ class AccessorAdaptor : public AdaptorBase<Interval_> {
   AccessorAdaptor& operator=(const AccessorAdaptor&) = delete;
 
   // Hash
-  std::size_t key() const override;
-  std::size_t hash() const override;
+  std::size_t object_hash() const override;
+  std::size_t target_hash() const override;
 
   // Parameters
-  Class * target() const { return target_; }
+  Class * object() const { return object_; }
   const Value& from() const { return from_; }
   const Value& to() const { return to_; }
 
@@ -84,10 +84,10 @@ class AccessorAdaptor : public AdaptorBase<Interval_> {
 
  private:
   // Data members
-  Class *target_;
+  Class *object_;
   Getter getter_;
   Setter setter_;
-  std::size_t hash_;
+  std::size_t target_hash_;
   Value from_;
   Value to_;
 };
@@ -97,7 +97,7 @@ class AccessorAdaptor : public AdaptorBase<Interval_> {
 template <typename Interval, typename T,
           typename Class, typename Getter, typename Setter>
 inline AccessorAdaptor<Interval, T, Class, Getter, Setter>
-    ::AccessorAdaptor(Class *target,
+    ::AccessorAdaptor(Class *object,
                       Getter getter,
                       Setter setter,
                       const std::string& name,
@@ -107,11 +107,11 @@ inline AccessorAdaptor<Interval, T, Class, Getter, Setter>
                       const Interval& delay,
                       const std::function<void()>& callback)
     : AdaptorBase<Interval>(easing, duration, delay, callback),
-      target_(target),
+      object_(object),
       getter_(getter),
       setter_(setter),
-      hash_(std::hash<std::string>()(name)),
-      from_((target->*getter)()),
+      target_hash_(std::hash<std::string>()(name)),
+      from_((object->*getter)()),
       to_(to) {}
 
 #pragma mark Updates against the local unit time
@@ -120,13 +120,13 @@ template <typename Interval, typename T,
           typename Class, typename Getter, typename Setter>
 inline void AccessorAdaptor<Interval, T, Class, Getter, Setter>
     ::update(double unit) {
-  assert(target_);
+  assert(object_);
   if (unit < 0.0) {
-    from_ = (target_->*getter_)();
+    from_ = (object_->*getter_)();
   } else if (AdaptorBase<Interval>::duration_.empty() || unit > 1.0) {
-    (target_->*setter_)(Transform(this->easing_, 1.0, from_, to_));
+    (object_->*setter_)(Transform(this->easing_, 1.0, from_, to_));
   } else {
-    (target_->*setter_)(Transform(this->easing_, unit, from_, to_));
+    (object_->*setter_)(Transform(this->easing_, unit, from_, to_));
   }
 }
 
@@ -135,15 +135,15 @@ inline void AccessorAdaptor<Interval, T, Class, Getter, Setter>
 template <typename Interval, typename T,
           typename Class, typename Getter, typename Setter>
 inline std::size_t AccessorAdaptor<Interval, T, Class, Getter, Setter>
-    ::key() const {
-  return Hash(target_);
+    ::object_hash() const {
+  return Hash(object_);
 }
 
 template <typename Interval, typename T,
           typename Class, typename Getter, typename Setter>
 inline std::size_t AccessorAdaptor<Interval, T, Class, Getter, Setter>
-    ::hash() const {
-  return hash_;
+    ::target_hash() const {
+  return target_hash_;
 }
 
 }  // namespace tween

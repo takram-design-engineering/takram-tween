@@ -60,8 +60,8 @@ class AdaptorBase {
   bool finished() const { return finished_; }
 
   // Hash
-  virtual std::size_t key() const = 0;
-  virtual std::size_t hash() const = 0;
+  virtual std::size_t object_hash() const = 0;
+  virtual std::size_t target_hash() const = 0;
 
   // Parameters
   const Easing& easing() const { return easing_; }

@@ -48,7 +48,7 @@ class Timeline final {
  public:
   using Interval = Interval_;
   using Adaptor = std::shared_ptr<AdaptorBase<Interval>>;
-  using Hashes = std::unordered_multimap<std::size_t, Adaptor>;
+  using Targets = std::unordered_multimap<std::size_t, Adaptor>;
 
   // Constructors
   Timeline() = default;
@@ -57,14 +57,14 @@ class Timeline final {
   Timeline(const Timeline&) = delete;
   Timeline& operator=(const Timeline&) = delete;
 
-  // Managing tweens
+  // Managing adaptors
   void add(Adaptor adaptor, bool overwrite = true);
   void remove(Adaptor adaptor);
   bool contains(Adaptor adaptor) const;
   template <typename T>
-  void remove(const T *target);
+  void remove(const T *object);
   template <typename T>
-  bool contains(const T *target) const;
+  bool contains(const T *object) const;
   bool empty() const;
 
   // Advances the timeline
@@ -73,27 +73,27 @@ class Timeline final {
 
  private:
   // Data members
-  std::unordered_map<std::size_t, Hashes> keys_;
+  std::unordered_map<std::size_t, Targets> objects_;
   Clock<Interval> clock_;
   mutable std::mutex mutex_;
 };
 
 #pragma mark - Inline Implementations
 
-#pragma mark Managing tweens
+#pragma mark Managing adaptors
 
 template <typename Interval>
 template <typename T>
-inline void Timeline<Interval>::remove(const T *target) {
+inline void Timeline<Interval>::remove(const T *object) {
   std::lock_guard<std::mutex> lock(mutex_);
-  keys_.erase(Hash(target));
+  objects_.erase(Hash(object));
 }
 
 template <typename Interval>
 template <typename T>
-inline bool Timeline<Interval>::contains(const T *target) const {
+inline bool Timeline<Interval>::contains(const T *object) const {
   std::lock_guard<std::mutex> lock(mutex_);
-  return keys_.find(Hash(target)) != keys_.end();
+  return objects_.find(Hash(object)) != objects_.end();
 }
 
 }  // namespace tween
