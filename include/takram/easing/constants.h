@@ -1,5 +1,5 @@
 //
-//  takram/tween/timeline_host.h
+//  takram/easing/constants.h
 //
 //  MIT License
 //
@@ -26,51 +26,16 @@
 //
 
 #pragma once
-#ifndef TAKRAM_TWEEN_TIMELINE_HOST_H_
-#define TAKRAM_TWEEN_TIMELINE_HOST_H_
-
-#include "takram/tween/interval.h"
-#include "takram/tween/timeline.h"
-#include "takram/tween/tween.h"
+#ifndef TAKRAM_EASING_CONSTANTS_H_
+#define TAKRAM_EASING_CONSTANTS_H_
 
 namespace takram {
-namespace tween {
+namespace easing {
 
-template <typename Interval_ = Time>
-class TimelineHost {
- public:
-  using Interval = Interval_;
-  using Timeline = Timeline<Interval>;
-  using Tween = Tween<Interval>;
+constexpr double half_pi() { return 1.570796326794896619231321691639751442; }
+constexpr double two_pi() { return 6.283185307179586476925286766559005768; }
 
-  // Constructors
-  virtual ~TimelineHost() = 0;
-
-  // Creating tweens
-  template <typename... Args>
-  Tween tween(Args&&... args);
-
-  // Accessing timeline
-  virtual Timeline& timeline() = 0;
-  virtual const Timeline& timeline() const = 0;
-};
-
-#pragma mark - Inline Implementations
-
-template <typename Interval>
-inline TimelineHost<Interval>::~TimelineHost() {}
-
-#pragma mark Creating tweens
-
-template <typename Interval>
-template <typename... Args>
-inline Tween<Interval> TimelineHost<Interval>::tween(Args&&... args) {
-  auto tween = Tween(args..., &timeline());
-  tween.start();
-  return tween;
-}
-
-}  // namespace tween
+}  // namespace easing
 }  // namespace takram
 
-#endif  // TAKRAM_TWEEN_TIMELINE_HOST_H_
+#endif  // TAKRAM_EASING_CONSTANTS_H_

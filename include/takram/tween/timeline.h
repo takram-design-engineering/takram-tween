@@ -33,19 +33,22 @@
 #include <memory>
 #include <mutex>
 #include <unordered_map>
+#include <utility>
 
 #include "takram/tween/adaptor_base.h"
 #include "takram/tween/clock.h"
 #include "takram/tween/hash.h"
+#include "takram/tween/interval.h"
 
 namespace takram {
 namespace tween {
 
-template <typename Interval = Time>
+template <typename Interval_ = Time>
 class Timeline final {
  public:
+  using Interval = Interval_;
   using Adaptor = std::shared_ptr<AdaptorBase<Interval>>;
-  using Hashes = std::unordered_map<std::size_t, Adaptor>;
+  using Hashes = std::unordered_multimap<std::size_t, Adaptor>;
 
   // Constructors
   Timeline() = default;
@@ -62,6 +65,7 @@ class Timeline final {
   void remove(const T *target);
   template <typename T>
   bool contains(const T *target) const;
+  bool empty() const;
 
   // Advances the timeline
   Interval advance();
@@ -69,7 +73,7 @@ class Timeline final {
 
  private:
   // Data members
-  std::unordered_map<std::size_t, std::unique_ptr<Hashes>> keys_;
+  std::unordered_map<std::size_t, Hashes> keys_;
   Clock<Interval> clock_;
   mutable std::mutex mutex_;
 };

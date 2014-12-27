@@ -32,21 +32,32 @@
 namespace takram {
 namespace tween {
 
-template <>
-float Transform(const Easing& easing,
-                double unit,
-                const float& from,
-                const float& to) {
+template <typename T>
+T Transform(const Easing& easing, double unit, const T& from, const T& to) {
   return from + (to - from) * easing(unit);
 }
 
-template <>
-double Transform(const Easing& easing,
-                 double unit,
-                 const double& from,
-                 const double& to) {
-  return from + (to - from) * easing(unit);
-}
+#define TAKRAM_TWEEN_TRANSFORM_SPECIALIZE(T) \
+    template T Transform(const Easing&, double, const T&, const T&);
+
+TAKRAM_TWEEN_TRANSFORM_SPECIALIZE(bool)
+TAKRAM_TWEEN_TRANSFORM_SPECIALIZE(char)
+TAKRAM_TWEEN_TRANSFORM_SPECIALIZE(signed char)
+TAKRAM_TWEEN_TRANSFORM_SPECIALIZE(unsigned char)
+TAKRAM_TWEEN_TRANSFORM_SPECIALIZE(char16_t)
+TAKRAM_TWEEN_TRANSFORM_SPECIALIZE(char32_t)
+TAKRAM_TWEEN_TRANSFORM_SPECIALIZE(wchar_t)
+TAKRAM_TWEEN_TRANSFORM_SPECIALIZE(short)
+TAKRAM_TWEEN_TRANSFORM_SPECIALIZE(unsigned short)
+TAKRAM_TWEEN_TRANSFORM_SPECIALIZE(int)
+TAKRAM_TWEEN_TRANSFORM_SPECIALIZE(unsigned int)
+TAKRAM_TWEEN_TRANSFORM_SPECIALIZE(long)
+TAKRAM_TWEEN_TRANSFORM_SPECIALIZE(unsigned long)
+TAKRAM_TWEEN_TRANSFORM_SPECIALIZE(long long)
+TAKRAM_TWEEN_TRANSFORM_SPECIALIZE(unsigned long long)
+TAKRAM_TWEEN_TRANSFORM_SPECIALIZE(float)
+TAKRAM_TWEEN_TRANSFORM_SPECIALIZE(double)
+TAKRAM_TWEEN_TRANSFORM_SPECIALIZE(long double)
 
 }  // namespace tween
 }  // namespace takram

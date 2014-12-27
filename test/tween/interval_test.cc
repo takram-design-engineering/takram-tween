@@ -1,5 +1,5 @@
 //
-//  test/tween/interval.cc
+//  test/tween/interval_test.cc
 //
 //  MIT License
 //
@@ -29,7 +29,6 @@
 #include <random>
 #include <type_traits>
 
-#include "glog/logging.h"
 #include "gtest/gtest.h"
 
 #include "takram/tween/interval.h"

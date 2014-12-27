@@ -1,5 +1,5 @@
 //
-//  takram/easing/math.h
+//  test/tween/hash_test.cc
 //
 //  MIT License
 //
@@ -25,17 +25,20 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#pragma once
-#ifndef TAKRAM_EASING_MATH_H_
-#define TAKRAM_EASING_MATH_H_
+#include "gtest/gtest.h"
+
+#include "takram/tween/hash.h"
 
 namespace takram {
-namespace easing {
+namespace tween {
 
-constexpr double HALF_PI = 1.570796326794896619231321691639751442;
-constexpr double TAU = 6.283185307179586476925286766559005768;
+TEST(HashTest, Test) {
+  int object1;
+  int object2;
+  ASSERT_EQ(Hash(&object1), Hash(&object1));
+  ASSERT_EQ(Hash(&object2), Hash(&object2));
+  ASSERT_NE(Hash(&object1), Hash(&object2));
+}
 
-}  // namespace easing
+}  // namespace tween
 }  // namespace takram
-
-#endif  // TAKRAM_EASING_MATH_H_

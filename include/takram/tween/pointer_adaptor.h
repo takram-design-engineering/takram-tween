@@ -29,6 +29,7 @@
 #ifndef TAKRAM_TWEEN_POINTER_ADAPTOR_H_
 #define TAKRAM_TWEEN_POINTER_ADAPTOR_H_
 
+#include <cassert>
 #include <cstddef>
 #include <functional>
 
@@ -40,9 +41,10 @@
 namespace takram {
 namespace tween {
 
-template <typename Interval, typename T>
-class PointerAdaptor : public AdaptorBase<Interval> {
+template <typename Interval_, typename T>
+class PointerAdaptor : public AdaptorBase<Interval_> {
  public:
+  using Interval = Interval_;
   using Value = T;
 
   // Constructors
@@ -52,6 +54,7 @@ class PointerAdaptor : public AdaptorBase<Interval> {
                  const Interval& duration,
                  const Interval& delay,
                  const std::function<void()>& callback);
+  PointerAdaptor(PointerAdaptor&& other) = default;
 
   // Disallow copy and assign
   PointerAdaptor(const PointerAdaptor&) = delete;
@@ -60,6 +63,11 @@ class PointerAdaptor : public AdaptorBase<Interval> {
   // Hash
   std::size_t key() const override;
   std::size_t hash() const override;
+
+  // Parameters
+  T * target() const { return target_; }
+  const Value& from() const { return from_; }
+  const Value& to() const { return to_; }
 
  protected:
   // Updates against the local unit time
@@ -91,6 +99,7 @@ inline PointerAdaptor<Interval, T>::PointerAdaptor(
 
 template <typename Interval, typename T>
 inline void PointerAdaptor<Interval, T>::update(double unit) {
+  assert(target_);
   if (unit < 0.0) {
     from_ = *target_;
   } else if (this->duration_.empty() || unit > 1.0) {

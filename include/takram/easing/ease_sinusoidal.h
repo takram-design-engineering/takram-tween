@@ -31,13 +31,13 @@
 
 #include <cmath>
 
-#include "takram/easing/math.h"
+#include "takram/easing/constants.h"
 
 namespace takram {
 namespace easing {
 
 inline double EaseSinusoidal(double t) {
-  return 1.0 - std::cos(t * HALF_PI);
+  return 1.0 - std::cos(t * half_pi());
 }
 
 }  // namespace easing

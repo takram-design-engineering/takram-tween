@@ -1,5 +1,5 @@
 //
-//  takram/tween/timeline_host.h
+//  test/tween/interval_test.cc
 //
 //  MIT License
 //
@@ -25,52 +25,55 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#pragma once
-#ifndef TAKRAM_TWEEN_TIMELINE_HOST_H_
-#define TAKRAM_TWEEN_TIMELINE_HOST_H_
+#include <chrono>
+#include <thread>
 
-#include "takram/tween/interval.h"
-#include "takram/tween/timeline.h"
-#include "takram/tween/tween.h"
+#include "gtest/gtest.h"
+
+#include "takram/tween/clock.h"
 
 namespace takram {
 namespace tween {
 
-template <typename Interval_ = Time>
-class TimelineHost {
- public:
-  using Interval = Interval_;
-  using Timeline = Timeline<Interval>;
-  using Tween = Tween<Interval>;
+TEST(ClockTest, DefaultConstructible) {
+  Clock<Time> time_clock;
+  Clock<Frame> frame_clock;
+  ASSERT_NE(time_clock.now(), Time());
+  ASSERT_NE(frame_clock.now(), Frame());
+}
 
-  // Constructors
-  virtual ~TimelineHost() = 0;
+TEST(ClockTest, CopyConstructible) {
+  Clock<Time> time_clock1;
+  Clock<Frame> frame_clock1;
+  Clock<Time> time_clock2(time_clock1);
+  Clock<Frame> frame_clock2(frame_clock1);
+  ASSERT_EQ(time_clock1, time_clock2);
+  ASSERT_EQ(frame_clock1, frame_clock2);
+}
 
-  // Creating tweens
-  template <typename... Args>
-  Tween tween(Args&&... args);
+TEST(ClockTest, Assignable) {
+  Clock<Time> time_clock1;
+  Clock<Frame> frame_clock1;
+  Clock<Time> time_clock2;
+  Clock<Frame> frame_clock2;
+  time_clock2 = time_clock1;
+  frame_clock2 = frame_clock1;
+  ASSERT_EQ(time_clock1, time_clock2);
+  ASSERT_EQ(frame_clock1, frame_clock2);
+}
 
-  // Accessing timeline
-  virtual Timeline& timeline() = 0;
-  virtual const Timeline& timeline() const = 0;
-};
-
-#pragma mark - Inline Implementations
-
-template <typename Interval>
-inline TimelineHost<Interval>::~TimelineHost() {}
-
-#pragma mark Creating tweens
-
-template <typename Interval>
-template <typename... Args>
-inline Tween<Interval> TimelineHost<Interval>::tween(Args&&... args) {
-  auto tween = Tween(args..., &timeline());
-  tween.start();
-  return tween;
+TEST(ClockTest, Advance) {
+  Clock<Time> time_clock;
+  auto time = time_clock.now();
+  std::this_thread::sleep_for(std::chrono::milliseconds(500));
+  time_clock.advance();
+  ASSERT_GE((time_clock.now() - time).count(), 0.5);
+  ASSERT_NEAR((time_clock.now() - time).count(), 0.5, 1.0 / 60.0);
+  Clock<Frame> frame_clock;
+  auto frame = frame_clock.now();
+  frame_clock.advance();
+  ASSERT_EQ((frame_clock.now() - frame).count(), 1);
 }
 
 }  // namespace tween
 }  // namespace takram
-
-#endif  // TAKRAM_TWEEN_TIMELINE_HOST_H_

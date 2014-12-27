@@ -46,14 +46,17 @@
 namespace takram {
 namespace tween {
 
-template <typename Interval = Time>
+template <typename Interval_ = Time>
 class Tween final {
  public:
+  using Interval = Interval_;
   using Timeline = Timeline<Interval>;
   using IntervalValue = typename Interval::Value;
 
   // Constructors
   Tween();
+  explicit Tween(const std::shared_ptr<AdaptorBase<Interval>>& adaptor,
+                 Timeline *timeline = nullptr);
   Tween(const Tween& other);
 
   // Construct with pointer
@@ -145,6 +148,8 @@ class Tween final {
   bool empty() const;
 
   // Parameters
+  const Easing& easing() const;
+  void set_easing(const Easing& value);
   IntervalValue duration() const;
   void set_duration(IntervalValue value);
   IntervalValue delay() const;
@@ -155,6 +160,9 @@ class Tween final {
   // Timeline
   Timeline * timeline() const { return timeline_; }
   void set_timeline(Timeline *value);
+
+  // Conversion
+  operator bool() const { return adaptor_ && timeline_; }
 
  protected:
   // Initializers
@@ -177,16 +185,29 @@ class Tween final {
             const std::function<void()>& callback);
 
  private:
-  // Data members
+  // Aggregations
   std::shared_ptr<AdaptorBase<Interval>> adaptor_;
   Timeline *timeline_;
+
+  // Static storage
+  static Easing null_easing_;
 };
 
 #pragma mark - Inline Implementations
 
 template <typename Interval>
+Easing Tween<Interval>::null_easing_;  // Allowed for template type
+
+template <typename Interval>
 inline Tween<Interval>::Tween()
     : timeline_(nullptr) {}
+
+template <typename Interval>
+inline Tween<Interval>::Tween(
+    const std::shared_ptr<AdaptorBase<Interval>>& adaptor,
+    Timeline *timeline)
+    : adaptor_(adaptor),
+      timeline_(timeline) {}
 
 template <typename Interval>
 inline Tween<Interval>::Tween(const Tween& other)
@@ -368,9 +389,9 @@ inline void Tween<Interval>::init(
 template <typename Interval>
 inline void Tween<Interval>::start() {
   if (!timeline_) {
-    LOG(ERROR) << "Attempt to control tween before setting timeline.";
+    LOG(WARNING) << "Attempt to control tween before setting timeline.";
   } else if (!adaptor_) {
-    LOG(ERROR) << "Attempt to control tween without adaptor.";
+    LOG(WARNING) << "Attempt to control tween without adaptor.";
   } else if (!adaptor_->running()) {
     timeline_->add(adaptor_);
     adaptor_->start(timeline_->now());
@@ -380,9 +401,9 @@ inline void Tween<Interval>::start() {
 template <typename Interval>
 inline void Tween<Interval>::stop() {
   if (!timeline_) {
-    LOG(ERROR) << "Attempt to control tween before setting timeline.";
+    LOG(WARNING) << "Attempt to control tween before setting timeline.";
   } else if (!adaptor_) {
-    LOG(ERROR) << "Attempt to control tween without adaptor.";
+    LOG(WARNING) << "Attempt to control tween without adaptor.";
   } else if (adaptor_->running()) {
     adaptor_->stop();
     timeline_->remove(adaptor_);
@@ -409,11 +430,30 @@ inline bool Tween<Interval>::empty() const {
 #pragma mark Parameters
 
 template <typename Interval>
+inline const Easing& Tween<Interval>::easing() const {
+  if (adaptor_) {
+    return adaptor_->easing();
+  } else {
+    LOG(WARNING) << "Attempt to access parameter without adaptor.";
+  }
+  return null_easing_;
+}
+
+template <typename Interval>
+inline void Tween<Interval>::set_easing(const Easing& value) {
+  if (adaptor_) {
+    return adaptor_->set_easing(Interval(value));
+  } else {
+    LOG(WARNING) << "Attempt to change parameter without adaptor.";
+  }
+}
+
+template <typename Interval>
 inline typename Interval::Value Tween<Interval>::duration() const {
   if (adaptor_) {
     return adaptor_->duration().count();
   } else {
-    LOG(ERROR) << "Attempt to access parameter without adaptor.";
+    LOG(WARNING) << "Attempt to access parameter without adaptor.";
   }
   return Interval().count();
 }
@@ -423,7 +463,7 @@ inline void Tween<Interval>::set_duration(IntervalValue value) {
   if (adaptor_) {
     return adaptor_->set_duration(Interval(value));
   } else {
-    LOG(ERROR) << "Attempt to change parameter without adaptor.";
+    LOG(WARNING) << "Attempt to change parameter without adaptor.";
   }
 }
 
@@ -432,7 +472,7 @@ inline typename Interval::Value Tween<Interval>::delay() const {
   if (adaptor_) {
     return adaptor_->delay().count();
   } else {
-    LOG(ERROR) << "Attempt to access parameter without adaptor.";
+    LOG(WARNING) << "Attempt to access parameter without adaptor.";
   }
   return Interval().count();
 }
@@ -442,7 +482,7 @@ inline void Tween<Interval>::set_delay(IntervalValue value) {
   if (adaptor_) {
     return adaptor_->set_delay(Interval(value));
   } else {
-    LOG(ERROR) << "Attempt to change parameter without adaptor.";
+    LOG(WARNING) << "Attempt to change parameter without adaptor.";
   }
 }
 
@@ -451,7 +491,7 @@ inline std::function<void()> Tween<Interval>::callback() const {
   if (adaptor_) {
     return adaptor_->callback();
   } else {
-    LOG(ERROR) << "Attempt to access parameter without adaptor.";
+    LOG(WARNING) << "Attempt to access parameter without adaptor.";
   }
   return std::function<void()>();
 }
@@ -461,7 +501,7 @@ inline void Tween<Interval>::set_callback(const std::function<void()>& value) {
   if (adaptor_) {
     return adaptor_->set_callback(value);
   } else {
-    LOG(ERROR) << "Attempt to change parameter without adaptor.";
+    LOG(WARNING) << "Attempt to change parameter without adaptor.";
   }
 }
 
@@ -472,7 +512,7 @@ inline void Tween<Interval>::set_timeline(Timeline *value) {
   if (adaptor_ && !adaptor_->running()) {
     timeline_ = value;
   } else {
-    LOG(ERROR) << "Attempt to change timeline while tween is running.";
+    LOG(WARNING) << "Attempt to change timeline while tween is running.";
   }
 }
 

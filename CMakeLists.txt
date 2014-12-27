@@ -27,7 +27,7 @@
 
 # Project settings
 cmake_minimum_required(VERSION 2.8)
-project(takram_triangulation CXX C)
+project(takram_tween CXX C)
 
 # Configuration types
 set(CMAKE_CONFIGURATION_TYPES "Debug;Release" CACHE STRING "configs" FORCE)
@@ -57,7 +57,6 @@ message(STATUS "C flags (Debug): "
 message(STATUS "")
 
 # Include directories
-include_directories("${${PROJECT_NAME}_SOURCE_DIR}/src")
 include_directories("${${PROJECT_NAME}_SOURCE_DIR}/include")
 
 # Library
@@ -79,5 +78,4 @@ endif()
 
 # Install settings
 install(TARGETS "${PROJECT_NAME}" DESTINATION "lib")
-install(DIRECTORY "src/" DESTINATION "src" FILES_MATCHING PATTERN "*.h")
-install(DIRECTORY "include/" DESTINATION "include" FILES_MATCHING PATTERN "*.h")
+install(DIRECTORY "include" DESTINATION "include" FILES_MATCHING PATTERN "*.h")

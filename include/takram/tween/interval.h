@@ -70,7 +70,7 @@ class Interval final {
 };
 
 using Time = Interval<double>;
-using Frame = Interval<std::uint64_t>;
+using Frame = Interval<std::int64_t>;
 
 #pragma mark - Inline Implementations
 

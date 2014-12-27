@@ -36,15 +36,21 @@
 namespace takram {
 namespace tween {
 
-template <typename Interval>
+template <typename Interval_>
 class Clock final {
  public:
+  using Interval = Interval_;
+
   // Constructors
   Clock();
   Clock(const Clock& other);
 
   // Assignment
   Clock& operator=(const Clock& other);
+
+  // Comparison
+  bool operator==(const Clock& other) const;
+  bool operator!=(const Clock& other) const { return !operator==(other); }
 
   // Controlling clock
   Interval advance();
@@ -79,6 +85,13 @@ inline Clock<Interval>& Clock<Interval>::operator=(const Clock& other) {
     birth_ = other.birth_;
   }
   return *this;
+}
+
+#pragma mark Comparison
+
+template <typename Interval>
+inline bool Clock<Interval>::operator==(const Clock& other) const {
+  return (now_ == other.now_ && birth_ == other.birth_);
 }
 
 #pragma mark Controlling clock

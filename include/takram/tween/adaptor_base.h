@@ -29,6 +29,7 @@
 #ifndef TAKRAM_TWEEN_ADAPTOR_BASE_H_
 #define TAKRAM_TWEEN_ADAPTOR_BASE_H_
 
+#include <iostream>
 #include <cstddef>
 #include <functional>
 
@@ -37,9 +38,11 @@
 namespace takram {
 namespace tween {
 
-template <typename Interval>
+template <typename Interval_>
 class AdaptorBase {
  public:
+  using Interval = Interval_;
+
   // Constructors
   virtual ~AdaptorBase() = 0;
 
@@ -50,7 +53,7 @@ class AdaptorBase {
   // Controlling the adaptor
   void start(const Interval& now);
   void stop();
-  void update(const Interval& now);
+  void update(const Interval& now, bool callback = true);
 
   // Properties
   bool running() const { return running_; }
@@ -76,6 +79,7 @@ class AdaptorBase {
               const Interval& duration,
               const Interval& delay,
               const std::function<void()>& callback);
+  AdaptorBase(AdaptorBase&& other) = default;
 
   // Updates against the local unit time
   virtual void update(double unit) = 0;
@@ -131,17 +135,17 @@ inline void AdaptorBase<Interval>::stop() {
 }
 
 template <typename Interval>
-inline void AdaptorBase<Interval>::update(const Interval& now) {
+inline void AdaptorBase<Interval>::update(const Interval& now, bool callback) {
   if (running_) {
     const auto elapsed = now - started_ - delay_;
-    if (elapsed <= duration_) {
+    if (elapsed < duration_) {
       update(elapsed / duration_);
     } else {
       update(1.0);
       running_ = false;
       finished_ = true;
       started_ = Interval();
-      if (callback_) {
+      if (callback && callback_) {
         callback_();
       }
     }

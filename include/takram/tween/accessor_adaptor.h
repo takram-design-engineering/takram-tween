@@ -29,6 +29,7 @@
 #ifndef TAKRAM_TWEEN_ACCESSOR_ADAPTOR_H_
 #define TAKRAM_TWEEN_ACCESSOR_ADAPTOR_H_
 
+#include <cassert>
 #include <cstddef>
 #include <functional>
 #include <memory>
@@ -42,11 +43,15 @@
 namespace takram {
 namespace tween {
 
-template <typename Interval, typename T,
-          typename Class, typename Getter, typename Setter>
-class AccessorAdaptor : public AdaptorBase<Interval> {
+template <typename Interval_, typename T,
+          typename Class_, typename Getter_, typename Setter_>
+class AccessorAdaptor : public AdaptorBase<Interval_> {
  public:
+  using Interval = Interval_;
   using Value = T;
+  using Class = Class_;
+  using Getter = Getter_;
+  using Setter = Setter_;
 
   // Constructors
   AccessorAdaptor(Class *target,
@@ -58,6 +63,7 @@ class AccessorAdaptor : public AdaptorBase<Interval> {
                   const Interval& duration,
                   const Interval& delay,
                   const std::function<void()>& callback);
+  AccessorAdaptor(AccessorAdaptor&& other) = default;
 
   // Disallow copy and assign
   AccessorAdaptor(const AccessorAdaptor&) = delete;
@@ -66,6 +72,11 @@ class AccessorAdaptor : public AdaptorBase<Interval> {
   // Hash
   std::size_t key() const override;
   std::size_t hash() const override;
+
+  // Parameters
+  Class * target() const { return target_; }
+  const Value& from() const { return from_; }
+  const Value& to() const { return to_; }
 
  protected:
   // Updates against the local unit time
@@ -109,6 +120,7 @@ template <typename Interval, typename T,
           typename Class, typename Getter, typename Setter>
 inline void AccessorAdaptor<Interval, T, Class, Getter, Setter>
     ::update(double unit) {
+  assert(target_);
   if (unit < 0.0) {
     from_ = (target_->*getter_)();
   } else if (AdaptorBase<Interval>::duration_.empty() || unit > 1.0) {

@@ -1,5 +1,5 @@
 //
-//  takram/tween/timeline_host.h
+//  takram/easing/easing.cc
 //
 //  MIT License
 //
@@ -25,52 +25,12 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#pragma once
-#ifndef TAKRAM_TWEEN_TIMELINE_HOST_H_
-#define TAKRAM_TWEEN_TIMELINE_HOST_H_
-
-#include "takram/tween/interval.h"
-#include "takram/tween/timeline.h"
-#include "takram/tween/tween.h"
+#include "takram/easing/easing.h"
 
 namespace takram {
-namespace tween {
+namespace easing {
 
-template <typename Interval_ = Time>
-class TimelineHost {
- public:
-  using Interval = Interval_;
-  using Timeline = Timeline<Interval>;
-  using Tween = Tween<Interval>;
+using Easing = std::function<double(double)>;
 
-  // Constructors
-  virtual ~TimelineHost() = 0;
-
-  // Creating tweens
-  template <typename... Args>
-  Tween tween(Args&&... args);
-
-  // Accessing timeline
-  virtual Timeline& timeline() = 0;
-  virtual const Timeline& timeline() const = 0;
-};
-
-#pragma mark - Inline Implementations
-
-template <typename Interval>
-inline TimelineHost<Interval>::~TimelineHost() {}
-
-#pragma mark Creating tweens
-
-template <typename Interval>
-template <typename... Args>
-inline Tween<Interval> TimelineHost<Interval>::tween(Args&&... args) {
-  auto tween = Tween(args..., &timeline());
-  tween.start();
-  return tween;
-}
-
-}  // namespace tween
+}  // namespace easing
 }  // namespace takram
-
-#endif  // TAKRAM_TWEEN_TIMELINE_HOST_H_

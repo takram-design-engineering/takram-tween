@@ -31,7 +31,7 @@
 
 #include <cmath>
 
-#include "takram/easing/math.h"
+#include "takram/easing/constants.h"
 
 namespace takram {
 namespace easing {
@@ -39,7 +39,7 @@ namespace easing {
 inline double EaseElastic(double t) {
   const double v = t - 1.0;
   const double p = 0.3;
-  return -std::pow(2.0, 10.0 * v) * std::sin((v - p / 4.0) * TAU / p);
+  return -std::pow(2.0, 10.0 * v) * std::sin((v - p / 4.0) * two_pi() / p);
 }
 
 }  // namespace easing
