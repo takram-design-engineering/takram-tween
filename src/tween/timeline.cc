@@ -134,7 +134,9 @@ Interval Timeline<Interval>::advance() {
   }
   mutex_.unlock();
   for (auto& adaptor : finished_adaptors) {
-    adaptor->callback()();
+    if (adaptor->callback()) {
+      adaptor->callback()();
+    }
   }
   return now;
 }
