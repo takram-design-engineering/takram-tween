@@ -30,7 +30,8 @@
 #define TAKRAM_TWEEN_INTERVAL_H_
 
 #include <cassert>
-#include <cstdint>
+
+#include "takram/tween/types.h"
 
 namespace takram {
 namespace tween {
@@ -69,8 +70,8 @@ class Interval final {
   T value_;
 };
 
-using Time = Interval<double>;
-using Frame = Interval<std::int64_t>;
+using Time = Interval<TimeValue>;
+using Frame = Interval<FrameValue>;
 
 #pragma mark - Inline Implementations
 

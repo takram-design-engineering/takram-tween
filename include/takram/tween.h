@@ -37,6 +37,7 @@
 #include "takram/tween/timeline.h"
 #include "takram/tween/timeline_host.h"
 #include "takram/tween/transform.h"
+#include "takram/tween/types.h"
 #include "takram/tween/tween.h"
 
 namespace takram {

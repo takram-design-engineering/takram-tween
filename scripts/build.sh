@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-#  build_glog.sh
+#  build.sh
 #
 #  MIT License
 #

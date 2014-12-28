@@ -1,5 +1,5 @@
 //
-//  project_release.xcconfig
+//  takram/tween/types.h
 //
 //  MIT License
 //
@@ -25,22 +25,33 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-// Configuration for Xcode 6.1
+#pragma once
+#ifndef TAKRAM_TWEEN_TYPES_H_
+#define TAKRAM_TWEEN_TYPES_H_
 
-#include "project.xcconfig"
+#include <cstdint>
 
-// Build Options
-DEBUG_INFORMATION_FORMAT = dwarf-with-dsym
+#ifndef TAKRAM_TWEEN_UNIT_TYPE
+#define TAKRAM_TWEEN_UNIT_TYPE double
+#endif
 
-// Deployment
-COPY_PHASE_STRIP = YES
+#ifndef TAKRAM_TWEEN_TIME_VALUE_TYPE
+#define TAKRAM_TWEEN_TIME_VALUE_TYPE double
+#endif
 
-// Apple LLVM 6.0 - Code Generation
-GCC_OPTIMIZATION_LEVEL = s
-GCC_FAST_MATH = YES
+#ifndef TAKRAM_TWEEN_FRAME_VALUE_TYPE
+#define TAKRAM_TWEEN_FRAME_VALUE_TYPE std::int64_t
+#endif
 
-// Apple LLVM 6.0 - Preprocessing
-GCC_PREPROCESSOR_DEFINITIONS = $(inherited) NDEBUG=1
+namespace takram {
+namespace tween {
 
-// User-Defined
-MTL_ENABLE_DEBUG_INFO = NO
+using Unit = TAKRAM_TWEEN_UNIT_TYPE;
+using TimeValue = TAKRAM_TWEEN_TIME_VALUE_TYPE;
+using FrameValue = TAKRAM_TWEEN_FRAME_VALUE_TYPE;
+
+}  // namespace tween
+}  // namespace takram
+
+#endif  // TAKRAM_TWEEN_TYPES_H_
+
