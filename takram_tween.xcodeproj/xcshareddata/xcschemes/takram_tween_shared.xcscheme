@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "93D906801A4DC34900BBD89C"
                BuildableName = "libtakram_tween.dylib"
-               BlueprintName = "takram_tween_dynamic"
+               BlueprintName = "takram_tween_shared"
                ReferencedContainer = "container:takram_tween.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -44,7 +44,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "93D906801A4DC34900BBD89C"
             BuildableName = "libtakram_tween.dylib"
-            BlueprintName = "takram_tween_dynamic"
+            BlueprintName = "takram_tween_shared"
             ReferencedContainer = "container:takram_tween.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -62,7 +62,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "93D906801A4DC34900BBD89C"
             BuildableName = "libtakram_tween.dylib"
-            BlueprintName = "takram_tween_dynamic"
+            BlueprintName = "takram_tween_shared"
             ReferencedContainer = "container:takram_tween.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

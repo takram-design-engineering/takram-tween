@@ -54,7 +54,7 @@ TYPED_TEST_CASE(TimelineTest, Types);
 TYPED_TEST(TimelineTest, DefaultConstructible) {
   Timeline<TypeParam> timeline;
 }
-  
+
 TYPED_TEST(TimelineTest, AddingAndRemoving) {
   Timeline<TypeParam> timeline;
   double value;
@@ -115,7 +115,7 @@ TEST(TimelineTest, TimeAdvance) {
         order.emplace_back(&value1);
       });
   auto adaptor2 = std::make_shared<PointerAdaptor<Time, double>>(
-      &value2, 1.0, LinearEasing::In, Time(0.2), Time(0.1), 
+      &value2, 1.0, LinearEasing::In, Time(0.2), Time(0.1),
       [&mutex, &order, &value2]() {
         std::lock_guard<std::mutex> lock(mutex);
         order.emplace_back(&value2);
@@ -219,7 +219,7 @@ TEST(TimelineTest, RecursiveAdding) {
         adaptor3->start(timeline.now());
       });
   auto adaptor2 = std::make_shared<PointerAdaptor<Time, double>>(
-      &value2, 1.0, LinearEasing::In, Time(0.2), Time(0.1), 
+      &value2, 1.0, LinearEasing::In, Time(0.2), Time(0.1),
       [&timeline, &mutex, &order, &value2, &value4, &adaptor4]() {
         mutex.lock();
         order.emplace_back(&value2);

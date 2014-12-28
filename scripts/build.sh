@@ -29,7 +29,7 @@
 readonly TYPE=$1
 readonly TARGET_PATH=$2
 readonly TARGET_BUILD_PATH=$3
-readonly OPTIONS=$4
+readonly OPTIONS=${@:4}
 
 readonly CMAKE=$(which cmake)
 readonly CLANG_CC=$(which clang)
@@ -61,18 +61,19 @@ if [[ "${TYPE}" == "cmake" ]]; then
         -DCMAKE_CXX_COMPILER="${CLANG_CXX}" \
         -DCMAKE_CXX_FLAGS="-stdlib=libc++" \
         -DCMAKE_OSX_ARCHITECTURES="i386;x86_64" \
-        "${OPTIONS}" \
+        ${OPTIONS} \
         "${TARGET_DIR}"
     make -j8
   popd
-elif [[ "${TYPE}" == "configure" ]]; then
+elif [[ "${TYPE}" == "configure" && ! -d "${TARGET_BUILD_DIR}" ]]; then
   mkdir -p "${TARGET_BUILD_DIR}"
   pushd "${TARGET_BUILD_DIR}"
     "${TARGET_DIR}/configure" \
         --prefix="${TARGET_BUILD_DIR}" \
         CC="${CLANG_CC}" \
         CXX="${CLANG_CXX}" \
-        CXXFLAGS="-stdlib=libc++"
+        CXXFLAGS="-stdlib=libc++" \
+        ${OPTIONS}
     make -j8
     make install
     make clean

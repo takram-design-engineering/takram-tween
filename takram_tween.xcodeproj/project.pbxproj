@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		93447DC81A2B14530024396C /* libtakram_tween.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93C6B51519B22F5500A1CF93 /* libtakram_tween.a */; };
+		9354A2761A4F97FF00F65144 /* libtakram_tween.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 93D906811A4DC34900BBD89C /* libtakram_tween.dylib */; };
 		93BD76131A4EC9CD00BD063D /* timeline_host_test.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93BD76121A4EC9CD00BD063D /* timeline_host_test.cc */; };
+		93BD76281A4EF32200BD063D /* tween.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93BD76271A4EF32200BD063D /* tween.cc */; };
+		93BD76291A4EF32200BD063D /* tween.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93BD76271A4EF32200BD063D /* tween.cc */; };
 		93D906921A4DCF3F00BBD89C /* timeline.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93D906901A4DCF3F00BBD89C /* timeline.cc */; };
 		93D906931A4DCF3F00BBD89C /* timeline.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93D906901A4DCF3F00BBD89C /* timeline.cc */; };
 		93D906941A4DCF3F00BBD89C /* transform.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93D906911A4DCF3F00BBD89C /* transform.cc */; };
@@ -73,19 +75,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		93447DC61A2B14500024396C /* PBXContainerItemProxy */ = {
+		9354A2771A4F980500F65144 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 93F8AD6717C8B39800310877 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 93C6B51419B22F5500A1CF93;
-			remoteInfo = takram_triangulation;
+			remoteGlobalIDString = 93D906801A4DC34900BBD89C;
+			remoteInfo = takram_tween_shared;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		93BD76121A4EC9CD00BD063D /* timeline_host_test.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = timeline_host_test.cc; sourceTree = "<group>"; };
+		93BD76271A4EF32200BD063D /* tween.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tween.cc; sourceTree = "<group>"; };
 		93C6B51519B22F5500A1CF93 /* libtakram_tween.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libtakram_tween.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		93D906761A4DC00600BBD89C /* product_dynamic.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = product_dynamic.xcconfig; sourceTree = "<group>"; };
+		93D906761A4DC00600BBD89C /* product_shared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = product_shared.xcconfig; sourceTree = "<group>"; };
 		93D906771A4DC00600BBD89C /* product_static.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = product_static.xcconfig; sourceTree = "<group>"; };
 		93D906781A4DC00600BBD89C /* product.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = product.xcconfig; sourceTree = "<group>"; };
 		93D906791A4DC00600BBD89C /* project_debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = project_debug.xcconfig; sourceTree = "<group>"; };
@@ -149,7 +152,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93447DC81A2B14530024396C /* libtakram_tween.a in Frameworks */,
+				9354A2761A4F97FF00F65144 /* libtakram_tween.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,7 +167,7 @@
 				93D9067A1A4DC00600BBD89C /* project_release.xcconfig */,
 				93D906781A4DC00600BBD89C /* product.xcconfig */,
 				93D906771A4DC00600BBD89C /* product_static.xcconfig */,
-				93D906761A4DC00600BBD89C /* product_dynamic.xcconfig */,
+				93D906761A4DC00600BBD89C /* product_shared.xcconfig */,
 				93D9067C1A4DC00600BBD89C /* product_test.xcconfig */,
 			);
 			path = xcode;
@@ -184,6 +187,7 @@
 			children = (
 				93D906911A4DCF3F00BBD89C /* transform.cc */,
 				93D906901A4DCF3F00BBD89C /* timeline.cc */,
+				93BD76271A4EF32200BD063D /* tween.cc */,
 			);
 			path = tween;
 			sourceTree = "<group>";
@@ -369,9 +373,9 @@
 			productReference = 93C6B51519B22F5500A1CF93 /* libtakram_tween.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		93D906801A4DC34900BBD89C /* takram_tween_dynamic */ = {
+		93D906801A4DC34900BBD89C /* takram_tween_shared */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 93D906891A4DC34900BBD89C /* Build configuration list for PBXNativeTarget "takram_tween_dynamic" */;
+			buildConfigurationList = 93D906891A4DC34900BBD89C /* Build configuration list for PBXNativeTarget "takram_tween_shared" */;
 			buildPhases = (
 				93D9067D1A4DC34900BBD89C /* Sources */,
 				93D9067E1A4DC34900BBD89C /* Frameworks */,
@@ -381,7 +385,7 @@
 			);
 			dependencies = (
 			);
-			name = takram_tween_dynamic;
+			name = takram_tween_shared;
 			productName = takram_tween_dynamic;
 			productReference = 93D906811A4DC34900BBD89C /* libtakram_tween.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
@@ -396,7 +400,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				93447DC71A2B14500024396C /* PBXTargetDependency */,
+				9354A2781A4F980500F65144 /* PBXTargetDependency */,
 			);
 			name = takram_tween_test;
 			productName = sgss_opaque_test;
@@ -430,7 +434,7 @@
 			projectRoot = "";
 			targets = (
 				93C6B51419B22F5500A1CF93 /* takram_tween_static */,
-				93D906801A4DC34900BBD89C /* takram_tween_dynamic */,
+				93D906801A4DC34900BBD89C /* takram_tween_shared */,
 				93F1B9F5180282B0002A5A5C /* takram_tween_test */,
 			);
 		};
@@ -443,6 +447,7 @@
 			files = (
 				93D906941A4DCF3F00BBD89C /* transform.cc in Sources */,
 				93D906921A4DCF3F00BBD89C /* timeline.cc in Sources */,
+				93BD76281A4EF32200BD063D /* tween.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,6 +457,7 @@
 			files = (
 				93D906951A4DCF3F00BBD89C /* transform.cc in Sources */,
 				93D906931A4DCF3F00BBD89C /* timeline.cc in Sources */,
+				93BD76291A4EF32200BD063D /* tween.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,10 +479,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		93447DC71A2B14500024396C /* PBXTargetDependency */ = {
+		9354A2781A4F980500F65144 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 93C6B51419B22F5500A1CF93 /* takram_tween_static */;
-			targetProxy = 93447DC61A2B14500024396C /* PBXContainerItemProxy */;
+			target = 93D906801A4DC34900BBD89C /* takram_tween_shared */;
+			targetProxy = 9354A2771A4F980500F65144 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -505,7 +511,7 @@
 		};
 		93D9068A1A4DC34900BBD89C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 93D906761A4DC00600BBD89C /* product_dynamic.xcconfig */;
+			baseConfigurationReference = 93D906761A4DC00600BBD89C /* product_shared.xcconfig */;
 			buildSettings = {
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -516,7 +522,7 @@
 		};
 		93D9068B1A4DC34900BBD89C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 93D906761A4DC00600BBD89C /* product_dynamic.xcconfig */;
+			baseConfigurationReference = 93D906761A4DC00600BBD89C /* product_shared.xcconfig */;
 			buildSettings = {
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -529,6 +535,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 93D9067C1A4DC00600BBD89C /* product_test.xcconfig */;
 			buildSettings = {
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/lib";
 				PRODUCT_NAME = takram_tween_test;
 			};
 			name = Debug;
@@ -537,6 +544,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 93D9067C1A4DC00600BBD89C /* product_test.xcconfig */;
 			buildSettings = {
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/lib";
 				PRODUCT_NAME = takram_tween_test;
 			};
 			name = Release;
@@ -573,7 +581,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		93D906891A4DC34900BBD89C /* Build configuration list for PBXNativeTarget "takram_tween_dynamic" */ = {
+		93D906891A4DC34900BBD89C /* Build configuration list for PBXNativeTarget "takram_tween_shared" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				93D9068A1A4DC34900BBD89C /* Debug */,

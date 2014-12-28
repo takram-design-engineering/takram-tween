@@ -1,5 +1,5 @@
 //
-//  product_dynamic.xcconfig
+//  product_shared.xcconfig
 //
 //  MIT License
 //
@@ -30,8 +30,8 @@
 #include "product.xcconfig"
 
 // Linking
-OTHER_LDFLAGS = $(TAKRAM_OTHER_LDFLAGS)
+OTHER_LDFLAGS = $(inherited) "$(SRCROOT)/build/glog/lib/libglog.a"
 
 // Search Paths
-HEADER_SEARCH_PATHS = $(TAKRAM_HEADER_SEARCH_PATHS)
-LIBRARY_SEARCH_PATHS = $(TAKRAM_LIBRARY_SEARCH_PATHS)
+HEADER_SEARCH_PATHS = $(inherited) "$(SRCROOT)/include" "$(SRCROOT)/build/glog/include"
+LIBRARY_SEARCH_PATHS = $(inherited)

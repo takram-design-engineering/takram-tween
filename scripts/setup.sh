@@ -31,7 +31,9 @@ readonly SRCROOT="$(cd "$(dirname "$0")/../"; pwd)"
 pushd "${SRCROOT}"
   git submodule update --init
 
-  "scripts/build.sh" cmake "gflags" "build/gflags" "-DGFLAGS_NAMESPACE=google"
-  "scripts/build.sh" configure "glog" "build/glog"
+  "scripts/build.sh" cmake "gflags" "build/gflags" \
+      -DGFLAGS_NAMESPACE="google"
+  "scripts/build.sh" configure "glog" "build/glog" \
+      -with-gflags="build/gflags"
   "scripts/build.sh" cmake "gtest" "build/gtest"
 popd

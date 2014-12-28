@@ -30,9 +30,8 @@
 #include "product.xcconfig"
 
 // Linking
-LD_RUNPATH_SEARCH_PATHS = @executable_path/lib
-OTHER_LDFLAGS = $(TAKRAM_OTHER_LDFLAGS) -lgtest -lgtest_main
+OTHER_LDFLAGS = $(inherited) "$(SRCROOT)/build/gtest/libgtest.a" "$(SRCROOT)/build/gtest/libgtest_main.a"
 
 // Search Paths
-HEADER_SEARCH_PATHS = $(TAKRAM_HEADER_SEARCH_PATHS) "$(SRCROOT)/gtest/include"
-LIBRARY_SEARCH_PATHS = $(TAKRAM_LIBRARY_SEARCH_PATHS) "$(SRCROOT)/build/gtest"
+HEADER_SEARCH_PATHS = $(inherited) "$(SRCROOT)/include" "$(SRCROOT)/gtest/include"
+LIBRARY_SEARCH_PATHS = $(inherited)

@@ -93,7 +93,7 @@ TYPED_TEST(TweenTest, Assignable) {
 
 TYPED_TEST(TweenTest, ConstructibleWithPointer) {
   double value;
-  typename TypeParam::Value interval;
+  const auto interval = typename TypeParam::Value();
   const auto easing = LinearEasing::In;
   const auto callback = []() {};
   using Tween = Tween<TypeParam>;
@@ -135,7 +135,7 @@ TYPED_TEST(TweenTest, ConstructibleWithPointer) {
 
 TYPED_TEST(TweenTest, ConstructibleWithAccessor) {
   Type value;
-  typename TypeParam::Value interval;
+  const auto interval = typename TypeParam::Value();
   const auto easing = LinearEasing::In;
   const auto callback = []() {};
   using Tween = Tween<TypeParam>;
