@@ -11,7 +11,7 @@ A tween is a representation of an interpolation for the specific time interval o
 
 Time interval in this library is either floating point value of seconds or the number of frames. A timeline is a specialization of either one, and cannot mix both in a single timeline. A frame-based tween can only managed by frame-based timelines, not by time-based timelines.
 
-To run tweens, you need a timeline and usually a timeline host. [`takram::tween::TimelineHost`](/include/takram/tween/timeline_host.h) gives you a minimal interface to handle a timeline and tweens. A timeline has an internal clock which is updated by calling the `advance` function of timeline. Advancing the internal clock will update all of the tweens which belong to the timeline, applying interpolated values to the targets. Although it’s not supplied in this library, timelines should be advanced periodically by timer, threading or someway provided on your environment. 
+To run tweens, you need a timeline and usually a timeline host. [`takram::tween::TimelineHost`](/include/takram/tween/timeline_host.h) gives you a minimal interface to handle a timeline and tweens. A timeline has an internal clock which is updated by calling the `advance` function of the timeline. Advancing the internal clock will update all of the tweens which belong to the timeline, applying interpolated values to the targets. Although it’s not supplied in this library, timelines should be advanced periodically by timers, threads or someway provided on your environment. 
 
 The code below demonstrates a basic setup of the timeline host:
 
@@ -31,8 +31,6 @@ class Host : public takram::tween::TimelineHost<takram::tween::Time> {
   Timeline timeline_;  // Hosted timeline
 };
 ```
-
-
 
 #### Pointer Target
 
