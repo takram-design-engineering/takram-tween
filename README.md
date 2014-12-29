@@ -7,19 +7,166 @@ A C++ library for time-based and frame-based tweening
 
 ### Tween Module
 
+A tween is a representation of an interpolation for the specific time interval on a timeline. A timeline manages absolute time points and updates tweens. Tweens are always paired with a unique timeline.
+
+Time interval in this library is either floating point value of seconds or the number of frames. A timeline is a specialization of either one, and cannot mix both in a single timeline. A frame-based tween can only managed by frame-based timelines, not by time-based timelines.
+
+To run tweens, you need a timeline and usually a timeline host. [`takram::tween::TimelineHost`](/include/takram/tween/timeline_host.h) gives you a minimal interface to handle a timeline and tweens. A timeline has an internal clock which is updated by calling the `advance` function of timeline. Advancing the internal clock will update all of the tweens which belong to the timeline, applying interpolated values to the targets. Although it’s not supplied in this library, timelines should be advanced periodically by timer, threading or somehow provided on your environment. 
+
+The code below demonstrates a basic setup of the timeline host:
+
+```cc
+class Host : public takram::tween::TimelineHost<takram::tween::Time> {
+ public:
+  // Required by takram::tween::TimelineHost
+  Timeline& timeline() override { return timeline_; }
+  const Timeline& timeline() const override { return timeline_; }
+
+  // Periodically-called function
+  void update() {
+    timeline_.advance();  // Advance the clock of the timeline
+  }
+
+ private:
+  Timeline timeline_;  // Hosted timeline
+};
+```
+
+
+
+#### Pointer Target
+
+```
+Tween(target, to, easing, duration [, timeline ])
+Tween(target, to, easing, duration [, callback [, timeline ]])
+Tween(target, to, easing, duration, delay [, timeline ])
+Tween(target, to, easing, duration, delay [, callback [, timeline ]])
+```
+
+- *target*
+    - Pointer to a target variable
+- *to*
+    - Ending value of the *target*
+- *easing*
+    - An easing function
+    - This must be a type, not a function pointer so that type-deduction can perform.
+- *duration* 
+    - Duration for tweening represented by either time or frame interval
+- *delay*
+    - Delay to start tweening represented by either time or frame interval
+- *callback*
+    - A function to be invoked on the end of the tween
+    - This must be a type, not a function pointer so that type-deduction can perform.
+- *timeline*
+    - A timeline this tween should belong to
+    
+##### Example
+
+```cc
+Host host;
+double value = 0.0;
+
+// Tweens the value to 1.0 for 0.1 seconds using quadratic easing.
+host.tween(&value, 1.0, takram::QuadraticEasing::In, 0.1);
+
+// Tweens the value to 1.0 for 0.2 seconds after 0.1 seconds delay using
+// elastic easing.
+host.tween(&value, 1.0, takram::ElasticEasing::InOut, 0.2, 0.1);
+
+// Tweens the value to 1.0 for 0.1 seconds using quadratic easing, and then to
+// 0.0 for 0.1 seconds using quintic easing.
+host.tween(&value, 1.0, takram::QuadraticEasing::Out, 0.1, [&host]() {
+  host.tween(&value, 0.0, takram::QuinticEasing::Out, 0.1);
+});
+```
+
+#### Accessor Target
+
+```
+Tween(target, getter, setter, name, to, easing, duration [, timeline ])
+Tween(target, getter, setter, name, to, easing, duration [, callback [, timeline ]])
+Tween(target, getter, setter, name, to, easing, duration, delay [, timeline ])
+Tween(target, getter, setter, name, to, easing, duration, delay [, callback [, timeline ]])
+```
+
+- *target*
+    - Pointer to a target variable
+- *getter*
+    - Pointer to a member function that returns *target*’s property value
+- *setter*
+    - Pointer to a member function that changes *target*’s property value
+- *name*
+    - Arbitrary name that identifies the *target*’s property
+    - By default, adding a tween will overwrite any preceding tweens of the same target to avoid race of changing the *target*’s property. However, because there is no way to reliably identify member function’s pointers, this will be the only hint to identify the *target*’s property coupled with the given *getter* and *setter*. It is your responsibility to maintain consistency of *name* across multiple tweens for the same properties.
+- *to*
+    - The ending value of the *target*’s property
+- *easing*
+    - An easing function
+    - This must be a type, not a function pointer so that type-deduction can perform.
+- *duration* 
+    - Duration for tweening represented by either time or frame interval
+- *delay*
+    - Delay to start tweening represented by either time or frame interval
+- *callback*
+    - A function to be invoked on the end of the tween
+    - This must be a type, not a function pointer so that type-deduction can perform.
+- *timeline*
+    - A timeline this tween should belong to
+
+```cc
+class Type final {
+ public:
+  Type() = default;
+  explicit Type(double value) : value_(value) {}
+  Type(const Type& other) = default;
+  double value() const { return value_; }
+  void set_value(double value) { value_ = value; }
+
+ private:
+  double value_;
+};
+
+Host host;
+Type value(0.0);
+
+// Tweens the value to 1.0 for 0.1 seconds using quadratic easing.
+host.tween(&value, &Type::value, &type::set_value, "value", 1.0, 
+           takram::QuadraticEasing::In, 0.1);
+
+// Tweens the value to 1.0 for 0.2 seconds after 0.1 seconds delay using
+// elastic easing.
+host.tween(&value, &Type::value, &type::set_value, "value", 1.0, 
+           takram::ElasticEasing::InOut, 0.2, 0.1);
+
+// Tweens the value to 1.0 for 0.1 seconds using quadratic easing, and then to
+// 0.0 for 0.1 seconds using quintic easing.
+host.tween(&value, &Type::value, &type::set_value, "value", 1.0, 
+           takram::QuadraticEasing::Out, 0.1, [&host]() {
+  host.tween(&value, &Type::value, &type::set_value, "value", 0.0, 
+             takram::QuinticEasing::Out, 0.1);
+});
+```
+
+#### Classes
+
+- [`takram::tween::Interval`](include/takram/tween/interval.h)
+- [`takram::tween::Clock`](include/takram/tween/clock.h)
+- [`takram::tween::Timeline`](include/takram/tween/timeline.h)
+- [`takram::tween::TimelineHost`](include/takram/tween/timeline_host.h)
+- [`takram::Tween`](include/takram/tween/tween.h)
+
 ### Easing Module
 
-An easing is given as a specialization of `takram::easing::EasingGroup`, in which `In`, `Out` and `InOut` static functors wrap the easing function. An easing function will be invoked with an unit time `t`, which is normalized between 0.0 and 1.0, andreturn the corresponding normalized value for `t`. To make your own easing, write a function that takes `t`, then define a specialization:
+An easing is given as a specialization of `takram::easing::EasingGroup`, in which `In`, `Out` and `InOut` static functors wrap the easing function. An easing function will be invoked with an unit time `t`, which is normalized between 0.0 and 1.0, and return the corresponding normalized value for `t` (usually continuous for most of the range, and the returned value should be `t` at 0.0 and 1.0). To make your own easing, simply write a function that takes `t`:
 
 ```cc
 inline double Ease(double t) {
   return /* Write your own logic */;
 }
 using Easing = takram::easing::EasingGroup<Ease>;
-
 ```
 
-This enables you to make use of ease-in, ease-out and ease-in-out out of your easing function.
+This enables ease-in, ease-out and ease-in-out out of your easing function.
 
 ```cc
 // Given:
@@ -33,7 +180,7 @@ takram::Tween<>(&value, to, Easing::Out, duration);
 takram::Tween<>(&value, to, Easing::InOut, duration);
 ```
 
-The pre-defined easings are derived from [Robert Penner’s Easing Functions](http://www.robertpenner.com/easing/) listed below:
+The pre-defined easings are derived from [Robert Penner’s Easing Functions](http://www.robertpenner.com/easing/) as listed below:
 
 - [`takram::BackEasing`](include/takram/easing.h)
 - [`takram::BounceEasing`](include/takram/easing.h)
