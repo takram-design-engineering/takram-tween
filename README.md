@@ -11,7 +11,7 @@ A tween is a representation of an interpolation for the specific time interval o
 
 Time interval in this library is either floating point value of seconds or the number of frames. A timeline is a specialization of either one, and cannot mix both in a single timeline. A frame-based tween can only managed by frame-based timelines, not by time-based timelines.
 
-To run tweens, you need a timeline and usually a timeline host. [`takram::tween::TimelineHost`](/include/takram/tween/timeline_host.h) gives you a minimal interface to handle a timeline and tweens. A timeline has an internal clock which is updated by calling the `advance` function of timeline. Advancing the internal clock will update all of the tweens which belong to the timeline, applying interpolated values to the targets. Although it’s not supplied in this library, timelines should be advanced periodically by timer, threading or somehow provided on your environment. 
+To run tweens, you need a timeline and usually a timeline host. [`takram::tween::TimelineHost`](/include/takram/tween/timeline_host.h) gives you a minimal interface to handle a timeline and tweens. A timeline has an internal clock which is updated by calling the `advance` function of timeline. Advancing the internal clock will update all of the tweens which belong to the timeline, applying interpolated values to the targets. Although it’s not supplied in this library, timelines should be advanced periodically by timer, threading or someway provided on your environment. 
 
 The code below demonstrates a basic setup of the timeline host:
 
@@ -157,7 +157,9 @@ host.tween(&value, &Type::value, &type::set_value, "value", 1.0,
 
 ### Easing Module
 
-An easing is given as a specialization of `takram::easing::EasingGroup`, in which `In`, `Out` and `InOut` static functors wrap the easing function. An easing function will be invoked with an unit time `t`, which is normalized between 0.0 and 1.0, and return the corresponding normalized value for `t` (usually continuous for most of the range, and the returned value should be `t` at 0.0 and 1.0). To make your own easing, simply write a function that takes `t`:
+An easing is given as a specialization of `takram::easing::EasingGroup`, in which `In`, `Out` and `InOut` static functors wrap the easing function. An easing function will be invoked with an unit time `t`, which is normalized between 0.0 and 1.0, and returns the corresponding normalized value for `t` (usually continuous for most of the range, and the returned value should be `t` at 0.0 and 1.0).
+
+To make your own easing, simply write a function that takes `t`:
 
 ```cc
 inline double Ease(double t) {
