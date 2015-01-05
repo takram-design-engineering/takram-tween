@@ -281,8 +281,8 @@
 		93F8AD7017C8B39800310877 /* products */ = {
 			isa = PBXGroup;
 			children = (
-				93C6B51519B22F5500A1CF93 /* libtakram_tween.a */,
 				93D906811A4DC34900BBD89C /* libtakram_tween.dylib */,
+				93C6B51519B22F5500A1CF93 /* libtakram_tween.a */,
 				93F1B9F6180282B0002A5A5C /* takram_tween_test */,
 			);
 			name = products;
@@ -435,8 +435,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				93C6B51419B22F5500A1CF93 /* takram_tween_static */,
 				93D906801A4DC34900BBD89C /* takram_tween_shared */,
+				93C6B51419B22F5500A1CF93 /* takram_tween_static */,
 				93F1B9F5180282B0002A5A5C /* takram_tween_test */,
 			);
 		};
