@@ -55,7 +55,7 @@ class Tween final {
   Tween();
   explicit Tween(const std::shared_ptr<AdaptorBase<Interval>>& adaptor,
                  Timeline *timeline = nullptr);
-  Tween(const Tween& other);
+  Tween(const Tween& other) = default;
 
   // Construct with pointer
   template <typename T, typename U>
@@ -130,7 +130,7 @@ class Tween final {
         Timeline *timeline = nullptr);
 
   // Assignment
-  Tween& operator=(const Tween& other);
+  Tween& operator=(const Tween& other) = default;
 
   // Comparison
   bool operator==(const Tween& other) const;
@@ -205,11 +205,6 @@ inline Tween<Interval>::Tween(
     Timeline *timeline)
     : adaptor_(adaptor),
       timeline_(timeline) {}
-
-template <typename Interval>
-inline Tween<Interval>::Tween(const Tween& other)
-    : adaptor_(other.adaptor_),
-      timeline_(other.timeline_) {}
 
 #pragma mark Construct with pointer
 
@@ -325,18 +320,6 @@ inline Tween<Interval>::Tween(Class *target,
     : timeline_(timeline) {
   init(target, getter, setter, name, to,
        easing, Interval(duration), Interval(delay), callback);
-}
-
-#pragma mark Assignment
-
-template <typename Interval>
-inline Tween<Interval>& Tween<Interval>::operator=(
-    const Tween& other) {
-  if (&other != this) {
-    adaptor_ = other.adaptor_;
-    timeline_ = other.timeline_;
-  }
-  return *this;
 }
 
 #pragma mark Comparison

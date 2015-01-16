@@ -44,10 +44,10 @@ class Interval final {
   // Constructors
   Interval();
   explicit Interval(T value);
-  Interval(const Interval& other);
+  Interval(const Interval& other) = default;
 
   // Assignment
-  Interval& operator=(const Interval& other);
+  Interval& operator=(const Interval& other) = default;
 
   // Comparison
   bool operator==(const Interval& other) const;
@@ -82,20 +82,6 @@ inline Interval<T>::Interval()
 template <typename T>
 inline Interval<T>::Interval(T value)
     : value_(value) {}
-
-template <typename T>
-inline Interval<T>::Interval(const Interval<T>& other)
-    : value_(other.value_) {}
-
-#pragma mark Assignment
-
-template <typename T>
-inline Interval<T>& Interval<T>::operator=(const Interval<T>& other) {
-  if (&other != this) {
-    value_ = other.value_;
-  }
-  return *this;
-}
 
 #pragma mark Arithmetic operators
 

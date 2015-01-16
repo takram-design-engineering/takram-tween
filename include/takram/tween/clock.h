@@ -43,10 +43,10 @@ class Clock final {
 
   // Constructors
   Clock();
-  Clock(const Clock& other);
+  Clock(const Clock& other) = default;
 
   // Assignment
-  Clock& operator=(const Clock& other);
+  Clock& operator=(const Clock& other) = default;
 
   // Comparison
   bool operator==(const Clock& other) const;
@@ -69,22 +69,6 @@ inline Clock<Interval>::Clock()
     : now_(),
       birth_() {
   now_ = birth_ = advance().count();
-}
-
-template <typename Interval>
-inline Clock<Interval>::Clock(const Clock& other)
-    : now_(other.now_),
-      birth_(other.birth_){}
-
-#pragma mark Assignment
-
-template <typename Interval>
-inline Clock<Interval>& Clock<Interval>::operator=(const Clock& other) {
-  if (&other != this) {
-    now_ = other.now_;
-    birth_ = other.birth_;
-  }
-  return *this;
 }
 
 #pragma mark Comparison
