@@ -29,6 +29,8 @@
 #ifndef TAKRAM_TWEEN_TIMELINE_HOST_H_
 #define TAKRAM_TWEEN_TIMELINE_HOST_H_
 
+#include <utility>
+
 #include "takram/tween/interval.h"
 #include "takram/tween/timeline.h"
 #include "takram/tween/tween.h"
@@ -65,7 +67,7 @@ inline TimelineHost<Interval>::~TimelineHost() {}
 template <typename Interval>
 template <typename... Args>
 inline Tween<Interval> TimelineHost<Interval>::tween(Args&&... args) {
-  auto tween = Tween(args..., &timeline());
+  auto tween = Tween(std::forward<Args>(args)..., &timeline());
   tween.start();
   return tween;
 }
