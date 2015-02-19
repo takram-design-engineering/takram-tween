@@ -520,6 +520,7 @@
 				EXECUTABLE_PREFIX = lib;
 				INSTALL_PATH = "@rpath";
 				PRODUCT_NAME = takram_tween;
+				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
@@ -532,6 +533,7 @@
 				EXECUTABLE_PREFIX = lib;
 				INSTALL_PATH = "@rpath";
 				PRODUCT_NAME = takram_tween;
+				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
