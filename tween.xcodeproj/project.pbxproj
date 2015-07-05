@@ -90,6 +90,8 @@
 		93E21F2B1B48D696000A374A /* easing.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93E21F2A1B48D696000A374A /* easing.cc */; };
 		93E21F2C1B48D696000A374A /* easing.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93E21F2A1B48D696000A374A /* easing.cc */; };
 		93E21F2E1B48D84C000A374A /* timeline_host_test.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93694DB31B48D2BC000A5277 /* timeline_host_test.cc */; };
+		93E21F8A1B48EC9F000A374A /* libtakram_math.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93E21F851B48EC88000A374A /* libtakram_math.a */; };
+		93E21F8D1B48ECA5000A374A /* libtakram_math.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93E21F851B48EC88000A374A /* libtakram_math.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +101,41 @@
 			proxyType = 1;
 			remoteGlobalIDString = 93D906801A4DC34900BBD89C;
 			remoteInfo = takram_tween_shared;
+		};
+		93E21F821B48EC88000A374A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 93E21F7C1B48EC88000A374A /* math.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9309550E1A4FB1FC00D09023;
+			remoteInfo = math_shared;
+		};
+		93E21F841B48EC88000A374A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 93E21F7C1B48EC88000A374A /* math.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 93C6B51519B22F5500A1CF93;
+			remoteInfo = math_static;
+		};
+		93E21F861B48EC88000A374A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 93E21F7C1B48EC88000A374A /* math.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 93F1B9F6180282B0002A5A5C;
+			remoteInfo = math_test;
+		};
+		93E21F881B48EC9B000A374A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 93E21F7C1B48EC88000A374A /* math.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 93C6B51419B22F5500A1CF93;
+			remoteInfo = math_static;
+		};
+		93E21F8B1B48ECA3000A374A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 93E21F7C1B48EC88000A374A /* math.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 93C6B51419B22F5500A1CF93;
+			remoteInfo = math_static;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -158,6 +195,7 @@
 		93D9067C1A4DC00600BBD89C /* product_test.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = product_test.xcconfig; sourceTree = "<group>"; };
 		93D906811A4DC34900BBD89C /* libtakram_tween.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libtakram_tween.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		93E21F2A1B48D696000A374A /* easing.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = easing.cc; sourceTree = "<group>"; };
+		93E21F7C1B48EC88000A374A /* math.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = math.xcodeproj; path = "../takram-math/math.xcodeproj"; sourceTree = "<group>"; };
 		93F1B9F6180282B0002A5A5C /* takram_tween_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = takram_tween_test; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -166,6 +204,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93E21F8D1B48ECA5000A374A /* libtakram_math.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,6 +212,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93E21F8A1B48EC9F000A374A /* libtakram_math.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +327,16 @@
 			path = test;
 			sourceTree = "<group>";
 		};
+		93E21F7D1B48EC88000A374A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				93E21F831B48EC88000A374A /* libtakram_math.dylib */,
+				93E21F851B48EC88000A374A /* libtakram_math.a */,
+				93E21F871B48EC88000A374A /* takram_math_test */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		93F8AD6617C8B39800310877 = {
 			isa = PBXGroup;
 			children = (
@@ -294,6 +344,7 @@
 				93D9073F1A4DCF6B00BBD89C /* tests */,
 				93D9066E1A4DB6EB00BBD89C /* config */,
 				93F8AD7017C8B39800310877 /* products */,
+				93E21F7C1B48EC88000A374A /* math.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -404,6 +455,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				93E21F8C1B48ECA3000A374A /* PBXTargetDependency */,
 			);
 			name = tween_static;
 			productName = sgss_opaque;
@@ -421,6 +473,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				93E21F891B48EC9B000A374A /* PBXTargetDependency */,
 			);
 			name = tween_shared;
 			productName = takram_tween_dynamic;
@@ -468,6 +521,12 @@
 			mainGroup = 93F8AD6617C8B39800310877;
 			productRefGroup = 93F8AD7017C8B39800310877 /* products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 93E21F7D1B48EC88000A374A /* Products */;
+					ProjectRef = 93E21F7C1B48EC88000A374A /* math.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				93D906801A4DC34900BBD89C /* tween_shared */,
@@ -476,6 +535,30 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		93E21F831B48EC88000A374A /* libtakram_math.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libtakram_math.dylib;
+			remoteRef = 93E21F821B48EC88000A374A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		93E21F851B48EC88000A374A /* libtakram_math.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libtakram_math.a;
+			remoteRef = 93E21F841B48EC88000A374A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		93E21F871B48EC88000A374A /* takram_math_test */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = takram_math_test;
+			remoteRef = 93E21F861B48EC88000A374A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
 		93C6B51119B22F5500A1CF93 /* Sources */ = {
@@ -523,6 +606,16 @@
 			target = 93D906801A4DC34900BBD89C /* tween_shared */;
 			targetProxy = 9354A2771A4F980500F65144 /* PBXContainerItemProxy */;
 		};
+		93E21F891B48EC9B000A374A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = math_static;
+			targetProxy = 93E21F881B48EC9B000A374A /* PBXContainerItemProxy */;
+		};
+		93E21F8C1B48ECA3000A374A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = math_static;
+			targetProxy = 93E21F8B1B48ECA3000A374A /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -533,7 +626,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_PREFIX = lib;
-				PRODUCT_NAME = takram_tween;
+				PRODUCT_NAME = "takram_$(PROJECT_NAME)";
 			};
 			name = Debug;
 		};
@@ -544,7 +637,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_PREFIX = lib;
-				PRODUCT_NAME = takram_tween;
+				PRODUCT_NAME = "takram_$(PROJECT_NAME)";
 			};
 			name = Release;
 		};
@@ -556,7 +649,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_PREFIX = lib;
 				INSTALL_PATH = "@rpath";
-				PRODUCT_NAME = takram_tween;
+				PRODUCT_NAME = "takram_$(PROJECT_NAME)";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -569,7 +662,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_PREFIX = lib;
 				INSTALL_PATH = "@rpath";
-				PRODUCT_NAME = takram_tween;
+				PRODUCT_NAME = "takram_$(PROJECT_NAME)";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -579,7 +672,7 @@
 			baseConfigurationReference = 93D9067C1A4DC00600BBD89C /* product_test.xcconfig */;
 			buildSettings = {
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/lib";
-				PRODUCT_NAME = takram_tween_test;
+				PRODUCT_NAME = "takram_$(PROJECT_NAME)_test";
 			};
 			name = Debug;
 		};
@@ -588,7 +681,7 @@
 			baseConfigurationReference = 93D9067C1A4DC00600BBD89C /* product_test.xcconfig */;
 			buildSettings = {
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/lib";
-				PRODUCT_NAME = takram_tween_test;
+				PRODUCT_NAME = "takram_$(PROJECT_NAME)_test";
 			};
 			name = Release;
 		};
@@ -596,7 +689,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 930959331A50633500D09023 /* project_debug.xcconfig */;
 			buildSettings = {
-				ENABLE_TESTABILITY = YES;
 				MACOSX_DEPLOYMENT_TARGET = "";
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
