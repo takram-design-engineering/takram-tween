@@ -92,6 +92,44 @@
 		93E21F2E1B48D84C000A374A /* timeline_host_test.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93694DB31B48D2BC000A5277 /* timeline_host_test.cc */; };
 		93E21F8A1B48EC9F000A374A /* libtakram_math.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93E21F851B48EC88000A374A /* libtakram_math.a */; };
 		93E21F8D1B48ECA5000A374A /* libtakram_math.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93E21F851B48EC88000A374A /* libtakram_math.a */; };
+		93F858381B564DDF00C32E8D /* easing.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93E21F2A1B48D696000A374A /* easing.cc */; };
+		93F858391B564DDF00C32E8D /* transform.cc in Sources */ = {isa = PBXBuildFile; fileRef = 938807671B48D07800E3C9CA /* transform.cc */; };
+		93F8583A1B564DDF00C32E8D /* timeline.cc in Sources */ = {isa = PBXBuildFile; fileRef = 938807621B48D07800E3C9CA /* timeline.cc */; };
+		93F8583B1B564DDF00C32E8D /* tween.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93694DAB1B48D21E000A5277 /* tween.cc */; };
+		93F8583F1B564DDF00C32E8D /* timer_adaptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 938807661B48D07800E3C9CA /* timer_adaptor.h */; };
+		93F858401B564DDF00C32E8D /* group.h in Headers */ = {isa = PBXBuildFile; fileRef = 938807461B48D07800E3C9CA /* group.h */; };
+		93F858411B564DDF00C32E8D /* reverse_inflector.h in Headers */ = {isa = PBXBuildFile; fileRef = 938807551B48D07800E3C9CA /* reverse_inflector.h */; };
+		93F858421B564DDF00C32E8D /* back.h in Headers */ = {isa = PBXBuildFile; fileRef = 938807491B48D07800E3C9CA /* back.h */; };
+		93F858431B564DDF00C32E8D /* hash.h in Headers */ = {isa = PBXBuildFile; fileRef = 9388075F1B48D07800E3C9CA /* hash.h */; };
+		93F858441B564DDF00C32E8D /* exponential.h in Headers */ = {isa = PBXBuildFile; fileRef = 9388074E1B48D07800E3C9CA /* exponential.h */; };
+		93F858451B564DDF00C32E8D /* circular.h in Headers */ = {isa = PBXBuildFile; fileRef = 9388074B1B48D07800E3C9CA /* circular.h */; };
+		93F858461B564DDF00C32E8D /* transform.h in Headers */ = {isa = PBXBuildFile; fileRef = 938807681B48D07800E3C9CA /* transform.h */; };
+		93F858471B564DDF00C32E8D /* linear.h in Headers */ = {isa = PBXBuildFile; fileRef = 9388074F1B48D07800E3C9CA /* linear.h */; };
+		93F858481B564DDF00C32E8D /* elastic.h in Headers */ = {isa = PBXBuildFile; fileRef = 9388074D1B48D07800E3C9CA /* elastic.h */; };
+		93F858491B564DDF00C32E8D /* easing.h in Headers */ = {isa = PBXBuildFile; fileRef = 9388075E1B48D07800E3C9CA /* easing.h */; };
+		93F8584A1B564DDF00C32E8D /* cubic.h in Headers */ = {isa = PBXBuildFile; fileRef = 9388074C1B48D07800E3C9CA /* cubic.h */; };
+		93F8584B1B564DDF00C32E8D /* tween.h in Headers */ = {isa = PBXBuildFile; fileRef = 9388076B1B48D07800E3C9CA /* tween.h */; };
+		93F8584C1B564DDF00C32E8D /* timer.h in Headers */ = {isa = PBXBuildFile; fileRef = 938807651B48D07800E3C9CA /* timer.h */; };
+		93F8584D1B564DDF00C32E8D /* timeline_host.h in Headers */ = {isa = PBXBuildFile; fileRef = 938807641B48D07800E3C9CA /* timeline_host.h */; };
+		93F8584E1B564DDF00C32E8D /* preset.h in Headers */ = {isa = PBXBuildFile; fileRef = 938807541B48D07800E3C9CA /* preset.h */; };
+		93F8584F1B564DDF00C32E8D /* timeline.h in Headers */ = {isa = PBXBuildFile; fileRef = 938807631B48D07800E3C9CA /* timeline.h */; };
+		93F858501B564DDF00C32E8D /* quadratic.h in Headers */ = {isa = PBXBuildFile; fileRef = 938807501B48D07800E3C9CA /* quadratic.h */; };
+		93F858511B564DDF00C32E8D /* sinusoidal.h in Headers */ = {isa = PBXBuildFile; fileRef = 938807531B48D07800E3C9CA /* sinusoidal.h */; };
+		93F858521B564DDF00C32E8D /* interval.h in Headers */ = {isa = PBXBuildFile; fileRef = 938807601B48D07800E3C9CA /* interval.h */; };
+		93F858531B564DDF00C32E8D /* quintic.h in Headers */ = {isa = PBXBuildFile; fileRef = 938807521B48D07800E3C9CA /* quintic.h */; };
+		93F858541B564DDF00C32E8D /* tween.h in Headers */ = {isa = PBXBuildFile; fileRef = 938807691B48D07800E3C9CA /* tween.h */; };
+		93F858551B564DDF00C32E8D /* accessor_adaptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 9388075A1B48D07800E3C9CA /* accessor_adaptor.h */; };
+		93F858561B564DDF00C32E8D /* bounce.h in Headers */ = {isa = PBXBuildFile; fileRef = 9388074A1B48D07800E3C9CA /* bounce.h */; };
+		93F858571B564DDF00C32E8D /* easing.h in Headers */ = {isa = PBXBuildFile; fileRef = 938807581B48D07800E3C9CA /* easing.h */; };
+		93F858581B564DDF00C32E8D /* types.h in Headers */ = {isa = PBXBuildFile; fileRef = 938807571B48D07800E3C9CA /* types.h */; };
+		93F858591B564DDF00C32E8D /* pointer_adaptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 938807611B48D07800E3C9CA /* pointer_adaptor.h */; };
+		93F8585A1B564DDF00C32E8D /* symmetric_inflector.h in Headers */ = {isa = PBXBuildFile; fileRef = 938807561B48D07800E3C9CA /* symmetric_inflector.h */; };
+		93F8585B1B564DDF00C32E8D /* inflector.h in Headers */ = {isa = PBXBuildFile; fileRef = 938807471B48D07800E3C9CA /* inflector.h */; };
+		93F8585C1B564DDF00C32E8D /* clock.h in Headers */ = {isa = PBXBuildFile; fileRef = 9388075C1B48D07800E3C9CA /* clock.h */; };
+		93F8585D1B564DDF00C32E8D /* adaptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 9388075B1B48D07800E3C9CA /* adaptor.h */; };
+		93F8585E1B564DDF00C32E8D /* types.h in Headers */ = {isa = PBXBuildFile; fileRef = 9388076A1B48D07800E3C9CA /* types.h */; };
+		93F8585F1B564DDF00C32E8D /* quartic.h in Headers */ = {isa = PBXBuildFile; fileRef = 938807511B48D07800E3C9CA /* quartic.h */; };
+		93F858761B564F0200C32E8D /* libtakram_math.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93E21F851B48EC88000A374A /* libtakram_math.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -136,6 +174,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 93C6B51419B22F5500A1CF93;
 			remoteInfo = math_static;
+		};
+		93F858671B564DDF00C32E8D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 93E21F7C1B48EC88000A374A /* math.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 93F858331B564DB200C32E8D;
+			remoteInfo = math_ios;
+		};
+		93F858741B564EF700C32E8D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 93E21F7C1B48EC88000A374A /* math.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 93F858161B564DB200C32E8D;
+			remoteInfo = math_ios;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -197,6 +249,7 @@
 		93E21F2A1B48D696000A374A /* easing.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = easing.cc; sourceTree = "<group>"; };
 		93E21F7C1B48EC88000A374A /* math.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = math.xcodeproj; path = "../takram-math/math.xcodeproj"; sourceTree = "<group>"; };
 		93F1B9F6180282B0002A5A5C /* takram_tween_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = takram_tween_test; sourceTree = BUILT_PRODUCTS_DIR; };
+		93F858631B564DDF00C32E8D /* libtakram_tween.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libtakram_tween.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +274,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				9354A2761A4F97FF00F65144 /* libtakram_tween.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		93F8583C1B564DDF00C32E8D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				93F858761B564F0200C32E8D /* libtakram_math.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,6 +393,7 @@
 			children = (
 				93E21F831B48EC88000A374A /* libtakram_math.dylib */,
 				93E21F851B48EC88000A374A /* libtakram_math.a */,
+				93F858681B564DDF00C32E8D /* libtakram_math.a */,
 				93E21F871B48EC88000A374A /* takram_math_test */,
 			);
 			name = Products;
@@ -354,6 +416,7 @@
 				93D906811A4DC34900BBD89C /* libtakram_tween.dylib */,
 				93C6B51519B22F5500A1CF93 /* libtakram_tween.a */,
 				93F1B9F6180282B0002A5A5C /* takram_tween_test */,
+				93F858631B564DDF00C32E8D /* libtakram_tween.a */,
 			);
 			name = products;
 			sourceTree = "<group>";
@@ -441,6 +504,46 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		93F8583E1B564DDF00C32E8D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				93F8583F1B564DDF00C32E8D /* timer_adaptor.h in Headers */,
+				93F858401B564DDF00C32E8D /* group.h in Headers */,
+				93F858411B564DDF00C32E8D /* reverse_inflector.h in Headers */,
+				93F858421B564DDF00C32E8D /* back.h in Headers */,
+				93F858431B564DDF00C32E8D /* hash.h in Headers */,
+				93F858441B564DDF00C32E8D /* exponential.h in Headers */,
+				93F858451B564DDF00C32E8D /* circular.h in Headers */,
+				93F858461B564DDF00C32E8D /* transform.h in Headers */,
+				93F858471B564DDF00C32E8D /* linear.h in Headers */,
+				93F858481B564DDF00C32E8D /* elastic.h in Headers */,
+				93F858491B564DDF00C32E8D /* easing.h in Headers */,
+				93F8584A1B564DDF00C32E8D /* cubic.h in Headers */,
+				93F8584B1B564DDF00C32E8D /* tween.h in Headers */,
+				93F8584C1B564DDF00C32E8D /* timer.h in Headers */,
+				93F8584D1B564DDF00C32E8D /* timeline_host.h in Headers */,
+				93F8584E1B564DDF00C32E8D /* preset.h in Headers */,
+				93F8584F1B564DDF00C32E8D /* timeline.h in Headers */,
+				93F858501B564DDF00C32E8D /* quadratic.h in Headers */,
+				93F858511B564DDF00C32E8D /* sinusoidal.h in Headers */,
+				93F858521B564DDF00C32E8D /* interval.h in Headers */,
+				93F858531B564DDF00C32E8D /* quintic.h in Headers */,
+				93F858541B564DDF00C32E8D /* tween.h in Headers */,
+				93F858551B564DDF00C32E8D /* accessor_adaptor.h in Headers */,
+				93F858561B564DDF00C32E8D /* bounce.h in Headers */,
+				93F858571B564DDF00C32E8D /* easing.h in Headers */,
+				93F858581B564DDF00C32E8D /* types.h in Headers */,
+				93F858591B564DDF00C32E8D /* pointer_adaptor.h in Headers */,
+				93F8585A1B564DDF00C32E8D /* symmetric_inflector.h in Headers */,
+				93F8585B1B564DDF00C32E8D /* inflector.h in Headers */,
+				93F8585C1B564DDF00C32E8D /* clock.h in Headers */,
+				93F8585D1B564DDF00C32E8D /* adaptor.h in Headers */,
+				93F8585E1B564DDF00C32E8D /* types.h in Headers */,
+				93F8585F1B564DDF00C32E8D /* quartic.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -497,6 +600,24 @@
 			productReference = 93F1B9F6180282B0002A5A5C /* takram_tween_test */;
 			productType = "com.apple.product-type.tool";
 		};
+		93F858341B564DDF00C32E8D /* tween_ios */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 93F858601B564DDF00C32E8D /* Build configuration list for PBXNativeTarget "tween_ios" */;
+			buildPhases = (
+				93F858371B564DDF00C32E8D /* Sources */,
+				93F8583C1B564DDF00C32E8D /* Frameworks */,
+				93F8583E1B564DDF00C32E8D /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				93F858751B564EF700C32E8D /* PBXTargetDependency */,
+			);
+			name = tween_ios;
+			productName = sgss_opaque;
+			productReference = 93F858631B564DDF00C32E8D /* libtakram_tween.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -531,6 +652,7 @@
 			targets = (
 				93D906801A4DC34900BBD89C /* tween_shared */,
 				93C6B51419B22F5500A1CF93 /* tween_static */,
+				93F858341B564DDF00C32E8D /* tween_ios */,
 				93F1B9F5180282B0002A5A5C /* tween_test */,
 			);
 		};
@@ -556,6 +678,13 @@
 			fileType = "compiled.mach-o.executable";
 			path = takram_math_test;
 			remoteRef = 93E21F861B48EC88000A374A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		93F858681B564DDF00C32E8D /* libtakram_math.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libtakram_math.a;
+			remoteRef = 93F858671B564DDF00C32E8D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -598,6 +727,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		93F858371B564DDF00C32E8D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				93F858381B564DDF00C32E8D /* easing.cc in Sources */,
+				93F858391B564DDF00C32E8D /* transform.cc in Sources */,
+				93F8583A1B564DDF00C32E8D /* timeline.cc in Sources */,
+				93F8583B1B564DDF00C32E8D /* tween.cc in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -615,6 +755,11 @@
 			isa = PBXTargetDependency;
 			name = math_static;
 			targetProxy = 93E21F8B1B48ECA3000A374A /* PBXContainerItemProxy */;
+		};
+		93F858751B564EF700C32E8D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = math_ios;
+			targetProxy = 93F858741B564EF700C32E8D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -685,6 +830,30 @@
 			};
 			name = Release;
 		};
+		93F858611B564DDF00C32E8D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93D906771A4DC00600BBD89C /* product_debug.xcconfig */;
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "takram_$(PROJECT_NAME)";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		93F858621B564DDF00C32E8D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93D906761A4DC00600BBD89C /* product_release.xcconfig */;
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "takram_$(PROJECT_NAME)";
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
 		93F8AD7617C8B39800310877 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 930959331A50633500D09023 /* project_debug.xcconfig */;
@@ -731,6 +900,15 @@
 			buildConfigurations = (
 				93F1B9FC180282B1002A5A5C /* Debug */,
 				93F1B9FD180282B1002A5A5C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		93F858601B564DDF00C32E8D /* Build configuration list for PBXNativeTarget "tween_ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				93F858611B564DDF00C32E8D /* Debug */,
+				93F858621B564DDF00C32E8D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

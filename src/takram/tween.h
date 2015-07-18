@@ -28,6 +28,15 @@
 #ifndef TAKRAM_TWEEN_H_
 #define TAKRAM_TWEEN_H_
 
+namespace takram {
+namespace tween {
+
+extern const double version_number;
+extern const unsigned char version_string[];
+
+}  // namespace tween
+}  // namespace takram
+
 #include "takram/tween/accessor_adaptor.h"
 #include "takram/tween/adaptor.h"
 #include "takram/tween/clock.h"
