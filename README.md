@@ -196,7 +196,7 @@ The pre-defined easings are derived from [Robert Penner’s Easing Functions](ht
 
 ## Setup Guide
 
-Run "setup.sh" inside "scripts" directory to initialize submodules and build dependant libraries.
+Run "setup.sh" inside "script" directory to initialize submodules and build dependant libraries.
 
 ### Submodules
 
