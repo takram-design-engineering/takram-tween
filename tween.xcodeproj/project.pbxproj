@@ -21,10 +21,10 @@
 		9388079F1B48D07800E3C9CA /* timeline.cc in Sources */ = {isa = PBXBuildFile; fileRef = 938807621B48D07800E3C9CA /* timeline.cc */; };
 		938807A81B48D07800E3C9CA /* transform.cc in Sources */ = {isa = PBXBuildFile; fileRef = 938807671B48D07800E3C9CA /* transform.cc */; };
 		938807A91B48D07800E3C9CA /* transform.cc in Sources */ = {isa = PBXBuildFile; fileRef = 938807671B48D07800E3C9CA /* transform.cc */; };
+		93B473D61B64878200613FB6 /* libtakram_math.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 93E21F831B48EC88000A374A /* libtakram_math.dylib */; };
 		93E21F2B1B48D696000A374A /* easing.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93E21F2A1B48D696000A374A /* easing.cc */; };
 		93E21F2C1B48D696000A374A /* easing.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93E21F2A1B48D696000A374A /* easing.cc */; };
 		93E21F2E1B48D84C000A374A /* timeline_host_test.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93694DB31B48D2BC000A5277 /* timeline_host_test.cc */; };
-		93E21F8A1B48EC9F000A374A /* libtakram_math.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93E21F851B48EC88000A374A /* libtakram_math.a */; };
 		93E21F8D1B48ECA5000A374A /* libtakram_math.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93E21F851B48EC88000A374A /* libtakram_math.a */; };
 		93F858381B564DDF00C32E8D /* easing.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93E21F2A1B48D696000A374A /* easing.cc */; };
 		93F858391B564DDF00C32E8D /* transform.cc in Sources */ = {isa = PBXBuildFile; fileRef = 938807671B48D07800E3C9CA /* transform.cc */; };
@@ -40,6 +40,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 93D906801A4DC34900BBD89C;
 			remoteInfo = takram_tween_shared;
+		};
+		93B473D41B64877F00613FB6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 93E21F7C1B48EC88000A374A /* math.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9309550D1A4FB1FC00D09023;
+			remoteInfo = math_shared;
 		};
 		93E21F821B48EC88000A374A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -61,13 +68,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 93F1B9F6180282B0002A5A5C;
 			remoteInfo = math_test;
-		};
-		93E21F881B48EC9B000A374A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 93E21F7C1B48EC88000A374A /* math.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 93C6B51419B22F5500A1CF93;
-			remoteInfo = math_static;
 		};
 		93E21F8B1B48ECA3000A374A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -96,7 +96,6 @@
 		930959331A50633500D09023 /* project_debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = project_debug.xcconfig; sourceTree = "<group>"; };
 		930959341A50633500D09023 /* project_release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = project_release.xcconfig; sourceTree = "<group>"; };
 		930959351A50633500D09023 /* project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = project.xcconfig; sourceTree = "<group>"; };
-		93694DAA1B48D0F0000A5277 /* dependencies.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = dependencies.xcconfig; sourceTree = "<group>"; };
 		93694DAB1B48D21E000A5277 /* tween.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tween.cc; sourceTree = "<group>"; };
 		93694DAE1B48D2BC000A5277 /* accessor_adaptor_test.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = accessor_adaptor_test.cc; sourceTree = "<group>"; };
 		93694DAF1B48D2BC000A5277 /* clock_test.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = clock_test.cc; sourceTree = "<group>"; };
@@ -166,7 +165,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93E21F8A1B48EC9F000A374A /* libtakram_math.a in Frameworks */,
+				93B473D61B64878200613FB6 /* libtakram_math.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,7 +246,6 @@
 		93D9066E1A4DB6EB00BBD89C /* config */ = {
 			isa = PBXGroup;
 			children = (
-				93694DAA1B48D0F0000A5277 /* dependencies.xcconfig */,
 				930959351A50633500D09023 /* project.xcconfig */,
 				930959331A50633500D09023 /* project_debug.xcconfig */,
 				930959341A50633500D09023 /* project_release.xcconfig */,
@@ -330,6 +328,7 @@
 			buildPhases = (
 				93C6B51119B22F5500A1CF93 /* Sources */,
 				93C6B51219B22F5500A1CF93 /* Frameworks */,
+				93B473D91B64879800613FB6 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -347,11 +346,12 @@
 			buildPhases = (
 				93D9067D1A4DC34900BBD89C /* Sources */,
 				93D9067E1A4DC34900BBD89C /* Frameworks */,
+				93B473D71B64878600613FB6 /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				93E21F891B48EC9B000A374A /* PBXTargetDependency */,
+				93B473D51B64877F00613FB6 /* PBXTargetDependency */,
 			);
 			name = tween_shared;
 			productName = takram_tween_dynamic;
@@ -381,6 +381,7 @@
 			buildPhases = (
 				93F858371B564DDF00C32E8D /* Sources */,
 				93F8583C1B564DDF00C32E8D /* Frameworks */,
+				93B473D81B64879100613FB6 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -463,6 +464,48 @@
 		};
 /* End PBXReferenceProxy section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		93B473D71B64878600613FB6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PROJECT_DIR}/script/header.sh\" \"src\"";
+		};
+		93B473D81B64879100613FB6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PROJECT_DIR}/script/header.sh\" \"src\"";
+		};
+		93B473D91B64879800613FB6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PROJECT_DIR}/script/header.sh\" \"src\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		93C6B51119B22F5500A1CF93 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -520,10 +563,10 @@
 			target = 93D906801A4DC34900BBD89C /* tween_shared */;
 			targetProxy = 9354A2771A4F980500F65144 /* PBXContainerItemProxy */;
 		};
-		93E21F891B48EC9B000A374A /* PBXTargetDependency */ = {
+		93B473D51B64877F00613FB6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = math_static;
-			targetProxy = 93E21F881B48EC9B000A374A /* PBXContainerItemProxy */;
+			name = math_shared;
+			targetProxy = 93B473D41B64877F00613FB6 /* PBXContainerItemProxy */;
 		};
 		93E21F8C1B48ECA3000A374A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
