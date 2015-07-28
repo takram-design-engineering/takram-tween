@@ -51,8 +51,7 @@ using ExponentialEasing = Group<T, Exponential>;
 
 }  // namespace preset
 
-template <class T>
-using ExponentialEasing = preset::ExponentialEasing<T>;
+using preset::ExponentialEasing;
 
 }  // namespace easing
 }  // namespace takram

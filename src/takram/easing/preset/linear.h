@@ -46,8 +46,7 @@ using LinearEasing = Group<T, Linear>;
 
 }  // namespace preset
 
-template <class T>
-using LinearEasing = preset::LinearEasing<T>;
+using preset::LinearEasing;
 
 }  // namespace easing
 }  // namespace takram

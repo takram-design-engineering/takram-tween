@@ -49,8 +49,7 @@ using SinusoidalEasing = Group<T, Sinusoidal>;
 
 }  // namespace preset
 
-template <class T>
-using SinusoidalEasing = preset::SinusoidalEasing<T>;
+using preset::SinusoidalEasing;
 
 }  // namespace easing
 }  // namespace takram

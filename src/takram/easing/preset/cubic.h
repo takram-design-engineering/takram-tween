@@ -46,8 +46,7 @@ using CubicEasing = Group<T, Cubic>;
 
 }  // namespace preset
 
-template <class T>
-using CubicEasing = preset::CubicEasing<T>;
+using preset::CubicEasing;
 
 }  // namespace easing
 }  // namespace takram

@@ -48,8 +48,7 @@ using CircularEasing = Group<T, Circular>;
 
 }  // namespace preset
 
-template <class T>
-using CircularEasing = preset::CircularEasing<T>;
+using preset::CircularEasing;
 
 }  // namespace easing
 }  // namespace takram

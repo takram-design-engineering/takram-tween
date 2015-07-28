@@ -62,8 +62,7 @@ using BounceEasing = Group<T, Bounce>;
 
 }  // namespace preset
 
-template <class T>
-using BounceEasing = preset::BounceEasing<T>;
+using preset::BounceEasing;
 
 }  // namespace easing
 }  // namespace takram

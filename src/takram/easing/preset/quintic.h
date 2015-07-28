@@ -46,8 +46,7 @@ using QuinticEasing = Group<T, Quintic>;
 
 }  // namespace preset
 
-template <class T>
-using QuinticEasing = preset::QuinticEasing<T>;
+using preset::QuinticEasing;
 
 }  // namespace easing
 }  // namespace takram

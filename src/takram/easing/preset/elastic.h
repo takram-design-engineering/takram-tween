@@ -52,8 +52,7 @@ using ElasticEasing = Group<T, Elastic>;
 
 }  // namespace preset
 
-template <class T>
-using ElasticEasing = preset::ElasticEasing<T>;
+using preset::ElasticEasing;
 
 }  // namespace easing
 }  // namespace takram

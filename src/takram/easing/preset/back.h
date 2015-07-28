@@ -47,8 +47,7 @@ using BackEasing = Group<T, Back>;
 
 }  // namespace preset
 
-template <class T>
-using BackEasing = preset::BackEasing<T>;
+using preset::BackEasing;
 
 }  // namespace easing
 }  // namespace takram
