@@ -30,7 +30,6 @@
 
 #include <cassert>
 
-#include "takram/tween/interval.h"
 #include "takram/tween/types.h"
 
 namespace takram {

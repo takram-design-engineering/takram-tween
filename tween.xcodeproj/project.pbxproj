@@ -21,6 +21,12 @@
 		9388079F1B48D07800E3C9CA /* timeline.cc in Sources */ = {isa = PBXBuildFile; fileRef = 938807621B48D07800E3C9CA /* timeline.cc */; };
 		938807A81B48D07800E3C9CA /* transform.cc in Sources */ = {isa = PBXBuildFile; fileRef = 938807671B48D07800E3C9CA /* transform.cc */; };
 		938807A91B48D07800E3C9CA /* transform.cc in Sources */ = {isa = PBXBuildFile; fileRef = 938807671B48D07800E3C9CA /* transform.cc */; };
+		93A761061B679FE9006DDE12 /* tween.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93A761051B679FE9006DDE12 /* tween.cc */; };
+		93A761071B679FE9006DDE12 /* tween.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93A761051B679FE9006DDE12 /* tween.cc */; };
+		93A761081B679FE9006DDE12 /* tween.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93A761051B679FE9006DDE12 /* tween.cc */; };
+		93A7610C1B679FF5006DDE12 /* timer.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93A7610B1B679FF5006DDE12 /* timer.cc */; };
+		93A7610D1B679FF5006DDE12 /* timer.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93A7610B1B679FF5006DDE12 /* timer.cc */; };
+		93A7610E1B679FF5006DDE12 /* timer.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93A7610B1B679FF5006DDE12 /* timer.cc */; };
 		93B473D61B64878200613FB6 /* libtakram_math.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 93E21F831B48EC88000A374A /* libtakram_math.dylib */; };
 		93E21F2B1B48D696000A374A /* easing.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93E21F2A1B48D696000A374A /* easing.cc */; };
 		93E21F2C1B48D696000A374A /* easing.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93E21F2A1B48D696000A374A /* easing.cc */; };
@@ -140,6 +146,8 @@
 		938807691B48D07800E3C9CA /* tween.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tween.h; sourceTree = "<group>"; };
 		9388076A1B48D07800E3C9CA /* types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
 		9388076B1B48D07800E3C9CA /* tween.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tween.h; sourceTree = "<group>"; };
+		93A761051B679FE9006DDE12 /* tween.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tween.cc; sourceTree = "<group>"; };
+		93A7610B1B679FF5006DDE12 /* timer.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = timer.cc; sourceTree = "<group>"; };
 		93C6B51519B22F5500A1CF93 /* libtakram_tween.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libtakram_tween.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		93D906781A4DC00600BBD89C /* product.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = product.xcconfig; sourceTree = "<group>"; };
 		93D9067C1A4DC00600BBD89C /* test.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = test.xcconfig; sourceTree = "<group>"; };
@@ -236,7 +244,9 @@
 				938807621B48D07800E3C9CA /* timeline.cc */,
 				938807641B48D07800E3C9CA /* timeline_host.h */,
 				938807691B48D07800E3C9CA /* tween.h */,
+				93A761051B679FE9006DDE12 /* tween.cc */,
 				938807651B48D07800E3C9CA /* timer.h */,
+				93A7610B1B679FF5006DDE12 /* timer.cc */,
 			);
 			path = tween;
 			sourceTree = "<group>";
@@ -507,8 +517,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93A761071B679FE9006DDE12 /* tween.cc in Sources */,
 				93E21F2C1B48D696000A374A /* easing.cc in Sources */,
 				938807A91B48D07800E3C9CA /* transform.cc in Sources */,
+				93A7610D1B679FF5006DDE12 /* timer.cc in Sources */,
 				9388079F1B48D07800E3C9CA /* timeline.cc in Sources */,
 				93694DAD1B48D21E000A5277 /* tween.cc in Sources */,
 			);
@@ -518,8 +530,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93A761061B679FE9006DDE12 /* tween.cc in Sources */,
 				93E21F2B1B48D696000A374A /* easing.cc in Sources */,
 				938807A81B48D07800E3C9CA /* transform.cc in Sources */,
+				93A7610C1B679FF5006DDE12 /* timer.cc in Sources */,
 				9388079E1B48D07800E3C9CA /* timeline.cc in Sources */,
 				93694DAC1B48D21E000A5277 /* tween.cc in Sources */,
 			);
@@ -544,8 +558,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93A761081B679FE9006DDE12 /* tween.cc in Sources */,
 				93F858381B564DDF00C32E8D /* easing.cc in Sources */,
 				93F858391B564DDF00C32E8D /* transform.cc in Sources */,
+				93A7610E1B679FF5006DDE12 /* timer.cc in Sources */,
 				93F8583A1B564DDF00C32E8D /* timeline.cc in Sources */,
 				93F8583B1B564DDF00C32E8D /* tween.cc in Sources */,
 			);

@@ -28,6 +28,7 @@
 #ifndef TAKRAM_TWEEN_TIMELINE_H_
 #define TAKRAM_TWEEN_TIMELINE_H_
 
+#include <atomic>
 #include <cstddef>
 #include <memory>
 #include <mutex>
@@ -36,6 +37,9 @@
 #include "takram/tween/adaptor.h"
 #include "takram/tween/clock.h"
 #include "takram/tween/hash.h"
+#include "takram/tween/interval.h"
+#include "takram/tween/timer.h"
+#include "takram/tween/tween.h"
 
 namespace takram {
 namespace tween {
@@ -59,6 +63,15 @@ class Timeline final {
   // Move semantics
   Timeline(Timeline&& other) = default;
 
+  // Shared instance
+  static Timeline& shared();
+
+  // Creating tweens
+  template <class... Args>
+  Tween<Interval> tween(Args&&... args);
+  template <class... Args>
+  Timer<Interval> timer(Args&&... args);
+
   // Managing adaptors
   void add(Adaptor adaptor, bool overwrite = true);
   void remove(Adaptor adaptor);
@@ -78,13 +91,54 @@ class Timeline final {
   std::unordered_map<std::size_t, Targets> objects_;
   Clock<Interval> clock_;
   std::unique_ptr<std::recursive_mutex> mutex_;
+  static std::atomic<Timeline *> shared_;
+  static std::mutex shared_mutex_;
 };
+
+template <class Interval>
+std::atomic<Timeline<Interval> *> Timeline<Interval>::shared_;
+template <class Interval>
+std::mutex Timeline<Interval>::shared_mutex_;
 
 #pragma mark -
 
 template <class Interval>
 inline Timeline<Interval>::Timeline()
     : mutex_(std::make_unique<std::recursive_mutex>()) {}
+
+#pragma mark Shared instance
+
+template <class Interval>
+inline Timeline<Interval>& Timeline<Interval>::shared() {
+  auto shared = shared_.load(std::memory_order_consume);
+  if (!shared) {
+    std::lock_guard<std::mutex> lock(shared_mutex_);
+    shared = shared_.load(std::memory_order_consume);
+    if (!shared) {
+      shared = new Timeline<Interval>();
+      shared_.store(shared, std::memory_order_release);
+    }
+  }
+  return *shared;
+}
+
+#pragma mark Creating tweens
+
+template <class Interval>
+template <class... Args>
+inline tween::Tween<Interval> Timeline<Interval>::tween(Args&&... args) {
+  auto tween = tween::Tween<Interval>(std::forward<Args>(args)..., this);
+  tween.start();
+  return std::move(tween);
+}
+
+template <class Interval>
+template <class... Args>
+inline tween::Timer<Interval> Timeline<Interval>::timer(Args&&... args) {
+  auto timer = tween::Timer<Interval>(std::forward<Args>(args)..., this);
+  timer.start();
+  return std::move(timer);
+}
 
 #pragma mark Managing adaptors
 

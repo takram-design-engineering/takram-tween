@@ -34,12 +34,15 @@
 #include <string>
 
 #include "takram/tween/adaptor.h"
-#include "takram/tween/timeline.h"
+#include "takram/tween/interval.h"
 #include "takram/tween/timer_adaptor.h"
 #include "takram/tween/types.h"
 
 namespace takram {
 namespace tween {
+
+template <class Interval>
+class Timeline;
 
 template <class Interval_ = Time>
 class Timer final {
@@ -153,28 +156,6 @@ template <class Interval>
 inline void Timer<Interval>::init(const Interval& duration,
                                   const Callback& callback) {
   adaptor_ = std::make_shared<TimerAdaptor<Interval>>(duration, callback);
-}
-
-#pragma mark Controlling tween
-
-template <class Interval>
-inline void Timer<Interval>::start() {
-  assert(timeline_);
-  assert(adaptor_);
-  if (!adaptor_->running()) {
-    timeline_->add(adaptor_);
-    adaptor_->start(timeline_->now());
-  }
-}
-
-template <class Interval>
-inline void Timer<Interval>::stop() {
-  assert(timeline_);
-  assert(adaptor_);
-  if (adaptor_->running()) {
-    adaptor_->stop();
-    timeline_->remove(adaptor_);
-  }
 }
 
 #pragma mark Attributes
