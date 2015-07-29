@@ -29,7 +29,9 @@
 #define TAKRAM_TWEEN_TIMELINE_H_
 
 #include <atomic>
+#include <cassert>
 #include <cstddef>
+#include <cstdlib>
 #include <memory>
 #include <mutex>
 #include <unordered_map>
@@ -88,17 +90,26 @@ class Timeline final {
   Interval now() const { return clock_.now(); }
 
  private:
+  static void delete_shared();
+
+ private:
   std::unordered_map<std::size_t, Targets> objects_;
   Clock<Interval> clock_;
   std::unique_ptr<std::recursive_mutex> mutex_;
   static std::atomic<Timeline *> shared_;
   static std::mutex shared_mutex_;
+  static bool shared_deleted_;
+
+ private:
+  friend int atexit(void (*)(void));
 };
 
 template <class Interval>
 std::atomic<Timeline<Interval> *> Timeline<Interval>::shared_;
 template <class Interval>
 std::mutex Timeline<Interval>::shared_mutex_;
+template <class Interval>
+bool Timeline<Interval>::shared_deleted_;
 
 #pragma mark -
 
@@ -115,11 +126,22 @@ inline Timeline<Interval>& Timeline<Interval>::shared() {
     std::lock_guard<std::mutex> lock(shared_mutex_);
     shared = shared_.load(std::memory_order_consume);
     if (!shared) {
-      shared = new Timeline<Interval>();
+      assert(!shared_deleted_);
+      shared = new Timeline;
       shared_.store(shared, std::memory_order_release);
+      std::atexit(&delete_shared);
     }
   }
   return *shared;
+}
+
+template <class Interval>
+inline void Timeline<Interval>::delete_shared() {
+  std::lock_guard<std::mutex> lock(shared_mutex_);
+  auto shared = shared_.load(std::memory_order_consume);
+  delete shared;
+  shared_.store(nullptr, std::memory_order_release);
+  shared_deleted_ = true;
 }
 
 #pragma mark Creating tweens
