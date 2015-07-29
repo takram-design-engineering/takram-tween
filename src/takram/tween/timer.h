@@ -50,7 +50,7 @@ class Timer final {
   using Interval = Interval_;
   using Timeline = Timeline<Interval>;
   using IntervalValue = typename Interval::Value;
-  
+
  private:
   using Adaptor = std::shared_ptr<Adaptor<Interval>>;
 
