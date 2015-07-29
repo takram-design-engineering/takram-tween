@@ -99,9 +99,6 @@ class Timeline final {
   static std::atomic<Timeline *> shared_;
   static std::mutex shared_mutex_;
   static bool shared_deleted_;
-
- private:
-  friend int atexit(void (*)(void));
 };
 
 template <class Interval>
