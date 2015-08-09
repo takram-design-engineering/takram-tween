@@ -59,18 +59,14 @@ class Timer final {
   explicit Timer(const Adaptor& adaptor, Timeline *timeline = nullptr);
 
   // Construct with duration
-  Timer(IntervalValue duration, Timeline *timeline = nullptr);
+  explicit Timer(IntervalValue duration, Timeline *timeline = nullptr);
   Timer(IntervalValue duration,
         const Callback& callback,
         Timeline *timeline = nullptr);
 
   // Copy semantics
-  Timer(const Timer& other) = default;
-  Timer& operator=(const Timer& other) = default;
-
-  // Move semantics
-  Timer(Timer&& other) = default;
-  Timer& operator=(Timer&& other) = default;
+  Timer(const Timer&) = default;
+  Timer& operator=(const Timer&) = default;
 
   // Comparison
   bool operator==(const Timer& other) const;
@@ -215,4 +211,4 @@ inline void Timer<Interval>::set_timeline(Timeline *value) {
 }  // namespace tween
 }  // namespace takram
 
-#endif  // TAKRAM_TWEEN_TWEEN_H_
+#endif  // TAKRAM_TWEEN_TIMER_H_

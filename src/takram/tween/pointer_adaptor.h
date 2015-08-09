@@ -56,11 +56,11 @@ class PointerAdaptor : public Adaptor<Interval_> {
                  const Callback& callback);
 
   // Disallow copy semantics
-  PointerAdaptor(const PointerAdaptor& other) = delete;
-  PointerAdaptor& operator=(const PointerAdaptor& other) = delete;
+  PointerAdaptor(const PointerAdaptor&) = delete;
+  PointerAdaptor& operator=(const PointerAdaptor&) = delete;
 
   // Move semantics
-  PointerAdaptor(PointerAdaptor&& other) = default;
+  PointerAdaptor(PointerAdaptor&&) = default;
 
   // Controlling the adaptor
   using Adaptor<Interval>::update;

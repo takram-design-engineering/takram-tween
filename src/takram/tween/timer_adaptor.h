@@ -48,11 +48,11 @@ class TimerAdaptor : public Adaptor<Interval_> {
   TimerAdaptor(const Interval& duration, const Callback& callback);
 
   // Disallow copy semantics
-  TimerAdaptor(const TimerAdaptor& other) = delete;
-  TimerAdaptor& operator=(const TimerAdaptor& other) = delete;
+  TimerAdaptor(const TimerAdaptor&) = delete;
+  TimerAdaptor& operator=(const TimerAdaptor&) = delete;
 
   // Move semantics
-  TimerAdaptor(TimerAdaptor&& other) = default;
+  TimerAdaptor(TimerAdaptor&&) = default;
 
   // Controlling the adaptor
   using Adaptor<Interval>::update;

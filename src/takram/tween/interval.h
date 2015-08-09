@@ -45,8 +45,8 @@ class Interval final {
   explicit Interval(T value);
 
   // Copy semantics
-  Interval(const Interval& other) = default;
-  Interval& operator=(const Interval& other) = default;
+  Interval(const Interval&) = default;
+  Interval& operator=(const Interval&) = default;
 
   // Comparison
   bool operator==(const Interval& other) const;

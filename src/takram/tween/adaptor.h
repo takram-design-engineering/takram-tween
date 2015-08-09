@@ -45,8 +45,8 @@ class Adaptor {
   virtual ~Adaptor() = 0;
 
   // Disallow copy semantics
-  Adaptor(const Adaptor& other) = delete;
-  Adaptor& operator=(const Adaptor& other) = delete;
+  Adaptor(const Adaptor&) = delete;
+  Adaptor& operator=(const Adaptor&) = delete;
 
   // Controlling the adaptor
   void start(const Interval& now);
@@ -79,7 +79,7 @@ class Adaptor {
           const Callback& callback);
 
   // Move semantics
-  Adaptor(Adaptor&& other) = default;
+  Adaptor(Adaptor&&) = default;
 
   // Updates against the local unit time
   virtual void update(Unit unit) = 0;

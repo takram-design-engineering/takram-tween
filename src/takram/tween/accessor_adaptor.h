@@ -68,11 +68,11 @@ class AccessorAdaptor : public Adaptor<Interval_> {
                   const std::function<void()>& callback);
 
   // Disallow copy semantics
-  AccessorAdaptor(const AccessorAdaptor& other) = delete;
-  AccessorAdaptor& operator=(const AccessorAdaptor& other) = delete;
+  AccessorAdaptor(const AccessorAdaptor&) = delete;
+  AccessorAdaptor& operator=(const AccessorAdaptor&) = delete;
 
   // Move semantics
-  AccessorAdaptor(AccessorAdaptor&& other) = default;
+  AccessorAdaptor(AccessorAdaptor&&) = default;
 
   // Controlling the adaptor
   using Adaptor<Interval>::update;

@@ -59,11 +59,11 @@ class Timeline final {
   Timeline();
 
   // Disallow copy semantics
-  Timeline(const Timeline& other) = delete;
-  Timeline& operator=(const Timeline& other) = delete;
+  Timeline(const Timeline&) = delete;
+  Timeline& operator=(const Timeline&) = delete;
 
   // Move semantics
-  Timeline(Timeline&& other) = default;
+  Timeline(Timeline&&) = default;
 
   // Shared instance
   static Timeline& shared();

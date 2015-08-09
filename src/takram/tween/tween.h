@@ -132,12 +132,8 @@ class Tween final {
         Timeline *timeline = nullptr);
 
   // Copy semantics
-  Tween(const Tween& other) = default;
-  Tween& operator=(const Tween& other) = default;
-
-  // Move semantics
-  Tween(Tween&& other) = default;
-  Tween& operator=(Tween&& other) = default;
+  Tween(const Tween&) = default;
+  Tween& operator=(const Tween&) = default;
 
   // Comparison
   bool operator==(const Tween& other) const;

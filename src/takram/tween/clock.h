@@ -44,8 +44,8 @@ class Clock final {
   Clock();
 
   // Copy semantics
-  Clock(const Clock& other) = default;
-  Clock& operator=(const Clock& other) = default;
+  Clock(const Clock&) = default;
+  Clock& operator=(const Clock&) = default;
 
   // Comparison
   bool operator==(const Clock& other) const;

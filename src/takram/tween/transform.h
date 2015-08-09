@@ -25,8 +25,8 @@
 //
 
 #pragma once
-#ifndef TAKRAM_TWEEN_TRANFORM_H_
-#define TAKRAM_TWEEN_TRANFORM_H_
+#ifndef TAKRAM_TWEEN_TRANSFORM_H_
+#define TAKRAM_TWEEN_TRANSFORM_H_
 
 #include "takram/tween/easing.h"
 #include "takram/tween/types.h"
@@ -40,4 +40,4 @@ T Transform(const Easing& easing, Unit unit, const T& from, const T& to);
 }  // namespace tween
 }  // namespace takram
 
-#endif  // TAKRAM_TWEEN_TRANFORM_H_
+#endif  // TAKRAM_TWEEN_TRANSFORM_H_
