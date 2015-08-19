@@ -3,8 +3,7 @@
 #
 #  MIT License
 #
-#  Copyright (C) 2014 Shota Matsuda
-#  Copyright (C) 2014 takram design engineering
+#  Copyright (C) 2014-2015 Shota Matsuda
 #
 #  Permission is hereby granted, free of charge, to any person obtaining a
 #  copy of this software and associated documentation files (the "Software"),
@@ -39,7 +38,7 @@ endif()
 set(CMAKE_C_FLAGS "-Wall")
 set(CMAKE_C_FLAGS_DEBUG "-g -O0")
 set(CMAKE_C_FLAGS_RELEASE "-Os -DNDEBUG")
-set(CMAKE_CXX_FLAGS "-std=c++1y -stdlib=libc++ -Wall")
+set(CMAKE_CXX_FLAGS "-std=c++1y -Wall")
 set(CMAKE_CXX_FLAGS_DEBUG "-g -O0")
 set(CMAKE_CXX_FLAGS_RELEASE "-Os -DNDEBUG")
 message(STATUS "")
@@ -58,8 +57,9 @@ set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
 # Include directories
-include_directories("${${PROJECT_NAME}_SOURCE_DIR}/include")
-include_directories("${${PROJECT_NAME}_SOURCE_DIR}/build/glog/include")
+include_directories("${${PROJECT_NAME}_SOURCE_DIR}/src")
+include_directories("${${PROJECT_NAME}_SOURCE_DIR}/lib")
+include_directories("${${PROJECT_NAME}_SOURCE_DIR}/../takram-math/src")
 
 # Library
 file(GLOB_RECURSE SOURCES "src/*.cc" "src/*.c")
@@ -68,17 +68,13 @@ add_library("${PROJECT_NAME}_shared" SHARED ${SOURCES})
 set_target_properties("${PROJECT_NAME}_static" PROPERTIES OUTPUT_NAME "${PROJECT_NAME}")
 set_target_properties("${PROJECT_NAME}_shared" PROPERTIES OUTPUT_NAME "${PROJECT_NAME}")
 
-# Linking
-target_link_libraries("${PROJECT_NAME}_static" "${${PROJECT_NAME}_SOURCE_DIR}/build/glog/lib/libglog.a")
-target_link_libraries("${PROJECT_NAME}_shared" "${${PROJECT_NAME}_SOURCE_DIR}/build/glog/lib/libglog.a")
-
 # Unit test
 file(GLOB_RECURSE TESTS "test/*.cc")
 list(LENGTH TESTS TEST_COUNT)
 if (TEST_COUNT)
   enable_testing()
-  add_subdirectory("gtest")
-  include_directories("gtest/include")
+  add_subdirectory("lib/gtest")
+  include_directories("lib/gtest/include")
   add_executable("${PROJECT_NAME}_test" ${TESTS})
   target_link_libraries("${PROJECT_NAME}_test" "gtest" "gtest_main")
   target_link_libraries("${PROJECT_NAME}_test" "${PROJECT_NAME}_shared")
@@ -88,4 +84,4 @@ endif()
 # Install settings
 install(TARGETS "${PROJECT_NAME}_static" DESTINATION "lib")
 install(TARGETS "${PROJECT_NAME}_shared" DESTINATION "lib")
-install(DIRECTORY "include/takram" DESTINATION "include" FILES_MATCHING PATTERN "*.h")
+install(DIRECTORY "src/takram" DESTINATION "include" FILES_MATCHING PATTERN "*.h")
