@@ -72,7 +72,6 @@ class Adaptor {
   void set_callback(const Callback& value);
 
  protected:
-  // Constructors
   Adaptor(const Easing& easing,
           const Interval& duration,
           const Interval& delay,
