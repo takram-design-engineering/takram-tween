@@ -4,7 +4,6 @@ compiler:
   - clang
 
 before_script:
-  - pwd
   - git clone --depth=50 --branch=master git://github.com/takram-design-engineering/takram-math.git ../takram-math
   - mkdir build
   - cd build
