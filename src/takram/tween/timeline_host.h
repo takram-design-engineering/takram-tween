@@ -1,7 +1,7 @@
 //
 //  takram/tween/timeline_host.h
 //
-//  MIT License
+//  The MIT License
 //
 //  Copyright (C) 2014-2015 Shota Matsuda
 //

@@ -1,7 +1,7 @@
 //
 //  takram/tween/timer.h
 //
-//  MIT License
+//  The MIT License
 //
 //  Copyright (C) 2014-2015 Shota Matsuda
 //
@@ -29,9 +29,7 @@
 #define TAKRAM_TWEEN_TIMER_H_
 
 #include <cassert>
-#include <functional>
 #include <memory>
-#include <string>
 
 #include "takram/tween/adaptor.h"
 #include "takram/tween/interval.h"
@@ -49,7 +47,6 @@ class Timer final {
  public:
   using Interval = Interval_;
   using Timeline = Timeline<Interval>;
-  using IntervalValue = typename Interval::Value;
 
  private:
   using Adaptor = std::shared_ptr<Adaptor<Interval>>;
@@ -59,8 +56,8 @@ class Timer final {
   explicit Timer(const Adaptor& adaptor, Timeline *timeline = nullptr);
 
   // Construct with duration
-  explicit Timer(IntervalValue duration, Timeline *timeline = nullptr);
-  Timer(IntervalValue duration,
+  explicit Timer(const Interval& duration, Timeline *timeline = nullptr);
+  Timer(const Interval& duration,
         const Callback& callback,
         Timeline *timeline = nullptr);
 
@@ -82,8 +79,8 @@ class Timer final {
   bool empty() const;
 
   // Parameters
-  IntervalValue duration() const;
-  void set_duration(IntervalValue value);
+  const Interval& duration() const;
+  void set_duration(const Interval& value);
   const Callback& callback() const;
   void set_callback(const Callback& value);
 
@@ -96,11 +93,6 @@ class Timer final {
 
   // Conversion
   operator bool() const { return adaptor_ && timeline_; }
-
- private:
-  // Initializers
-  void init(const Interval& duration,
-            const Callback& callback);
 
  private:
   Adaptor adaptor_;
@@ -121,18 +113,15 @@ inline Timer<Interval>::Timer(const Adaptor& adaptor, Timeline *timeline)
 #pragma mark Construct with duration
 
 template <class Interval>
-inline Timer<Interval>::Timer(IntervalValue duration, Timeline *timeline)
-    : timeline_(timeline) {
-  init(Interval(duration), nullptr);
-}
+inline Timer<Interval>::Timer(const Interval& duration, Timeline *timeline)
+    : Timer(duration, nullptr, timeline) {}
 
 template <class Interval>
-inline Timer<Interval>::Timer(IntervalValue duration,
+inline Timer<Interval>::Timer(const Interval& duration,
                               const Callback& callback,
                               Timeline *timeline)
-    : timeline_(timeline) {
-  init(Interval(duration), callback);
-}
+    : adaptor_(std::make_shared<TimerAdaptor<Interval>>(duration, callback)),
+      timeline_(timeline) {}
 
 #pragma mark Comparison
 
@@ -144,14 +133,6 @@ inline bool Timer<Interval>::operator==(const Timer& other) const {
 template <class Interval>
 inline bool Timer<Interval>::operator!=(const Timer& other) const {
   return !operator==(other);
-}
-
-#pragma mark Initializers
-
-template <class Interval>
-inline void Timer<Interval>::init(const Interval& duration,
-                                  const Callback& callback) {
-  adaptor_ = std::make_shared<TimerAdaptor<Interval>>(duration, callback);
 }
 
 #pragma mark Attributes
@@ -174,15 +155,15 @@ inline bool Timer<Interval>::empty() const {
 #pragma mark Parameters
 
 template <class Interval>
-inline typename Interval::Value Timer<Interval>::duration() const {
+inline const Interval& Timer<Interval>::duration() const {
   assert(adaptor_);
-  return adaptor_->duration().count();
+  return adaptor_->duration();
 }
 
 template <class Interval>
-inline void Timer<Interval>::set_duration(IntervalValue value) {
+inline void Timer<Interval>::set_duration(const Interval& value) {
   assert(adaptor_);
-  return adaptor_->set_duration(Interval(value));
+  return adaptor_->set_duration(value);
 }
 
 template <class Interval>
@@ -192,7 +173,7 @@ inline const Callback& Timer<Interval>::callback() const {
 }
 
 template <class Interval>
-inline void Timer<Interval>::set_callback(const std::function<void()>& value) {
+inline void Timer<Interval>::set_callback(const Callback& value) {
   return adaptor_->set_callback(value);
 }
 

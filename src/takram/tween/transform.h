@@ -1,7 +1,7 @@
 //
 //  takram/tween/transform.h
 //
-//  MIT License
+//  The MIT License
 //
 //  Copyright (C) 2014-2015 Shota Matsuda
 //
@@ -35,7 +35,7 @@ namespace takram {
 namespace tween {
 
 template <class T>
-T Transform(const Easing& easing, Unit unit, const T& from, const T& to);
+T transform(const Easing& easing, Unit unit, const T& from, const T& to);
 
 }  // namespace tween
 }  // namespace takram

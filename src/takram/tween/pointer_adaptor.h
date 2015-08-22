@@ -1,7 +1,7 @@
 //
 //  takram/tween/pointer_adaptor.h
 //
-//  MIT License
+//  The MIT License
 //
 //  Copyright (C) 2014-2015 Shota Matsuda
 //
@@ -109,9 +109,9 @@ inline void PointerAdaptor<Interval, Value>::update(Unit unit) {
   if (unit < 0.0) {
     from_ = *target_;
   } else if (this->duration().empty() || unit > 1.0) {
-    *target_ = Transform(this->easing(), 1.0, from_, to_);
+    *target_ = transform(this->easing(), 1.0, from_, to_);
   } else {
-    *target_ = Transform(this->easing(), unit, from_, to_);
+    *target_ = transform(this->easing(), unit, from_, to_);
   }
 }
 

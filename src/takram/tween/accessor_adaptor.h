@@ -1,7 +1,7 @@
 //
 //  takram/tween/accessor_adaptor.h
 //
-//  MIT License
+//  The MIT License
 //
 //  Copyright (C) 2014-2015 Shota Matsuda
 //
@@ -65,7 +65,7 @@ class AccessorAdaptor : public Adaptor<Interval_> {
                   const Easing& easing,
                   const Interval& duration,
                   const Interval& delay,
-                  const std::function<void()>& callback);
+                  const Callback& callback);
 
   // Disallow copy semantics
   AccessorAdaptor(const AccessorAdaptor&) = delete;
@@ -138,9 +138,9 @@ inline void AccessorAdaptor<Interval, Value, Class, Getter, Setter>
   if (unit < 0.0) {
     from_ = (object_->*getter_)();
   } else if (Adaptor<Interval>::duration().empty() || unit > 1.0) {
-    (object_->*setter_)(Transform(this->easing(), 1.0, from_, to_));
+    (object_->*setter_)(transform(this->easing(), 1.0, from_, to_));
   } else {
-    (object_->*setter_)(Transform(this->easing(), unit, from_, to_));
+    (object_->*setter_)(transform(this->easing(), unit, from_, to_));
   }
 }
 

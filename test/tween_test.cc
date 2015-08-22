@@ -1,10 +1,9 @@
 //
-//  test/tween/timeline_test.cc
+//  tween_test.cc
 //
-//  MIT License
+//  The MIT License
 //
-//  Copyright (C) 2014 Shota Matsuda
-//  Copyright (C) 2014 takram design engineering
+//  Copyright (C) 2014-2015 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -93,18 +92,18 @@ TYPED_TEST(TweenTest, Assignable) {
 
 TYPED_TEST(TweenTest, ConstructibleWithPointer) {
   double value;
-  const auto interval = typename TypeParam::Value();
+  const auto interval = TypeParam();
   const auto easing = LinearEasing::In;
   const auto callback = []() {};
   using Tween = Tween<TypeParam>;
   Tween tween;
   tween = Tween(&value, value, easing, interval);
   ASSERT_EQ(tween.duration(), interval);
-  ASSERT_EQ(tween.delay(), typename TypeParam::Value());
+  ASSERT_EQ(tween.delay(), TypeParam());
   ASSERT_EQ(tween.timeline(), nullptr);
   tween = Tween(&value, value, easing, interval, callback);
   ASSERT_EQ(tween.duration(), interval);
-  ASSERT_EQ(tween.delay(), typename TypeParam::Value());
+  ASSERT_EQ(tween.delay(), TypeParam());
   ASSERT_EQ(tween.timeline(), nullptr);
   tween = Tween(&value, value, easing, interval, interval);
   ASSERT_EQ(tween.duration(), interval);
@@ -117,11 +116,11 @@ TYPED_TEST(TweenTest, ConstructibleWithPointer) {
   Timeline<TypeParam> timeline;
   tween = Tween(&value, value, easing, interval, &timeline);
   ASSERT_EQ(tween.duration(), interval);
-  ASSERT_EQ(tween.delay(), typename TypeParam::Value());
+  ASSERT_EQ(tween.delay(), TypeParam());
   ASSERT_EQ(tween.timeline(), &timeline);
   tween = Tween(&value, value, easing, interval, callback, &timeline);
   ASSERT_EQ(tween.duration(), interval);
-  ASSERT_EQ(tween.delay(), typename TypeParam::Value());
+  ASSERT_EQ(tween.delay(), TypeParam());
   ASSERT_EQ(tween.timeline(), &timeline);
   tween = Tween(&value, value, easing, interval, interval, &timeline);
   ASSERT_EQ(tween.duration(), interval);
@@ -135,7 +134,7 @@ TYPED_TEST(TweenTest, ConstructibleWithPointer) {
 
 TYPED_TEST(TweenTest, ConstructibleWithAccessor) {
   Type value;
-  const auto interval = typename TypeParam::Value();
+  const auto interval = TypeParam();
   const auto easing = LinearEasing::In;
   const auto callback = []() {};
   using Tween = Tween<TypeParam>;
@@ -144,13 +143,13 @@ TYPED_TEST(TweenTest, ConstructibleWithAccessor) {
                 "value", value.value(),
                 easing, interval);
   ASSERT_EQ(tween.duration(), interval);
-  ASSERT_EQ(tween.delay(), typename TypeParam::Value());
+  ASSERT_EQ(tween.delay(), TypeParam());
   ASSERT_EQ(tween.timeline(), nullptr);
   tween = Tween(&value, &Type::value, &Type::set_value,
                 "value", value.value(),
                 easing, interval, callback);
   ASSERT_EQ(tween.duration(), interval);
-  ASSERT_EQ(tween.delay(), typename TypeParam::Value());
+  ASSERT_EQ(tween.delay(), TypeParam());
   ASSERT_EQ(tween.timeline(), nullptr);
   tween = Tween(&value, &Type::value, &Type::set_value,
                 "value", value.value(),
@@ -169,13 +168,13 @@ TYPED_TEST(TweenTest, ConstructibleWithAccessor) {
                 "value", value.value(),
                 easing, interval, &timeline);
   ASSERT_EQ(tween.duration(), interval);
-  ASSERT_EQ(tween.delay(), typename TypeParam::Value());
+  ASSERT_EQ(tween.delay(), TypeParam());
   ASSERT_EQ(tween.timeline(), &timeline);
   tween = Tween(&value, &Type::value, &Type::set_value,
                 "value", value.value(),
                 easing, interval, callback, &timeline);
   ASSERT_EQ(tween.duration(), interval);
-  ASSERT_EQ(tween.delay(), typename TypeParam::Value());
+  ASSERT_EQ(tween.delay(), TypeParam());
   ASSERT_EQ(tween.timeline(), &timeline);
   tween = Tween(&value, &Type::value, &Type::set_value,
                 "value", value.value(),

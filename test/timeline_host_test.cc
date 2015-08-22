@@ -1,10 +1,9 @@
 //
-//  test/tween/timeline_host_test.cc
+//  timeline_host_test.cc
 //
-//  MIT License
+//  The MIT License
 //
-//  Copyright (C) 2014 Shota Matsuda
-//  Copyright (C) 2014 takram design engineering
+//  Copyright (C) 2014-2015 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),

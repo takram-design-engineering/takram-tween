@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		93147EF41B8825DB008DF66F /* timer_test.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93147EF31B8825DB008DF66F /* timer_test.cc */; };
 		9354A2761A4F97FF00F65144 /* libtakram_tween.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 93D906811A4DC34900BBD89C /* libtakram_tween.dylib */; };
 		93694DAC1B48D21E000A5277 /* tween.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93694DAB1B48D21E000A5277 /* tween.cc */; };
 		93694DAD1B48D21E000A5277 /* tween.cc in Sources */ = {isa = PBXBuildFile; fileRef = 93694DAB1B48D21E000A5277 /* tween.cc */; };
@@ -102,6 +103,7 @@
 		930959331A50633500D09023 /* project_debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = project_debug.xcconfig; sourceTree = "<group>"; };
 		930959341A50633500D09023 /* project_release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = project_release.xcconfig; sourceTree = "<group>"; };
 		930959351A50633500D09023 /* project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = project.xcconfig; sourceTree = "<group>"; };
+		93147EF31B8825DB008DF66F /* timer_test.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = timer_test.cc; sourceTree = "<group>"; };
 		93694DAB1B48D21E000A5277 /* tween.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tween.cc; sourceTree = "<group>"; };
 		93694DAE1B48D2BC000A5277 /* accessor_adaptor_test.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = accessor_adaptor_test.cc; sourceTree = "<group>"; };
 		93694DAF1B48D2BC000A5277 /* clock_test.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = clock_test.cc; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 				93694DB31B48D2BC000A5277 /* timeline_host_test.cc */,
 				93694DB41B48D2BC000A5277 /* timeline_test.cc */,
 				93694DB51B48D2BC000A5277 /* tween_test.cc */,
+				93147EF31B8825DB008DF66F /* timer_test.cc */,
 			);
 			path = test;
 			sourceTree = "<group>";
@@ -547,6 +550,7 @@
 				93694DBC1B48D2BC000A5277 /* timeline_test.cc in Sources */,
 				93694DBA1B48D2BC000A5277 /* pointer_adaptor_test.cc in Sources */,
 				93694DBD1B48D2BC000A5277 /* tween_test.cc in Sources */,
+				93147EF41B8825DB008DF66F /* timer_test.cc in Sources */,
 				93E21F2E1B48D84C000A374A /* timeline_host_test.cc in Sources */,
 				93694DB71B48D2BC000A5277 /* clock_test.cc in Sources */,
 				93694DB81B48D2BC000A5277 /* hash_test.cc in Sources */,

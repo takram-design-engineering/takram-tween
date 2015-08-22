@@ -1,7 +1,7 @@
 //
 //  takram/tween/tween.h
 //
-//  MIT License
+//  The MIT License
 //
 //  Copyright (C) 2014-2015 Shota Matsuda
 //
@@ -29,7 +29,6 @@
 #define TAKRAM_TWEEN_TWEEN_H_
 
 #include <cassert>
-#include <functional>
 #include <memory>
 #include <string>
 
@@ -50,42 +49,39 @@ class Tween final {
  public:
   using Interval = Interval_;
   using Timeline = Timeline<Interval>;
-  using IntervalValue = typename Interval::Value;
-
- private:
-  using Adaptor = std::shared_ptr<Adaptor<Interval>>;
 
  public:
   Tween();
-  explicit Tween(const Adaptor& adaptor, Timeline *timeline = nullptr);
+  explicit Tween(const std::shared_ptr<Adaptor<Interval>>& adaptor,
+                 Timeline *timeline = nullptr);
 
   // Construct with pointer
   template <class T, class Value>
   Tween(Value *target,
         const T& to,
         const Easing& easing,
-        IntervalValue duration,
+        const Interval& duration,
         Timeline *timeline = nullptr);
   template <class T, class Value>
   Tween(Value *target,
         const T& to,
         const Easing& easing,
-        IntervalValue duration,
-        IntervalValue delay,
+        const Interval& duration,
+        const Interval& delay,
         Timeline *timeline = nullptr);
   template <class T, class Value>
   Tween(Value *target,
         const T& to,
         const Easing& easing,
-        IntervalValue duration,
+        const Interval& duration,
         const Callback& callback,
         Timeline *timeline = nullptr);
   template <class T, class Value>
   Tween(Value *target,
         const T& to,
         const Easing& easing,
-        IntervalValue duration,
-        IntervalValue delay,
+        const Interval& duration,
+        const Interval& delay,
         const Callback& callback,
         Timeline *timeline = nullptr);
 
@@ -97,7 +93,7 @@ class Tween final {
         const std::string& name,
         const Value& to,
         const Easing& easing,
-        IntervalValue duration,
+        const Interval& duration,
         Timeline *timeline = nullptr);
   template <class Value, class Class, class Getter, class Setter>
   Tween(Class *target,
@@ -106,8 +102,8 @@ class Tween final {
         const std::string& name,
         const Value& to,
         const Easing& easing,
-        IntervalValue duration,
-        IntervalValue delay,
+        const Interval& duration,
+        const Interval& delay,
         Timeline *timeline = nullptr);
   template <class Value, class Class, class Getter, class Setter>
   Tween(Class *target,
@@ -116,7 +112,7 @@ class Tween final {
         const std::string& name,
         const Value& to,
         const Easing& easing,
-        IntervalValue duration,
+        const Interval& duration,
         const Callback& callback,
         Timeline *timeline = nullptr);
   template <class Value, class Class, class Getter, class Setter>
@@ -126,8 +122,8 @@ class Tween final {
         const std::string& name,
         const Value& to,
         const Easing& easing,
-        IntervalValue duration,
-        IntervalValue delay,
+        const Interval& duration,
+        const Interval& delay,
         const Callback& callback,
         Timeline *timeline = nullptr);
 
@@ -151,10 +147,10 @@ class Tween final {
   // Parameters
   const Easing& easing() const;
   void set_easing(const Easing& value);
-  IntervalValue duration() const;
-  void set_duration(IntervalValue value);
-  IntervalValue delay() const;
-  void set_delay(IntervalValue value);
+  const Interval& duration() const;
+  void set_duration(const Interval& value);
+  const Interval& delay() const;
+  void set_delay(const Interval& value);
   const Callback& callback() const;
   void set_callback(const Callback& value);
 
@@ -163,33 +159,13 @@ class Tween final {
   void set_timeline(Timeline *value);
 
   // Adaptor
-  Adaptor adaptor() const { return adaptor_; }
+  std::shared_ptr<Adaptor<Interval>> adaptor() const { return adaptor_; }
 
   // Conversion
   operator bool() const { return adaptor_ && timeline_; }
 
  private:
-  // Initializers
-  template <class T, class Value>
-  void init(Value *target,
-            const T& to,
-            const Easing& easing,
-            const Interval& duration,
-            const Interval& delay,
-            const Callback& callback);
-  template <class Value, class Class, class Getter, class Setter>
-  void init(Class *target,
-            Getter getter,
-            Setter setter,
-            const std::string& name,
-            const Value& to,
-            const Easing& easing,
-            const Interval& duration,
-            const Interval& delay,
-            const Callback& callback);
-
- private:
-  Adaptor adaptor_;
+  std::shared_ptr<Adaptor<Interval>> adaptor_;
   Timeline *timeline_;
 };
 
@@ -197,10 +173,11 @@ class Tween final {
 
 template <class Interval>
 inline Tween<Interval>::Tween()
-    : timeline_(nullptr) {}
+    : timeline_() {}
 
 template <class Interval>
-inline Tween<Interval>::Tween(const Adaptor& adaptor, Timeline *timeline)
+inline Tween<Interval>::Tween(const std::shared_ptr<Adaptor<Interval>>& adaptor,
+                              Timeline *timeline)
     : adaptor_(adaptor),
       timeline_(timeline) {}
 
@@ -211,47 +188,43 @@ template <class T, class Value>
 inline Tween<Interval>::Tween(Value *target,
                               const T& to,
                               const Easing& easing,
-                              IntervalValue duration,
+                              const Interval& duration,
                               Timeline *timeline)
-    : timeline_(timeline) {
-  init(target, to, easing, Interval(duration), Interval(), nullptr);
-}
+    : Tween(target, to, easing, duration, Interval(), nullptr, timeline) {}
 
 template <class Interval>
 template <class T, class Value>
 inline Tween<Interval>::Tween(Value *target,
                               const T& to,
                               const Easing& easing,
-                              IntervalValue duration,
-                              IntervalValue delay,
+                              const Interval& duration,
+                              const Interval& delay,
                               Timeline *timeline)
-    : timeline_(timeline) {
-  init(target, to, easing, Interval(duration), Interval(delay), nullptr);
-}
+    : Tween(target, to, easing, duration, delay, nullptr, timeline) {}
 
 template <class Interval>
 template <class T, class Value>
 inline Tween<Interval>::Tween(Value *target,
                               const T& to,
                               const Easing& easing,
-                              IntervalValue duration,
+                              const Interval& duration,
                               const Callback& callback,
                               Timeline *timeline)
-    : timeline_(timeline) {
-  init(target, to, easing, Interval(duration), Interval(), callback);
-}
+    : Tween(target, to, easing, duration, Interval(), callback, timeline) {}
 
 template <class Interval>
 template <class T, class Value>
 inline Tween<Interval>::Tween(Value *target,
                               const T& to,
                               const Easing& easing,
-                              IntervalValue duration,
-                              IntervalValue delay,
+                              const Interval& duration,
+                              const Interval& delay,
                               const Callback& callback,
                               Timeline *timeline)
-    : timeline_(timeline) {
-  init(target, to, easing, Interval(duration), Interval(delay), callback);
+    : adaptor_(std::make_shared<PointerAdaptor<Interval, Value>>(
+          target, to, easing, duration, delay, callback)),
+      timeline_(timeline) {
+  assert(target);
 }
 
 #pragma mark Construct with accessor
@@ -264,12 +237,10 @@ inline Tween<Interval>::Tween(Class *target,
                               const std::string& name,
                               const Value& to,
                               const Easing& easing,
-                              IntervalValue duration,
+                              const Interval& duration,
                               Timeline *timeline)
-    : timeline_(timeline) {
-  init(target, getter, setter, name, to,
-       easing, Interval(duration), Interval(), nullptr);
-}
+    : Tween(target, getter, setter, name, to,
+            easing, Interval(duration), Interval(), nullptr, timeline) {}
 
 template <class Interval>
 template <class Value, class Class, class Getter, class Setter>
@@ -279,13 +250,11 @@ inline Tween<Interval>::Tween(Class *target,
                               const std::string& name,
                               const Value& to,
                               const Easing& easing,
-                              IntervalValue duration,
-                              IntervalValue delay,
+                              const Interval& duration,
+                              const Interval& delay,
                               Timeline *timeline)
-    : timeline_(timeline) {
-  init(target, getter, setter, name, to,
-       easing, Interval(duration), Interval(delay), nullptr);
-}
+    : Tween(target, getter, setter, name, to,
+            easing, Interval(duration), Interval(delay), nullptr, timeline) {}
 
 template <class Interval>
 template <class Value, class Class, class Getter, class Setter>
@@ -295,13 +264,11 @@ inline Tween<Interval>::Tween(Class *target,
                               const std::string& name,
                               const Value& to,
                               const Easing& easing,
-                              IntervalValue duration,
+                              const Interval& duration,
                               const Callback& callback,
                               Timeline *timeline)
-    : timeline_(timeline) {
-  init(target, getter, setter, name, to,
-       easing, Interval(duration), Interval(), callback);
-}
+    : Tween(target, getter, setter, name, to,
+            easing, Interval(duration), Interval(), callback, timeline) {}
 
 template <class Interval>
 template <class Value, class Class, class Getter, class Setter>
@@ -311,13 +278,16 @@ inline Tween<Interval>::Tween(Class *target,
                               const std::string& name,
                               const Value& to,
                               const Easing& easing,
-                              IntervalValue duration,
-                              IntervalValue delay,
+                              const Interval& duration,
+                              const Interval& delay,
                               const Callback& callback,
                               Timeline *timeline)
-    : timeline_(timeline) {
-  init(target, getter, setter, name, to,
-       easing, Interval(duration), Interval(delay), callback);
+    : adaptor_(std::make_shared<AccessorAdaptor<
+          Interval, Value, Class, Getter, Setter>>(
+              target, getter, setter, name, to,
+              easing, duration, delay, callback)),
+      timeline_(timeline) {
+  assert(target);
 }
 
 #pragma mark Comparison
@@ -330,39 +300,6 @@ inline bool Tween<Interval>::operator==(const Tween& other) const {
 template <class Interval>
 inline bool Tween<Interval>::operator!=(const Tween& other) const {
   return !operator==(other);
-}
-
-#pragma mark Initializers
-
-template <class Interval>
-template <class T, class Value>
-inline void Tween<Interval>::init(Value *target,
-                                  const T& to,
-                                  const Easing& easing,
-                                  const Interval& duration,
-                                  const Interval& delay,
-                                  const Callback& callback) {
-  assert(target);
-  using Adaptor = PointerAdaptor<Interval, Value>;
-  adaptor_ = std::make_shared<Adaptor>(
-      target, to, easing, duration, delay, callback);
-}
-
-template <class Interval>
-template <class Value, class Class, class Getter, class Setter>
-inline void Tween<Interval>::init(Class *target,
-                                  Getter getter,
-                                  Setter setter,
-                                  const std::string& name,
-                                  const Value& to,
-                                  const Easing& easing,
-                                  const Interval& duration,
-                                  const Interval& delay,
-                                  const Callback& callback) {
-  assert(target);
-  using Adaptor = AccessorAdaptor<Interval, Value, Class, Getter, Setter>;
-  adaptor_ = std::make_shared<Adaptor>(
-      target, getter, setter, name, to, easing, duration, delay, callback);
 }
 
 #pragma mark Attributes
@@ -397,27 +334,27 @@ inline void Tween<Interval>::set_easing(const Easing& value) {
 }
 
 template <class Interval>
-inline typename Interval::Value Tween<Interval>::duration() const {
+inline const Interval& Tween<Interval>::duration() const {
   assert(adaptor_);
-  return adaptor_->duration().count();
+  return adaptor_->duration();
 }
 
 template <class Interval>
-inline void Tween<Interval>::set_duration(IntervalValue value) {
+inline void Tween<Interval>::set_duration(const Interval& value) {
   assert(adaptor_);
-  return adaptor_->set_duration(Interval(value));
+  return adaptor_->set_duration(value);
 }
 
 template <class Interval>
-inline typename Interval::Value Tween<Interval>::delay() const {
+inline const Interval& Tween<Interval>::delay() const {
   assert(adaptor_);
-  return adaptor_->delay().count();
+  return adaptor_->delay();
 }
 
 template <class Interval>
-inline void Tween<Interval>::set_delay(IntervalValue value) {
+inline void Tween<Interval>::set_delay(const Interval& value) {
   assert(adaptor_);
-  return adaptor_->set_delay(Interval(value));
+  return adaptor_->set_delay(value);
 }
 
 template <class Interval>
@@ -427,7 +364,7 @@ inline const Callback& Tween<Interval>::callback() const {
 }
 
 template <class Interval>
-inline void Tween<Interval>::set_callback(const std::function<void()>& value) {
+inline void Tween<Interval>::set_callback(const Callback& value) {
   return adaptor_->set_callback(value);
 }
 

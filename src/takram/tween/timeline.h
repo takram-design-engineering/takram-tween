@@ -1,7 +1,7 @@
 //
 //  takram/tween/timeline.h
 //
-//  MIT License
+//  The MIT License
 //
 //  Copyright (C) 2014-2015 Shota Matsuda
 //
@@ -90,7 +90,7 @@ class Timeline final {
   Interval now() const { return clock_.now(); }
 
  private:
-  static void delete_shared();
+  static void deleteShared();
 
  private:
   std::unordered_map<std::size_t, Targets> objects_;
@@ -126,14 +126,14 @@ inline Timeline<Interval>& Timeline<Interval>::shared() {
       assert(!shared_deleted_);
       shared = new Timeline;
       shared_.store(shared, std::memory_order_release);
-      std::atexit(&delete_shared);
+      std::atexit(&deleteShared);
     }
   }
   return *shared;
 }
 
 template <class Interval>
-inline void Timeline<Interval>::delete_shared() {
+inline void Timeline<Interval>::deleteShared() {
   std::lock_guard<std::mutex> lock(shared_mutex_);
   delete shared_.exchange(nullptr);
   shared_deleted_ = true;

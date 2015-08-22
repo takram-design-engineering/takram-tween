@@ -1,7 +1,7 @@
 //
 //  takram/tween/interval.h
 //
-//  MIT License
+//  The MIT License
 //
 //  Copyright (C) 2014-2015 Shota Matsuda
 //
@@ -42,7 +42,7 @@ class Interval final {
 
  public:
   Interval();
-  explicit Interval(T value);
+  Interval(T value);  // Intentionally implicit
 
   // Copy semantics
   Interval(const Interval&) = default;
