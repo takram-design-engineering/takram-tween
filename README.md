@@ -3,7 +3,8 @@ Tween
 
 A C++ library for time-based and frame-based tweening
 
-[![Build Status](https://travis-ci.org/takram-design-engineering/takram-tween.svg)](https://travis-ci.org/takram-design-engineering/takram-tween)
+[![Build Status](https://travis-ci.org/takram-design-engineering/takram-tween.svg)](https://travis-ci.org/takram-design-engineering/takram-tween) [![License](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat
+)](http://mit-license.org)
 
 ## Tween Module
 
