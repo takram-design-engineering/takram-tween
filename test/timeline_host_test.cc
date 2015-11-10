@@ -56,8 +56,8 @@ using Intervals = ::testing::Types<Time, Frame>;
 TYPED_TEST_CASE(TimelineHostTest, Intervals);
 
 TYPED_TEST(TimelineHostTest, TweenWithPointer) {
-  double value;
-  typename TypeParam::Value interval;
+  double value{};
+  typename TypeParam::Value interval{};
   const auto easing = LinearEasing::In;
   const auto callback = []() {};
   TimelineHost host;
@@ -78,8 +78,8 @@ TYPED_TEST(TimelineHostTest, TweenWithPointer) {
 }
 
 TYPED_TEST(TimelineHostTest, TweenWithAccessor) {
-  Type value;
-  typename TypeParam::Value interval;
+  Type value{};
+  typename TypeParam::Value interval{};
   const auto easing = LinearEasing::In;
   const auto callback = []() {};
   TimelineHost host;

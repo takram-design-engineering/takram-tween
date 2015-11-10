@@ -31,6 +31,7 @@
 #include <cassert>
 #include <memory>
 #include <string>
+#include <type_traits>
 
 #include "takram/tween/accessor_adaptor.h"
 #include "takram/tween/adaptor.h"
@@ -49,6 +50,14 @@ class Tween final {
  public:
   using Interval = Interval_;
   using Timeline = Timeline<Interval>;
+
+ private:
+  // For resolving ambiguity on platform where the std::function's constructor
+  // that takes single template argument is not specified as explicit.
+  template <class T>
+  using EnableIfCallback = typename std::enable_if<
+    !std::is_convertible<T, Interval>::value
+  >::type;
 
  public:
   Tween();
@@ -69,7 +78,10 @@ class Tween final {
         const Interval& duration,
         const Interval& delay,
         Timeline *timeline = nullptr);
-  template <class T, class Value>
+  template <
+    class T, class Value, class Callback,
+    EnableIfCallback<Callback> * = nullptr
+  >
   Tween(Value *target,
         const T& to,
         const Easing& easing,
@@ -105,7 +117,10 @@ class Tween final {
         const Interval& duration,
         const Interval& delay,
         Timeline *timeline = nullptr);
-  template <class Value, class Class, class Getter, class Setter>
+  template <
+    class Value, class Class, class Getter, class Setter,
+    class Callback, EnableIfCallback<Callback> * = nullptr
+  >
   Tween(Class *target,
         Getter getter,
         Setter setter,
@@ -203,7 +218,10 @@ inline Tween<Interval>::Tween(Value *target,
     : Tween(target, to, easing, duration, delay, nullptr, timeline) {}
 
 template <class Interval>
-template <class T, class Value>
+template <
+  class T, class Value, class Callback,
+  typename Tween<Interval>::template EnableIfCallback<Callback> *
+>
 inline Tween<Interval>::Tween(Value *target,
                               const T& to,
                               const Easing& easing,
@@ -257,7 +275,10 @@ inline Tween<Interval>::Tween(Class *target,
             easing, Interval(duration), Interval(delay), nullptr, timeline) {}
 
 template <class Interval>
-template <class Value, class Class, class Getter, class Setter>
+template <
+  class Value, class Class, class Getter, class Setter, class Callback,
+  typename Tween<Interval>::template EnableIfCallback<Callback> *
+>
 inline Tween<Interval>::Tween(Class *target,
                               Getter getter,
                               Setter setter,
