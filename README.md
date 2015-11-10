@@ -25,9 +25,7 @@ To run tweens, you need a timeline and usually a timeline host. [`takram::tween:
 ### Pointer Target
 
 ```
-Tween(target, to, easing, duration [, timeline ])
 Tween(target, to, easing, duration [, callback [, timeline ]])
-Tween(target, to, easing, duration, delay [, timeline ])
 Tween(target, to, easing, duration, delay [, callback [, timeline ]])
 ```
 
@@ -71,9 +69,7 @@ host.tween(&value, 1.0, takram::tween::QuadraticEasing::Out, 0.1, [&host]() {
 ### Accessor Target
 
 ```
-Tween(target, getter, setter, name, to, easing, duration [, timeline ])
 Tween(target, getter, setter, name, to, easing, duration [, callback [, timeline ]])
-Tween(target, getter, setter, name, to, easing, duration, delay [, timeline ])
 Tween(target, getter, setter, name, to, easing, duration, delay [, callback [, timeline ]])
 ```
 
