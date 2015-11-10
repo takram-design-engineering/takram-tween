@@ -19,47 +19,47 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\takram\easing.h" />
-    <ClInclude Include="..\..\src\takram\easing\group.h" />
-    <ClInclude Include="..\..\src\takram\easing\inflector.h" />
-    <ClInclude Include="..\..\src\takram\easing\preset.h" />
-    <ClInclude Include="..\..\src\takram\easing\preset\back.h" />
-    <ClInclude Include="..\..\src\takram\easing\preset\bounce.h" />
-    <ClInclude Include="..\..\src\takram\easing\preset\circular.h" />
-    <ClInclude Include="..\..\src\takram\easing\preset\cubic.h" />
-    <ClInclude Include="..\..\src\takram\easing\preset\elastic.h" />
-    <ClInclude Include="..\..\src\takram\easing\preset\exponential.h" />
-    <ClInclude Include="..\..\src\takram\easing\preset\linear.h" />
-    <ClInclude Include="..\..\src\takram\easing\preset\quadratic.h" />
-    <ClInclude Include="..\..\src\takram\easing\preset\quartic.h" />
-    <ClInclude Include="..\..\src\takram\easing\preset\quintic.h" />
-    <ClInclude Include="..\..\src\takram\easing\preset\sinusoidal.h" />
-    <ClInclude Include="..\..\src\takram\easing\reverse_inflector.h" />
-    <ClInclude Include="..\..\src\takram\easing\symmetric_inflector.h" />
-    <ClInclude Include="..\..\src\takram\easing\types.h" />
-    <ClInclude Include="..\..\src\takram\tween.h" />
-    <ClInclude Include="..\..\src\takram\tween\accessor_adaptor.h" />
-    <ClInclude Include="..\..\src\takram\tween\adaptor.h" />
-    <ClInclude Include="..\..\src\takram\tween\clock.h" />
-    <ClInclude Include="..\..\src\takram\tween\easing.h" />
-    <ClInclude Include="..\..\src\takram\tween\hash.h" />
-    <ClInclude Include="..\..\src\takram\tween\interval.h" />
-    <ClInclude Include="..\..\src\takram\tween\pointer_adaptor.h" />
-    <ClInclude Include="..\..\src\takram\tween\timeline.h" />
-    <ClInclude Include="..\..\src\takram\tween\timeline_host.h" />
-    <ClInclude Include="..\..\src\takram\tween\timer.h" />
-    <ClInclude Include="..\..\src\takram\tween\timer_adaptor.h" />
-    <ClInclude Include="..\..\src\takram\tween\transform.h" />
-    <ClInclude Include="..\..\src\takram\tween\tween.h" />
-    <ClInclude Include="..\..\src\takram\tween\types.h" />
+    <ClInclude Include="..\src\takram\easing.h" />
+    <ClInclude Include="..\src\takram\easing\group.h" />
+    <ClInclude Include="..\src\takram\easing\inflector.h" />
+    <ClInclude Include="..\src\takram\easing\preset.h" />
+    <ClInclude Include="..\src\takram\easing\preset\back.h" />
+    <ClInclude Include="..\src\takram\easing\preset\bounce.h" />
+    <ClInclude Include="..\src\takram\easing\preset\circular.h" />
+    <ClInclude Include="..\src\takram\easing\preset\cubic.h" />
+    <ClInclude Include="..\src\takram\easing\preset\elastic.h" />
+    <ClInclude Include="..\src\takram\easing\preset\exponential.h" />
+    <ClInclude Include="..\src\takram\easing\preset\linear.h" />
+    <ClInclude Include="..\src\takram\easing\preset\quadratic.h" />
+    <ClInclude Include="..\src\takram\easing\preset\quartic.h" />
+    <ClInclude Include="..\src\takram\easing\preset\quintic.h" />
+    <ClInclude Include="..\src\takram\easing\preset\sinusoidal.h" />
+    <ClInclude Include="..\src\takram\easing\reverse_inflector.h" />
+    <ClInclude Include="..\src\takram\easing\symmetric_inflector.h" />
+    <ClInclude Include="..\src\takram\easing\types.h" />
+    <ClInclude Include="..\src\takram\tween.h" />
+    <ClInclude Include="..\src\takram\tween\accessor_adaptor.h" />
+    <ClInclude Include="..\src\takram\tween\adaptor.h" />
+    <ClInclude Include="..\src\takram\tween\clock.h" />
+    <ClInclude Include="..\src\takram\tween\easing.h" />
+    <ClInclude Include="..\src\takram\tween\hash.h" />
+    <ClInclude Include="..\src\takram\tween\interval.h" />
+    <ClInclude Include="..\src\takram\tween\pointer_adaptor.h" />
+    <ClInclude Include="..\src\takram\tween\timeline.h" />
+    <ClInclude Include="..\src\takram\tween\timeline_host.h" />
+    <ClInclude Include="..\src\takram\tween\timer.h" />
+    <ClInclude Include="..\src\takram\tween\timer_adaptor.h" />
+    <ClInclude Include="..\src\takram\tween\transform.h" />
+    <ClInclude Include="..\src\takram\tween\tween.h" />
+    <ClInclude Include="..\src\takram\tween\types.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\takram\easing.cc" />
-    <ClCompile Include="..\..\src\takram\tween.cc" />
-    <ClCompile Include="..\..\src\takram\tween\timeline.cc" />
-    <ClCompile Include="..\..\src\takram\tween\timer.cc" />
-    <ClCompile Include="..\..\src\takram\tween\transform.cc" />
-    <ClCompile Include="..\..\src\takram\tween\tween.cc" />
+    <ClCompile Include="..\src\takram\easing.cc" />
+    <ClCompile Include="..\src\takram\tween.cc" />
+    <ClCompile Include="..\src\takram\tween\timeline.cc" />
+    <ClCompile Include="..\src\takram\tween\timer.cc" />
+    <ClCompile Include="..\src\takram\tween\transform.cc" />
+    <ClCompile Include="..\src\takram\tween\tween.cc" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{94341CDF-2064-48A1-BAFB-C21AC3DE3B84}</ProjectGuid>
@@ -112,19 +112,19 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)..\build\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)build\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(OutDir)$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)..\build\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)build\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(OutDir)$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(SolutionDir)..\build\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)build\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(OutDir)$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)..\build\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)build\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(OutDir)$(ProjectName)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -133,7 +133,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(SolutionDir)..\src;$(SolutionDir)..\..\takram-math\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(SolutionDir)src;$(SolutionDir)..\takram-math\src</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4068</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -148,7 +148,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(SolutionDir)..\src;$(SolutionDir)..\..\takram-math\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(SolutionDir)src;$(SolutionDir)..\takram-math\src</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <DisableSpecificWarnings>4068</DisableSpecificWarnings>
     </ClCompile>
@@ -167,7 +167,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(SolutionDir)..\src;$(SolutionDir)..\..\takram-math\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(SolutionDir)src;$(SolutionDir)..\takram-math\src</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4068</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -183,7 +183,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(SolutionDir)..\src;$(SolutionDir)..\..\takram-math\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(SolutionDir)src;$(SolutionDir)..\takram-math\src</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <DisableSpecificWarnings>4068</DisableSpecificWarnings>
     </ClCompile>

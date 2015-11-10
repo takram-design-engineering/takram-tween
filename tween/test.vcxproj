@@ -19,15 +19,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\test\accessor_adaptor_test.cc" />
-    <ClCompile Include="..\..\test\clock_test.cc" />
-    <ClCompile Include="..\..\test\hash_test.cc" />
-    <ClCompile Include="..\..\test\interval_test.cc" />
-    <ClCompile Include="..\..\test\pointer_adaptor_test.cc" />
-    <ClCompile Include="..\..\test\timeline_host_test.cc" />
-    <ClCompile Include="..\..\test\timeline_test.cc" />
-    <ClCompile Include="..\..\test\timer_test.cc" />
-    <ClCompile Include="..\..\test\tween_test.cc" />
+    <ClCompile Include="..\test\accessor_adaptor_test.cc" />
+    <ClCompile Include="..\test\clock_test.cc" />
+    <ClCompile Include="..\test\hash_test.cc" />
+    <ClCompile Include="..\test\interval_test.cc" />
+    <ClCompile Include="..\test\pointer_adaptor_test.cc" />
+    <ClCompile Include="..\test\timeline_host_test.cc" />
+    <ClCompile Include="..\test\timeline_test.cc" />
+    <ClCompile Include="..\test\timer_test.cc" />
+    <ClCompile Include="..\test\tween_test.cc" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{20291AD8-8E5C-4682-AE29-0D4230D24CC5}</ProjectGuid>
@@ -80,19 +80,19 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(SolutionDir)..\build\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)build\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(OutDir)$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)..\build\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)build\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(OutDir)$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)..\build\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)build\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(OutDir)$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)..\build\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)build\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(OutDir)$(ProjectName)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -101,7 +101,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(SolutionDir)..\src;$(SolutionDir)..\test;$(SolutionDir)..\..\takram-math\src;$(SolutionDir)..\lib\gtest\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(SolutionDir)src;$(SolutionDir)test;$(SolutionDir)..\takram-math\src;$(SolutionDir)lib\gtest\include</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4068</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -116,7 +116,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(SolutionDir)..\src;$(SolutionDir)..\test;$(SolutionDir)..\..\takram-math\src;$(SolutionDir)..\lib\gtest\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(SolutionDir)src;$(SolutionDir)test;$(SolutionDir)..\takram-math\src;$(SolutionDir)lib\gtest\include</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <DisableSpecificWarnings>4068</DisableSpecificWarnings>
     </ClCompile>
@@ -135,7 +135,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(SolutionDir)..\src;$(SolutionDir)..\test;$(SolutionDir)..\..\takram-math\src;$(SolutionDir)..\lib\gtest\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(SolutionDir)src;$(SolutionDir)test;$(SolutionDir)..\takram-math\src;$(SolutionDir)lib\gtest\include</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4068</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -154,7 +154,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(SolutionDir)..\src;$(SolutionDir)..\test;$(SolutionDir)..\..\takram-math\src;$(SolutionDir)..\lib\gtest\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(SolutionDir)src;$(SolutionDir)test;$(SolutionDir)..\takram-math\src;$(SolutionDir)lib\gtest\include</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <DisableSpecificWarnings>4068</DisableSpecificWarnings>
     </ClCompile>

@@ -6,31 +6,31 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\test\accessor_adaptor_test.cc">
+    <ClCompile Include="..\test\accessor_adaptor_test.cc">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\test\clock_test.cc">
+    <ClCompile Include="..\test\clock_test.cc">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\test\hash_test.cc">
+    <ClCompile Include="..\test\hash_test.cc">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\test\interval_test.cc">
+    <ClCompile Include="..\test\interval_test.cc">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\test\pointer_adaptor_test.cc">
+    <ClCompile Include="..\test\pointer_adaptor_test.cc">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\test\timeline_host_test.cc">
+    <ClCompile Include="..\test\timeline_host_test.cc">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\test\timeline_test.cc">
+    <ClCompile Include="..\test\timeline_test.cc">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\test\timer_test.cc">
+    <ClCompile Include="..\test\timer_test.cc">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\test\tween_test.cc">
+    <ClCompile Include="..\test\tween_test.cc">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
