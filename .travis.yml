@@ -1,14 +1,14 @@
 language: objective-c
-
 compiler:
-  - clang
-
+- clang
 before_script:
-  - git clone git://github.com/takram-design-engineering/takram-math.git ../takram-math
-  - mkdir build
-  - cd build
-  - cmake ..
-
+- git clone git://github.com/takram-design-engineering/takram-math.git ../takram-math
+- mkdir build
+- cd build
+- cmake ..
 script:
-  - make
-  - make test
+- make
+- make test
+notifications:
+  slack:
+    secure: kQtdpfSfmurCNb5fZkQIffnJLTrBE9BEzDc4yQdSjFovoi06GW/WEVmPvh5tDz31VKUAiODmPLS+NcsGfwKlzphiWwrvLcAFG0auZ+jhm05HnS6PvMJtKGcFg2pn/soNjwYtSNmnYS+U35H/S6pAKW27vg/l80Yznh8yCcykVv3kuxb1xHWLG2+74JC6GKRMysZzsAZ51EcrM/qfLx/AYd2wtNFlOyjFOAdI27fn0eAiVALmFIa93AQKG2v84m7aoHJMOg7q6EpsKjHu+o+WqXTFJ8owJcwkDAYBUSNghh+IQHf9mV7xVa91q+5erN2c6QWm31+ARB8vA3vY5QrlU+4oK45EMKCbCWYqILYb6D2p7q05HfwaRiokUPNdW0dfJfvrvMsXcxwxFVauT70/FLHn5lN2sFlSaqs6zDgDSM6qnPYAbIevShr6Kgt1k4Mx2iyo5S6KzjXEHC8l1MJMu/qRXswIlTH2tAZqY5aFB8d0P+zHPwf4VPvCfowzdMYUDa0lExS/g/G1headrFxU5xZOTOV2Qf2DcPu965FwE7gc5vvfQtNRH7j+II1KGuFZqSC2OYCDJLbyGPg0gL+uJah2ywGevPS3mF6Ppuf8BDAkjw6mLj/AtW2jxhcjseKt4KsKYOIpdXe1yenWmctdkRITCWPO4XCbh3M3AfWk+2c=
