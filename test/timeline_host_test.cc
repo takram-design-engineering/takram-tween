@@ -56,16 +56,13 @@ using Intervals = ::testing::Types<Time, Frame>;
 TYPED_TEST_CASE(TimelineHostTest, Intervals);
 
 TYPED_TEST(TimelineHostTest, TweenWithPointer) {
-  double value;
-  typename TypeParam::Value interval;
+  double value{};
+  typename TypeParam::Value interval{};
   const auto easing = LinearEasing::In;
   const auto callback = []() {};
   TimelineHost host;
   Tween<TypeParam> tween;
   tween = host.tween<TypeParam>(&value, value, easing, interval);
-  ASSERT_EQ(tween.duration(), interval);
-  ASSERT_EQ(tween.delay(), typename TypeParam::Value());
-  tween = host.tween<TypeParam>(&value, value, easing, interval, callback);
   ASSERT_EQ(tween.duration(), interval);
   ASSERT_EQ(tween.delay(), typename TypeParam::Value());
   tween = host.tween<TypeParam>(&value, value, easing, interval, interval);
@@ -78,8 +75,8 @@ TYPED_TEST(TimelineHostTest, TweenWithPointer) {
 }
 
 TYPED_TEST(TimelineHostTest, TweenWithAccessor) {
-  Type value;
-  typename TypeParam::Value interval;
+  Type value{};
+  typename TypeParam::Value interval{};
   const auto easing = LinearEasing::In;
   const auto callback = []() {};
   TimelineHost host;
@@ -87,11 +84,6 @@ TYPED_TEST(TimelineHostTest, TweenWithAccessor) {
   tween = host.tween<TypeParam>(&value, &Type::value, &Type::set_value,
                                 "value", value.value(),
                                 easing, interval);
-  ASSERT_EQ(tween.duration(), interval);
-  ASSERT_EQ(tween.delay(), typename TypeParam::Value());
-  tween = host.tween<TypeParam>(&value, &Type::value, &Type::set_value,
-                                "value", value.value(),
-                                easing, interval, callback);
   ASSERT_EQ(tween.duration(), interval);
   ASSERT_EQ(tween.delay(), typename TypeParam::Value());
   tween = host.tween<TypeParam>(&value, &Type::value, &Type::set_value,
