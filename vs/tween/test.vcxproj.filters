@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{d0ef5992-5180-4d5a-869e-979f87215839}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\test\accessor_adaptor_test.cc">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\test\clock_test.cc">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\test\hash_test.cc">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\test\interval_test.cc">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\test\pointer_adaptor_test.cc">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\test\timeline_host_test.cc">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\test\timeline_test.cc">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\test\timer_test.cc">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\test\tween_test.cc">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
