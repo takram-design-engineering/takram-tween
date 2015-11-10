@@ -74,6 +74,13 @@ class Tween final {
         const T& to,
         const Easing& easing,
         const Interval& duration,
+        const Callback& callback,
+        Timeline *timeline = nullptr);
+  template <class T, class Value>
+  Tween(Value *target,
+        const T& to,
+        const Easing& easing,
+        const Interval& duration,
         const Interval& delay,
         const Callback& callback,
         Timeline *timeline = nullptr);
@@ -97,6 +104,16 @@ class Tween final {
         const Easing& easing,
         const Interval& duration,
         const Interval& delay,
+        Timeline *timeline = nullptr);
+  template <class Value, class Class, class Getter, class Setter>
+  Tween(Class *target,
+        Getter getter,
+        Setter setter,
+        const std::string& name,
+        const Value& to,
+        const Easing& easing,
+        const Interval& duration,
+        const Callback& callback,
         Timeline *timeline = nullptr);
   template <class Value, class Class, class Getter, class Setter>
   Tween(Class *target,
@@ -191,6 +208,16 @@ inline Tween<Interval>::Tween(Value *target,
                               const T& to,
                               const Easing& easing,
                               const Interval& duration,
+                              const Callback& callback,
+                              Timeline *timeline)
+    : Tween(target, to, easing, duration, Interval(), callback, timeline) {}
+
+template <class Interval>
+template <class T, class Value>
+inline Tween<Interval>::Tween(Value *target,
+                              const T& to,
+                              const Easing& easing,
+                              const Interval& duration,
                               const Interval& delay,
                               const Callback& callback,
                               Timeline *timeline)
@@ -228,6 +255,20 @@ inline Tween<Interval>::Tween(Class *target,
                               Timeline *timeline)
     : Tween(target, getter, setter, name, to,
             easing, Interval(duration), Interval(delay), nullptr, timeline) {}
+
+template <class Interval>
+template <class Value, class Class, class Getter, class Setter>
+inline Tween<Interval>::Tween(Class *target,
+                              Getter getter,
+                              Setter setter,
+                              const std::string& name,
+                              const Value& to,
+                              const Easing& easing,
+                              const Interval& duration,
+                              const Callback& callback,
+                              Timeline *timeline)
+    : Tween(target, getter, setter, name, to,
+            easing, Interval(duration), Interval(), callback, timeline) {}
 
 template <class Interval>
 template <class Value, class Class, class Getter, class Setter>

@@ -25,20 +25,47 @@
 //
 
 #include <cstdint>
-#include <limits>
+#include <random>
+#include <type_traits>
 
 #include "gtest/gtest.h"
 
-#include "takram/math/random.h"
 #include "takram/tween/interval.h"
 
 namespace takram {
 namespace tween {
 
 template <class T>
-class IntervalTest : public ::testing::Test {};
+class IntervalTest : public ::testing::Test {
+ protected:
+  void SetUp() override {
+    engine_ = std::default_random_engine(random_device_());
+  }
+
+  T random() {
+    if (std::is_integral<T>::value) {
+      std::uniform_int_distribution<T> distribution(
+          std::numeric_limits<T>::min(),
+          std::numeric_limits<T>::max());
+      return distribution(engine_);
+    } else if (std::is_floating_point<T>::value) {
+      std::uniform_real_distribution<T> distribution(
+          std::numeric_limits<T>::min(),
+          std::numeric_limits<T>::max());
+      return distribution(engine_);
+    }
+  }
+
+ private:
+  std::random_device random_device_;
+  std::default_random_engine engine_;
+};
 
 using Types = ::testing::Types<
+  bool,
+  char,
+  std::int8_t,
+  std::uint8_t,
   std::int16_t,
   std::uint16_t,
   std::int32_t,
@@ -56,20 +83,20 @@ TYPED_TEST(IntervalTest, DefaultConstructible) {
 }
 
 TYPED_TEST(IntervalTest, ValueConstructible) {
-  const auto value = math::Random<>().uniform<TypeParam>();
+  const auto value = this->random();
   Interval<TypeParam> interval(value);
   ASSERT_EQ(interval.count(), value);
 }
 
 TYPED_TEST(IntervalTest, CopyConstructible) {
-  const auto value = math::Random<>().uniform<TypeParam>();
+  const auto value = this->random();
   Interval<TypeParam> interval1(value);
   Interval<TypeParam> interval2(interval1);
   ASSERT_EQ(interval1, interval2);
 }
 
 TYPED_TEST(IntervalTest, Assignable) {
-  const auto value = math::Random<>().uniform<TypeParam>();
+  const auto value = this->random();
   Interval<TypeParam> interval1(value);
   Interval<TypeParam> interval2;
   interval2 = interval1;
@@ -99,7 +126,7 @@ TYPED_TEST(IntervalTest, Arithmetic) {
 }
 
 TYPED_TEST(IntervalTest, Count) {
-  const auto value = math::Random<>().uniform<TypeParam>();
+  const auto value = this->random();
   Interval<TypeParam> interval(value);
   ASSERT_EQ(interval.count(), value);
 }

@@ -65,16 +65,18 @@ class TimelineHost {
 
 template <class Interval, class... Args>
 inline tween::Tween<Interval> TimelineHost::tween(Args&&... args) {
-  tween::Tween<Interval> tween(std::forward<Args>(args)...,
-                               &timeline<Interval>());
+  auto tween = tween::Tween<Interval>(
+      std::forward<Args>(args)...,
+      &timeline<Interval>());
   tween.start();
   return std::move(tween);
 }
 
 template <class Interval, class... Args>
 inline tween::Timer<Interval> TimelineHost::timer(Args&&... args) {
-  tween::Timer<Interval> timer(std::forward<Args>(args)...,
-                               &timeline<Interval>());
+  auto timer = tween::Timer<Interval>(
+      std::forward<Args>(args)...,
+      &timeline<Interval>());
   timer.start();
   return std::move(timer);
 }

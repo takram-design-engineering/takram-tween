@@ -101,6 +101,10 @@ TYPED_TEST(TweenTest, ConstructibleWithPointer) {
   ASSERT_EQ(tween.duration(), interval);
   ASSERT_EQ(tween.delay(), TypeParam());
   ASSERT_EQ(tween.timeline(), nullptr);
+  tween = Tween(&value, value, easing, interval, callback);
+  ASSERT_EQ(tween.duration(), interval);
+  ASSERT_EQ(tween.delay(), TypeParam());
+  ASSERT_EQ(tween.timeline(), nullptr);
   tween = Tween(&value, value, easing, interval, interval);
   ASSERT_EQ(tween.duration(), interval);
   ASSERT_EQ(tween.delay(), interval);
@@ -111,6 +115,10 @@ TYPED_TEST(TweenTest, ConstructibleWithPointer) {
   ASSERT_EQ(tween.timeline(), nullptr);
   Timeline<TypeParam> timeline;
   tween = Tween(&value, value, easing, interval, &timeline);
+  ASSERT_EQ(tween.duration(), interval);
+  ASSERT_EQ(tween.delay(), TypeParam());
+  ASSERT_EQ(tween.timeline(), &timeline);
+  tween = Tween(&value, value, easing, interval, callback, &timeline);
   ASSERT_EQ(tween.duration(), interval);
   ASSERT_EQ(tween.delay(), TypeParam());
   ASSERT_EQ(tween.timeline(), &timeline);
@@ -139,6 +147,12 @@ TYPED_TEST(TweenTest, ConstructibleWithAccessor) {
   ASSERT_EQ(tween.timeline(), nullptr);
   tween = Tween(&value, &Type::value, &Type::set_value,
                 "value", value.value(),
+                easing, interval, callback);
+  ASSERT_EQ(tween.duration(), interval);
+  ASSERT_EQ(tween.delay(), TypeParam());
+  ASSERT_EQ(tween.timeline(), nullptr);
+  tween = Tween(&value, &Type::value, &Type::set_value,
+                "value", value.value(),
                 easing, interval, interval);
   ASSERT_EQ(tween.duration(), interval);
   ASSERT_EQ(tween.delay(), interval);
@@ -153,6 +167,12 @@ TYPED_TEST(TweenTest, ConstructibleWithAccessor) {
   tween = Tween(&value, &Type::value, &Type::set_value,
                 "value", value.value(),
                 easing, interval, &timeline);
+  ASSERT_EQ(tween.duration(), interval);
+  ASSERT_EQ(tween.delay(), TypeParam());
+  ASSERT_EQ(tween.timeline(), &timeline);
+  tween = Tween(&value, &Type::value, &Type::set_value,
+                "value", value.value(),
+                easing, interval, callback, &timeline);
   ASSERT_EQ(tween.duration(), interval);
   ASSERT_EQ(tween.delay(), TypeParam());
   ASSERT_EQ(tween.timeline(), &timeline);
