@@ -192,7 +192,7 @@ Run "setup.sh" inside "script" directory to initialize submodules and build depe
 
 The MIT License
 
-Copyright (C) 2014-2015 Shota Matsuda
+Copyright (C) 2014-2016 Shota Matsuda
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
