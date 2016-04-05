@@ -186,7 +186,7 @@ Run "setup.sh" inside "script" directory to initialize submodules and build depe
 
 ### Submodules
 
-- [Google Testing Framework](https://chromium.googlesource.com/external/googletest)
+- [Google Test Framework](https://github.com/google/googletest)
 
 ## License
 
