@@ -692,6 +692,7 @@
 			baseConfigurationReference = 930959331A50633500D09023 /* project_debug.xcconfig */;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -701,6 +702,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 930959341A50633500D09023 /* project_release.xcconfig */;
 			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				SDKROOT = macosx;
 			};
 			name = Release;
