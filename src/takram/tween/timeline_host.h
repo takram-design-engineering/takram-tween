@@ -69,7 +69,7 @@ inline tween::Tween<Interval> TimelineHost::tween(Args&&... args) {
       std::forward<Args>(args)...,
       &timeline<Interval>());
   tween.start();
-  return std::move(tween);
+  return tween;
 }
 
 template <class Interval, class... Args>
@@ -78,7 +78,7 @@ inline tween::Timer<Interval> TimelineHost::timer(Args&&... args) {
       std::forward<Args>(args)...,
       &timeline<Interval>());
   timer.start();
-  return std::move(timer);
+  return timer;
 }
 
 #pragma mark Accessing timeline

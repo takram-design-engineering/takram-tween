@@ -146,7 +146,7 @@ template <class... Args>
 inline tween::Tween<Interval> Timeline<Interval>::tween(Args&&... args) {
   auto tween = tween::Tween<Interval>(std::forward<Args>(args)..., this);
   tween.start();
-  return std::move(tween);
+  return tween;
 }
 
 template <class Interval>
@@ -154,7 +154,7 @@ template <class... Args>
 inline tween::Timer<Interval> Timeline<Interval>::timer(Args&&... args) {
   auto timer = tween::Timer<Interval>(std::forward<Args>(args)..., this);
   timer.start();
-  return std::move(timer);
+  return timer;
 }
 
 #pragma mark Managing adaptors
